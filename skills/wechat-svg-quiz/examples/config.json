@@ -1,0 +1,22 @@
+{
+  "question": "做全案PPT，先确认什么？",
+  "accent": "#177F91",
+  "background": "#FFF9EF",
+  "choices": [
+    {
+      "label": "只确认大纲",
+      "correct": false,
+      "feedback": "大纲只描述整体结构。\n每页具体文字还需要确认。"
+    },
+    {
+      "label": "每页文字内容和样稿",
+      "correct": true,
+      "feedback": "先确认每页的具体文字。\n再确认排版和视觉方向。\n两项都通过后，再做整套。"
+    },
+    {
+      "label": "全部做完再确认",
+      "correct": false,
+      "feedback": "先做整套容易造成返工。\n把确认节点放到终稿之前。"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "fit": "contain",
+  "aspect_ratio": [
+    16,
+    9
+  ],
+  "images": [
+    {
+      "src": "images/01.png",
+      "alt": "原创测试色块1",
+      "caption": "第一张，准备素材"
+    },
+    {
+      "src": "images/02.png",
+      "alt": "原创测试色块2",
+      "caption": "第二张，按顺序展示"
+    },
+    {
+      "src": "images/03.png",
+      "alt": "原创测试色块3",
+      "caption": "第三张，停留在这里"
+    }
+  ]
+}

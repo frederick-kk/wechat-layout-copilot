@@ -1,0 +1,20 @@
+{
+  "title": "示例数据：三阶段用时",
+  "unit": "分钟，演示数据",
+  "items": [
+    {
+      "label": "理解",
+      "value": 12
+    },
+    {
+      "label": "样稿",
+      "value": 25
+    },
+    {
+      "label": "终稿",
+      "value": 40
+    }
+  ],
+  "duration": 1,
+  "accent": "#167E99"
+}

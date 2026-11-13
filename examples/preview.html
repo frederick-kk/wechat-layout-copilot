@@ -1,0 +1,1407 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="公众号组件Skill库的30个入口与交互示例，包含点击、长按、SVG动效、图集及原生组件操作指引。">
+<title>公众号排版外挂 · 30项交互预览</title>
+<style>
+:root{color-scheme:light;--paper:#f5f3ed;--ink:#26383e;--accent:#167e99;--muted:#586d73;--line:#d8e1db}
+*{box-sizing:border-box}
+html{scroll-padding-top:20px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Microsoft YaHei",system-ui,sans-serif}
+main{max-width:640px;margin:auto;padding:30px 16px 64px}
+header{border-bottom:2px solid var(--accent);padding-bottom:12px;margin-bottom:20px}
+h1{font-size:28px;line-height:1.5;margin:0 0 10px;font-weight:700;letter-spacing:.01em}
+h2{font-size:21px;line-height:1.5;margin:0 0 8px}
+h3{font-size:16px;line-height:1.6;margin:20px 0 8px}
+p{font-size:16px;line-height:1.8;margin:10px 0}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:3px}
+.intro{color:var(--muted);font-size:15px}
+.toc{border:1px solid var(--line);border-radius:12px;background:#fffdf7;padding:12px 14px;margin:0 0 32px}
+.toc ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 18px;margin:0;padding:0;list-style-position:inside}
+.toc li{font-size:14px;line-height:1.7;padding:5px 0;min-width:0}
+.toc a{overflow-wrap:anywhere;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+article{margin:34px 0 48px;scroll-margin-top:20px;min-width:0}
+.entry-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-size:14px;line-height:1.8}
+.entry-links a:last-child{color:var(--muted)}
+.workflow{margin:18px 0;padding:16px 18px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;background:#fffdf7}
+.workflow ol{margin:0;padding-left:1.3em}
+.workflow li{font-size:16px;line-height:1.8;margin:9px 0}
+.workflow strong{font-weight:700}
+.layout-example{background:#fffdf7;border:1px solid var(--line);border-radius:10px;padding:0 16px 18px;overflow-wrap:anywhere}
+svg,img{max-width:100%}
+footer{border-top:1px solid var(--line);padding-top:14px;color:var(--muted)}
+footer p{font-size:14px}
+@media(max-width:380px){main{padding:24px 12px 48px}h1{font-size:25px}.toc{padding:10px 12px}.toc ol{column-gap:12px}.toc li{font-size:13px}h2{font-size:20px}.layout-example{padding:0 12px 14px}}
+</style>
+</head>
+<body><main>
+<header id="top"><h1>公众号排版外挂</h1>
+<p>点一点，滑一滑，选择适合本篇内容的效果。</p>
+<p class="entry-links"><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-copilot.zip">下载完整组件库</a><a href="https://github.com/frederick-kk/wechat-layout-copilot">查看GitHub仓库</a></p>
+<p class="intro">30个Skill入口。交互组件可直接体验，头像与秀米原生布局列出接入材料和操作指引。</p></header>
+<nav class="toc" aria-label="组件目录"><ol><li><a href="#component-wechat-svg-flip-card">双面翻牌</a></li><li><a href="#component-wechat-svg-envelope">拆信与收信</a></li><li><a href="#component-wechat-svg-blinds">百叶窗展开</a></li><li><a href="#component-wechat-svg-spotlight">探照灯</a></li><li><a href="#component-wechat-svg-parallax">多层视差</a></li><li><a href="#component-wechat-svg-accordion-panels">手风琴面板</a></li><li><a href="#component-wechat-svg-pull-tab">抽拉标签</a></li><li><a href="#component-wechat-svg-vinyl">唱片启停</a></li><li><a href="#component-wechat-svg-puzzle-assemble">拼图拼合</a></li><li><a href="#component-wechat-svg-timeline">动态时间线</a></li><li><a href="#component-wechat-svg-confetti">点按礼花</a></li><li><a href="#component-wechat-svg-hotspots">多热区点击与返回</a></li><li><a href="#component-wechat-svg-switch">点击旋转切换</a></li><li><a href="#component-wechat-svg-layer-peel">点击逐层掉落</a></li><li><a href="#component-wechat-svg-open-window">双扇开窗</a></li><li><a href="#component-wechat-svg-press-reveal">长按显影与松手复原</a></li><li><a href="#component-wechat-svg-hold-cards">长按轮播与松手定格</a></li><li><a href="#component-wechat-svg-wipe-compare">擦拭前后对比</a></li><li><a href="#component-wechat-svg-quiz">单题点击答题</a></li><li><a href="#component-wechat-svg-story-branches">多步分支故事</a></li><li><a href="#component-wechat-svg-motion-path">点击轨迹运动</a></li><li><a href="#component-wechat-svg-typewriter">逐字打印与重播</a></li><li><a href="#component-wechat-svg-zoom-detail">同图局部放大与返回</a></li><li><a href="#component-wechat-svg-data-chart">数据柱形图入场</a></li><li><a href="#component-wechat-svg-click-reveal">点击揭秘</a></li><li><a href="#component-wechat-svg-drawline">SVG 描边</a></li><li><a href="#component-wechat-xiumi-gallery">图片图集</a></li><li><a href="#component-wechat-layout-blocks">正文排版组件</a></li><li><a href="#component-wechat-avatar-profile">头像跳转公众号</a></li><li><a href="#component-wechat-xiumi-svg-layout">秀米原生 SVG 布局</a></li></ol></nav>
+<article id="component-wechat-svg-flip-card" data-skill="wechat-svg-flip-card" data-preview-kind="interactive">
+<h2>双面翻牌</h2>
+<p>翻到背面阅读，再翻回正面。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-flip-card">
+<rect x="1" y="1" width="598" height="598" rx="20" fill="#FFF9EE"/>
+<text x="30" y="52" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">换个角度，看看另一面</text>
+<g transform="translate(300 270)"><g id="flipcard_4064f90a6e834f2d8a5738af4f642f75_front" data-face="front" transform="scale(1 1)" visibility="visible" style="visibility:visible;">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="0 1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click" dur="0.5s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="1 1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+0.5s" dur="0.5s" fill="freeze"/>
+<set attributeName="visibility" to="hidden" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+0.5s" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+0.5s" fill="freeze"/>
+<rect x="-258" y="-170" width="516" height="340" rx="22" fill="#FFFFFF" stroke="#167E99" stroke-width="2"/>
+<text x="-226" y="-112" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">我还没准备好</text>
+<text x="-226" y="-32" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">总想再多学一点。</text>
+<text x="-226" y="12" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">等准备好了，再开始。</text>
+</g></g>
+<g transform="translate(300 270)"><g id="flipcard_4064f90a6e834f2d8a5738af4f642f75_back" data-face="back" transform="scale(0 1)" visibility="hidden" style="visibility:hidden;">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="0 1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" dur="0.5s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="1 1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+0.5s" dur="0.5s" fill="freeze"/>
+<set attributeName="visibility" to="hidden" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+0.5s" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+0.5s" fill="freeze"/>
+<rect x="-258" y="-170" width="516" height="340" rx="22" fill="#167E99" stroke="#167E99" stroke-width="2"/>
+<text x="-226" y="-112" font-size="36" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">先做一个小作品</text>
+<text x="-226" y="-32" font-size="34" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">把真实想法做出来。</text>
+<text x="-226" y="12" font-size="34" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">下一步，交给真实反馈。</text>
+</g></g><g id="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse" data-action="reverse" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<set attributeName="pointer-events" to="none" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click;flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+1s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click;flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+1s" fill="freeze"/>
+<rect x="24" y="502" width="264" height="60" rx="13" fill="#167E99"/>
+<text x="156" y="542" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">翻回正面</text>
+</g><g id="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward" data-action="forward" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<set attributeName="pointer-events" to="none" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click;flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+1s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click;flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+1s" fill="freeze"/>
+<rect x="312" y="502" width="264" height="60" rx="13" fill="#167E99"/>
+<text x="444" y="542" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">翻到背面</text>
+</g>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-flip-card/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-flip-card.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-envelope" data-skill="wechat-svg-envelope" data-preview-kind="interactive">
+<h2>拆信与收信</h2>
+<p>打开信封抽出信纸，再收回重看。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 740" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-envelope">
+<rect x="1" y="1" width="598" height="738" rx="20" fill="#FFF9EE"/>
+<text x="30" y="52" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">有封信，想交给现在的你</text><rect x="40" y="300" width="520" height="300" rx="14" fill="#E9DBBF" stroke="#B59A6A" stroke-width="2"/>
+<g id="envelope_2a350ee83dc14a71bcf1a4985bd19b41_paper" data-paper="true" transform="translate(0 0)">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="0 -190" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click+0.24s" dur="0.96s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="0 -190" to="0 0" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click" dur="0.96s" fill="freeze"/>
+<rect x="64" y="300" width="472" height="300" rx="8" fill="#FFFFFF" stroke="#167E99" stroke-width="2"/>
+<text x="88" y="342" font-size="36" fill="#167E99" font-weight="700" font-family="sans-serif" xml:space="preserve">写给正在出发的你</text>
+<text x="88" y="404" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">把心里的小想法，</text>
+<text x="88" y="446" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">做成看得见的作品。</text>
+<text x="88" y="488" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">今天，就往前一点点。</text>
+</g>
+<rect x="40" y="320" width="520" height="300" rx="12" fill="#EBD4AD" stroke="#B59A6A" stroke-width="2"/>
+<path d="M42 322L300 495L558 322 M42 618L220 458 M558 618L380 458" fill="none" stroke="#B59A6A" stroke-width="3"/>
+<g transform="translate(300 300)"><g id="envelope_2a350ee83dc14a71bcf1a4985bd19b41_flap" data-flap="true" transform="scale(1 1)" visibility="visible" style="visibility:visible;">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 -0.8" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click" dur="0.24s" fill="freeze"/>
+<set attributeName="visibility" to="hidden" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click+0.24s" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click+0.96s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 -0.8" to="1 1" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click+0.96s" dur="0.24s" fill="freeze"/>
+<path d="M-260 0L0 175L260 0Z" fill="#F3E4C9" stroke="#B59A6A" stroke-width="2"/>
+</g></g>
+<circle cx="300" cy="495" r="26" fill="#167E99"/>
+<path d="M287 495L297 505L314 484" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+<g id="envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse" data-action="reverse" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<set attributeName="pointer-events" to="none" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click;envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click+1.2s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click;envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click+1.2s" fill="freeze"/>
+<rect x="24" y="650" width="264" height="60" rx="13" fill="#167E99"/>
+<text x="156" y="690" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">收好这封信</text>
+</g><g id="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward" data-action="forward" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<set attributeName="pointer-events" to="none" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click;envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click+1.2s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_forward.click;envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="envelope_2a350ee83dc14a71bcf1a4985bd19b41_reverse.click+1.2s" fill="freeze"/>
+<rect x="312" y="650" width="264" height="60" rx="13" fill="#167E99"/>
+<text x="444" y="690" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">拆开来看看</text>
+</g>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-envelope/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-envelope.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-blinds" data-skill="wechat-svg-blinds" data-preview-kind="interactive">
+<h2>百叶窗展开</h2>
+<p>分条展开内容，再恢复遮挡。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-blinds">
+<rect x="1" y="1" width="598" height="598" rx="20" fill="#FFF9EE"/>
+<text x="30" y="52" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">打开窗，让想法透进来</text><rect x="32" y="100" width="536" height="348" rx="12" fill="#FFFFFF" stroke="#167E99" stroke-width="2"/><text x="58" y="154" font-size="36" fill="#167E99" font-weight="700" font-family="sans-serif" xml:space="preserve">给信息一点层次</text><text x="58" y="224" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">先看见主题。</text>
+<text x="58" y="268" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">再理解每一层关系。</text>
+<text x="58" y="312" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">让重点自然地浮出来。</text><g transform="translate(32 100)"><g id="blinds_908d528b54ac4ff38cd7afdd54338ffd_slat_0" data-slat="0" transform="scale(1 1)">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 0" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click+0s" dur="0.65s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 0" to="1 1" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click+0.35s" dur="0.65s" fill="freeze"/>
+<rect width="536" height="58" fill="#167E99"/>
+<path d="M0 57H536" stroke="#FFF9EE" stroke-width="2"/>
+</g></g><g transform="translate(32 158)"><g id="blinds_908d528b54ac4ff38cd7afdd54338ffd_slat_1" data-slat="1" transform="scale(1 1)">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 0" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click+0.07s" dur="0.65s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 0" to="1 1" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click+0.28s" dur="0.65s" fill="freeze"/>
+<rect width="536" height="58" fill="#438FA0"/>
+<path d="M0 57H536" stroke="#FFF9EE" stroke-width="2"/>
+</g></g><g transform="translate(32 216)"><g id="blinds_908d528b54ac4ff38cd7afdd54338ffd_slat_2" data-slat="2" transform="scale(1 1)">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 0" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click+0.14s" dur="0.65s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 0" to="1 1" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click+0.21s" dur="0.65s" fill="freeze"/>
+<rect width="536" height="58" fill="#167E99"/>
+<path d="M0 57H536" stroke="#FFF9EE" stroke-width="2"/>
+</g></g><g transform="translate(32 274)"><g id="blinds_908d528b54ac4ff38cd7afdd54338ffd_slat_3" data-slat="3" transform="scale(1 1)">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 0" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click+0.21s" dur="0.65s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 0" to="1 1" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click+0.14s" dur="0.65s" fill="freeze"/>
+<rect width="536" height="58" fill="#438FA0"/>
+<path d="M0 57H536" stroke="#FFF9EE" stroke-width="2"/>
+</g></g><g transform="translate(32 332)"><g id="blinds_908d528b54ac4ff38cd7afdd54338ffd_slat_4" data-slat="4" transform="scale(1 1)">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 0" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click+0.28s" dur="0.65s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 0" to="1 1" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click+0.07s" dur="0.65s" fill="freeze"/>
+<rect width="536" height="58" fill="#167E99"/>
+<path d="M0 57H536" stroke="#FFF9EE" stroke-width="2"/>
+</g></g><g transform="translate(32 390)"><g id="blinds_908d528b54ac4ff38cd7afdd54338ffd_slat_5" data-slat="5" transform="scale(1 1)">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 0" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click+0.35s" dur="0.65s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 0" to="1 1" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click+0s" dur="0.65s" fill="freeze"/>
+<rect width="536" height="58" fill="#438FA0"/>
+<path d="M0 57H536" stroke="#FFF9EE" stroke-width="2"/>
+</g></g><g id="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse" data-action="reverse" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<set attributeName="pointer-events" to="none" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click;blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click+1s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click;blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click+1s" fill="freeze"/>
+<rect x="24" y="502" width="264" height="60" rx="13" fill="#167E99"/>
+<text x="156" y="542" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">合上百叶窗</text>
+</g><g id="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward" data-action="forward" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<set attributeName="pointer-events" to="none" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click;blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click+1s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_forward.click;blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="blinds_908d528b54ac4ff38cd7afdd54338ffd_reverse.click+1s" fill="freeze"/>
+<rect x="312" y="502" width="264" height="60" rx="13" fill="#167E99"/>
+<text x="444" y="542" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">打开百叶窗</text>
+</g>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-blinds/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-blinds.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-spotlight" data-skill="wechat-svg-spotlight" data-preview-kind="interactive">
+<h2>探照灯</h2>
+<p>点选位置照亮局部，也可查看全景。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" data-component="wechat-svg-spotlight" role="group">
+<rect width="600" height="620" rx="20" fill="#FFF9EF"/>
+<text x="28" y="53" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">给重点打上一束光</text>
+
+<rect x="28" y="118" width="176" height="320" rx="15" fill="#FFFFFF" stroke="#167E99" stroke-width="2"/>
+<text x="116" y="220" text-anchor="middle" font-size="32" font-weight="700" font-family="sans-serif" fill="#167E99" xml:space="preserve">想法</text>
+<text x="52" y="285" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">看见问题</text>
+<text x="52" y="328" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">找到方向</text>
+<rect x="212" y="118" width="176" height="320" rx="15" fill="#FFFFFF" stroke="#167E99" stroke-width="2"/>
+<text x="300" y="220" text-anchor="middle" font-size="32" font-weight="700" font-family="sans-serif" fill="#167E99" xml:space="preserve">行动</text>
+<text x="236" y="285" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">做出作品</text>
+<text x="236" y="328" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">拿到反馈</text>
+<rect x="396" y="118" width="176" height="320" rx="15" fill="#FFFFFF" stroke="#167E99" stroke-width="2"/>
+<text x="484" y="220" text-anchor="middle" font-size="32" font-weight="700" font-family="sans-serif" fill="#167E99" xml:space="preserve">复盘</text>
+<text x="420" y="285" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">整理经验</text>
+<text x="420" y="328" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">再进一步</text>
+<g id="spot_eb7a23922d5242dbb5c841c18af44272_cover_0" data-spotlight-cover="left" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="visible" begin="spot_eb7a23922d5242dbb5c841c18af44272_left.click" fill="freeze"/><set attributeName="visibility" to="hidden" begin="spot_eb7a23922d5242dbb5c841c18af44272_center.click;spot_eb7a23922d5242dbb5c841c18af44272_right.click;spot_eb7a23922d5242dbb5c841c18af44272_full.click;spot_eb7a23922d5242dbb5c841c18af44272_reset.click" fill="freeze"/><path d="M 0 100 H 600 V 450 H 0 Z M 12 276 a 104 104 0 1 0 208 0 a 104 104 0 1 0 -208 0 Z" fill="#22343B" fill-rule="evenodd"/><circle cx="116" cy="276" r="104" fill="none" stroke="#167E99" stroke-width="5"/></g>
+<g id="spot_eb7a23922d5242dbb5c841c18af44272_cover_1" data-spotlight-cover="center" visibility="visible" style="visibility:visible;"><set attributeName="visibility" to="visible" begin="spot_eb7a23922d5242dbb5c841c18af44272_center.click;spot_eb7a23922d5242dbb5c841c18af44272_reset.click" fill="freeze"/><set attributeName="visibility" to="hidden" begin="spot_eb7a23922d5242dbb5c841c18af44272_left.click;spot_eb7a23922d5242dbb5c841c18af44272_right.click;spot_eb7a23922d5242dbb5c841c18af44272_full.click" fill="freeze"/><path d="M 0 100 H 600 V 450 H 0 Z M 196 276 a 104 104 0 1 0 208 0 a 104 104 0 1 0 -208 0 Z" fill="#22343B" fill-rule="evenodd"/><circle cx="300" cy="276" r="104" fill="none" stroke="#167E99" stroke-width="5"/></g>
+<g id="spot_eb7a23922d5242dbb5c841c18af44272_cover_2" data-spotlight-cover="right" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="visible" begin="spot_eb7a23922d5242dbb5c841c18af44272_right.click" fill="freeze"/><set attributeName="visibility" to="hidden" begin="spot_eb7a23922d5242dbb5c841c18af44272_left.click;spot_eb7a23922d5242dbb5c841c18af44272_center.click;spot_eb7a23922d5242dbb5c841c18af44272_full.click;spot_eb7a23922d5242dbb5c841c18af44272_reset.click" fill="freeze"/><path d="M 0 100 H 600 V 450 H 0 Z M 380 276 a 104 104 0 1 0 208 0 a 104 104 0 1 0 -208 0 Z" fill="#22343B" fill-rule="evenodd"/><circle cx="484" cy="276" r="104" fill="none" stroke="#167E99" stroke-width="5"/></g>
+<g id="spot_eb7a23922d5242dbb5c841c18af44272_left" data-action="left" style="cursor:pointer;">
+<rect x="24" y="480" width="104" height="60" rx="12" fill="#167E99"/>
+<text x="76" y="520" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">左侧</text>
+</g>
+<g id="spot_eb7a23922d5242dbb5c841c18af44272_center" data-action="center" style="cursor:pointer;">
+<rect x="136" y="480" width="104" height="60" rx="12" fill="#167E99"/>
+<text x="188" y="520" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">中间</text>
+</g>
+<g id="spot_eb7a23922d5242dbb5c841c18af44272_right" data-action="right" style="cursor:pointer;">
+<rect x="248" y="480" width="104" height="60" rx="12" fill="#167E99"/>
+<text x="300" y="520" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">右侧</text>
+</g>
+<g id="spot_eb7a23922d5242dbb5c841c18af44272_full" data-action="full" style="cursor:pointer;">
+<rect x="360" y="480" width="104" height="60" rx="12" fill="#167E99"/>
+<text x="412" y="520" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">全景</text>
+</g>
+<g id="spot_eb7a23922d5242dbb5c841c18af44272_reset" data-action="reset" style="cursor:pointer;">
+<rect x="472" y="480" width="104" height="60" rx="12" fill="#167E99"/>
+<text x="524" y="520" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">复原</text>
+</g>
+<text x="33" y="594" font-size="28" fill="#68777E" font-weight="400" font-family="sans-serif" xml:space="preserve">点按钮移动光圈，或查看全景</text>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-spotlight/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-spotlight.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-parallax" data-skill="wechat-svg-parallax" data-preview-kind="interactive">
+<h2>多层视差</h2>
+<p>用按钮移动远近景，观察不同位移。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 580" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" data-component="wechat-svg-parallax" role="group">
+<rect width="600" height="580" rx="20" fill="#FFF9EF"/>
+<text x="28" y="53" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">同一方向，不同速度</text>
+
+<rect x="0" y="92" width="600" height="310" fill="#DCEEF0"/>
+<g id="parallax_889737b5a644487c99e40860dc0952f8_far" data-parallax-layer="far" transform="translate(0 0)"><animateTransform attributeName="transform" type="translate" from="0 0" to="-40 0" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click" dur="0.7s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="-40 0" to="0 0" begin="parallax_889737b5a644487c99e40860dc0952f8_back.click" dur="0.7s" fill="freeze"/><path d="M-100 300 L70 132 L210 284 L400 112 L580 286 L770 140 L1000 320 V410 H-100Z" fill="#A7CFD0"/><text x="230" y="165" font-size="30" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">远景慢慢走</text></g>
+<g id="parallax_889737b5a644487c99e40860dc0952f8_middle" data-parallax-layer="middle" transform="translate(0 0)"><animateTransform attributeName="transform" type="translate" from="0 0" to="-100 0" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click" dur="0.7s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="-100 0" to="0 0" begin="parallax_889737b5a644487c99e40860dc0952f8_back.click" dur="0.7s" fill="freeze"/><path d="M-100 404V300H60V260H150V340H240V230H350V320H450V268H540V340H680V255H800V320H1000V410Z" fill="#60A6B1"/><text x="240" y="275" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">中景向前走</text></g>
+<g id="parallax_889737b5a644487c99e40860dc0952f8_near" data-parallax-layer="near" transform="translate(0 0)"><animateTransform attributeName="transform" type="translate" from="0 0" to="-180 0" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click" dur="0.7s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="-180 0" to="0 0" begin="parallax_889737b5a644487c99e40860dc0952f8_back.click" dur="0.7s" fill="freeze"/><path d="M-100 404V356Q50 320 180 355T470 350T760 350T1040 350V410Z" fill="#167E99"/><path d="M-100 380H1040" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="25 18"/><text x="240" y="365" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">近景更快走</text></g>
+<g id="parallax_889737b5a644487c99e40860dc0952f8_back" data-action="back" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<rect x="24" y="438" width="264" height="60" rx="12" fill="#68777E"/>
+<text x="156" y="478" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">返回起点</text>
+<set attributeName="pointer-events" to="none" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click;parallax_889737b5a644487c99e40860dc0952f8_back.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click+0.7s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click;parallax_889737b5a644487c99e40860dc0952f8_back.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click+0.7s" fill="freeze"/></g>
+<g id="parallax_889737b5a644487c99e40860dc0952f8_forward" data-action="forward" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<rect x="312" y="438" width="264" height="60" rx="12" fill="#167E99"/>
+<text x="444" y="478" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">向前看看</text>
+<set attributeName="pointer-events" to="none" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click;parallax_889737b5a644487c99e40860dc0952f8_back.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="parallax_889737b5a644487c99e40860dc0952f8_back.click+0.7s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="parallax_889737b5a644487c99e40860dc0952f8_forward.click;parallax_889737b5a644487c99e40860dc0952f8_back.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="parallax_889737b5a644487c99e40860dc0952f8_back.click+0.7s" fill="freeze"/></g>
+<text x="31" y="547" font-size="28" fill="#68777E" font-weight="400" font-family="sans-serif" xml:space="preserve">远景慢，中景居中，近景更快</text>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-parallax/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-parallax.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-accordion-panels" data-skill="wechat-svg-accordion-panels" data-preview-kind="interactive">
+<h2>手风琴面板</h2>
+<p>点开一块面板，其余面板收窄。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 540" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" data-component="wechat-svg-accordion-panels" role="group">
+<rect width="600" height="540" rx="20" fill="#FFF9EF"/>
+<text x="28" y="53" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">三张卡片，逐一展开看</text>
+
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_panel_0" data-accordion-panel="0" transform="translate(20 0)">
+<animateTransform attributeName="transform" type="translate" from="20 0" to="20 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="20 0" to="20 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="20 0" to="20 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="20 0" to="20 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="20 0" to="20 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="20 0" to="20 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" dur="0.7s" fill="freeze"/>
+<rect data-panel-background="0" x="0" y="110" width="330" height="350" rx="16" fill="#167E99">
+<animate attributeName="width" from="330" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="330" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="330" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="330" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" dur="0.7s" fill="freeze"/>
+</rect>
+<text x="20" y="168" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">规划</text>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_body_0" data-panel-body="0" visibility="visible" style="visibility:visible;"><set attributeName="visibility" to="hidden" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click+0.7s;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click+0.7s" fill="freeze"/>
+<text x="20" y="245" font-size="32" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">先确定本篇目标</text>
+<text x="20" y="291" font-size="32" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">再整理输入材料</text>
+</g></g>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_panel_1" data-accordion-panel="1" transform="translate(360 0)">
+<animateTransform attributeName="transform" type="translate" from="360 0" to="135 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="360 0" to="135 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="135 0" to="360 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="135 0" to="135 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="135 0" to="360 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="135 0" to="135 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" dur="0.7s" fill="freeze"/>
+<rect data-panel-background="1" x="0" y="110" width="105" height="350" rx="16" fill="#458D97">
+<animate attributeName="width" from="105" to="330" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="330" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="330" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="330" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" dur="0.7s" fill="freeze"/>
+</rect>
+<text x="20" y="168" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">制作</text>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_body_1" data-panel-body="1" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="hidden" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click+0.7s;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click+0.7s" fill="freeze"/>
+<text x="20" y="245" font-size="32" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">按模块组织内容</text>
+<text x="20" y="291" font-size="32" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">让重点一眼可见</text>
+</g></g>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_panel_2" data-accordion-panel="2" transform="translate(475 0)">
+<animateTransform attributeName="transform" type="translate" from="475 0" to="475 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="475 0" to="250 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="475 0" to="475 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="475 0" to="250 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="250 0" to="475 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="250 0" to="475 0" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" dur="0.7s" fill="freeze"/>
+<rect data-panel-background="2" x="0" y="110" width="105" height="350" rx="16" fill="#68777E">
+<animate attributeName="width" from="105" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="330" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="105" to="330" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="330" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="width" from="330" to="105" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" dur="0.7s" fill="freeze"/>
+</rect>
+<text x="20" y="168" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">交付</text>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_body_2" data-panel-body="2" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="hidden" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click+0.7s;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click+0.7s" fill="freeze"/>
+<text x="20" y="245" font-size="32" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">保存后重新打开</text>
+<text x="20" y="291" font-size="32" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">逐项检查交互</text>
+</g></g>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_controls_0" data-accordion-controls="0" visibility="visible" style="visibility:visible;"><set attributeName="visibility" to="hidden" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click+0.7s;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click+0.7s" fill="freeze"/>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1" data-action="pick-0-1" style="cursor:pointer;"><rect x="360" y="110" width="105" height="350" fill="#FFFFFF" fill-opacity="0" style="pointer-events:visiblePainted;"/></g>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2" data-action="pick-0-2" style="cursor:pointer;"><rect x="475" y="110" width="105" height="350" fill="#FFFFFF" fill-opacity="0" style="pointer-events:visiblePainted;"/></g>
+</g>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_controls_1" data-accordion-controls="1" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="hidden" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click+0.7s;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click+0.7s" fill="freeze"/>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0" data-action="pick-1-0" style="cursor:pointer;"><rect x="20" y="110" width="105" height="350" fill="#FFFFFF" fill-opacity="0" style="pointer-events:visiblePainted;"/></g>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2" data-action="pick-1-2" style="cursor:pointer;"><rect x="475" y="110" width="105" height="350" fill="#FFFFFF" fill-opacity="0" style="pointer-events:visiblePainted;"/></g>
+</g>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_controls_2" data-accordion-controls="2" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="hidden" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_1.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0.click;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1.click" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_0_2.click+0.7s;accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_1_2.click+0.7s" fill="freeze"/>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_0" data-action="pick-2-0" style="cursor:pointer;"><rect x="20" y="110" width="105" height="350" fill="#FFFFFF" fill-opacity="0" style="pointer-events:visiblePainted;"/></g>
+<g id="accordion_97aa3f8e3f0c4ac3b2df02dd495871bb_pick_2_1" data-action="pick-2-1" style="cursor:pointer;"><rect x="135" y="110" width="105" height="350" fill="#FFFFFF" fill-opacity="0" style="pointer-events:visiblePainted;"/></g>
+</g>
+<text x="28" y="511" font-size="28" fill="#68777E" font-weight="400" font-family="sans-serif" xml:space="preserve">点开另一张卡片，查看它的内容</text>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-accordion-panels/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-accordion-panels.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-pull-tab" data-skill="wechat-svg-pull-tab" data-preview-kind="interactive">
+<h2>抽拉标签</h2>
+<p>点标签抽出信息条，再收回。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 520" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" data-component="wechat-svg-pull-tab" role="group">
+<rect width="600" height="520" rx="20" fill="#FFF9EF"/>
+<text x="28" y="53" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">把一条线索抽出来</text>
+
+<g id="pull_b33644324ccf4a31940838ca655d4f46_paper" data-pull-paper="true" transform="translate(-310 0)"><animateTransform attributeName="transform" type="translate" from="-310 0" to="0 0" begin="pull_b33644324ccf4a31940838ca655d4f46_open.click" dur="0.7s" fill="freeze"/><animateTransform attributeName="transform" type="translate" from="0 0" to="-310 0" begin="pull_b33644324ccf4a31940838ca655d4f46_close.click" dur="0.7s" fill="freeze"/><rect x="60" y="140" width="480" height="270" rx="12" fill="#FFFFFF" stroke="#167E99" stroke-width="3"/><path d="M210 160V390" stroke="#167E99" stroke-dasharray="6 6"/>
+<g id="pull_b33644324ccf4a31940838ca655d4f46_message" data-pull-message="true" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="hidden" begin="pull_b33644324ccf4a31940838ca655d4f46_open.click;pull_b33644324ccf4a31940838ca655d4f46_close.click" fill="freeze"/><set attributeName="visibility" to="visible" begin="pull_b33644324ccf4a31940838ca655d4f46_open.click+0.7s" fill="freeze"/><text x="230" y="205" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">先跑通一个小流程</text>
+<text x="230" y="250" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">把结果做成作品</text>
+<text x="230" y="295" font-size="32" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">再交给真实反馈</text></g></g>
+<rect x="0" y="120" width="190" height="310" rx="15" fill="#167E99"/><path d="M170 145V405" stroke="#FFFFFF" stroke-dasharray="7 7" stroke-width="3"/><text x="35" y="270" font-size="36" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">线索</text>
+<g id="pull_b33644324ccf4a31940838ca655d4f46_open" data-action="open" visibility="visible" style="visibility:visible;cursor:pointer;">
+<set attributeName="visibility" to="hidden" begin="pull_b33644324ccf4a31940838ca655d4f46_open.click;pull_b33644324ccf4a31940838ca655d4f46_close.click" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="pull_b33644324ccf4a31940838ca655d4f46_close.click+0.7s" fill="freeze"/>
+<rect x="210" y="220" width="60" height="100" rx="12" fill="#167E99"/>
+<text x="240" y="281" text-anchor="middle" font-size="32" fill="#FFFFFF" style="pointer-events:none;">拉</text>
+</g>
+<g id="pull_b33644324ccf4a31940838ca655d4f46_close" data-action="close" visibility="hidden" style="visibility:hidden;cursor:pointer;">
+<set attributeName="visibility" to="hidden" begin="pull_b33644324ccf4a31940838ca655d4f46_open.click;pull_b33644324ccf4a31940838ca655d4f46_close.click" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="pull_b33644324ccf4a31940838ca655d4f46_open.click+0.7s" fill="freeze"/>
+<rect x="520" y="220" width="60" height="100" rx="12" fill="#167E99"/>
+<text x="550" y="281" text-anchor="middle" font-size="32" fill="#FFFFFF" style="pointer-events:none;">收</text>
+</g>
+<text x="28" y="489" font-size="28" fill="#68777E" font-weight="400" font-family="sans-serif" xml:space="preserve">点击侧边标签，抽出或收回信息</text>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-pull-tab/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-pull-tab.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-vinyl" data-skill="wechat-svg-vinyl" data-preview-kind="interactive">
+<h2>唱片启停</h2>
+<p>控制唱片旋转，体验视觉播放状态。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" style="display:block;width:100%;height:auto;" data-component="wechat-svg-vinyl">
+<rect x="1" y="1" width="598" height="598" rx="20" fill="#FFF9EF"/>
+<text x="30" y="52" font-size="34" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">把这一刻，转起来</text>
+<text x="30" y="98" font-size="27" fill="#586D73" font-weight="400" font-family="sans-serif" xml:space="preserve">点按播放，让唱片转起来</text>
+<circle cx="300" cy="290" r="165" fill="#E2DDD3"/>
+<g transform="translate(300 290)"><g id="vinyl_739fe1dfeff34227a6aaf33eeafe554a_rotor" data-vinyl-rotor="true" transform="rotate(0)">
+<circle r="150" fill="#26383E"/>
+<circle r="122" fill="none" stroke="#67777A" stroke-width="2"/>
+<circle r="108" fill="none" stroke="#67777A" stroke-width="2"/>
+<circle r="94" fill="none" stroke="#67777A" stroke-width="2"/>
+<path d="M-120 -67 A138 138 0 0 1 -65 -120 M85 100 A130 130 0 0 1 120 50" fill="none" stroke="#D7DBD5" stroke-width="11" opacity="0.6"/>
+<circle r="58" fill="#167E99"/>
+<circle cx="23" cy="-20" r="8" fill="#F0B95A"/>
+<circle r="8" fill="#FFF9EF"/>
+<animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_play.click" end="vinyl_739fe1dfeff34227a6aaf33eeafe554a_stop.click" dur="4s" repeatCount="indefinite" fill="remove"/>
+</g></g>
+<text x="300" text-anchor="middle" y="483" font-size="30" fill="#167E99" font-weight="700" font-family="sans-serif" xml:space="preserve">继续向前</text>
+<g id="vinyl_739fe1dfeff34227a6aaf33eeafe554a_play" data-action="play" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<set attributeName="pointer-events" to="auto" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_stop.click" fill="freeze"/>
+<set attributeName="pointer-events" to="none" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_play.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_stop.click" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_play.click" fill="freeze"/>
+<rect x="32" y="520" width="256" height="60" rx="13" fill="#167E99"/>
+<text x="160" y="560" text-anchor="middle" font-size="29" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">开始旋转</text>
+</g>
+<g id="vinyl_739fe1dfeff34227a6aaf33eeafe554a_stop" data-action="stop" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<set attributeName="pointer-events" to="auto" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_play.click" fill="freeze"/>
+<set attributeName="pointer-events" to="none" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_stop.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_play.click" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="vinyl_739fe1dfeff34227a6aaf33eeafe554a_stop.click" fill="freeze"/>
+<rect x="312" y="520" width="256" height="60" rx="13" fill="#167E99"/>
+<text x="440" y="560" text-anchor="middle" font-size="29" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">停止并复位</text>
+</g></svg></section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-vinyl/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-vinyl.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-puzzle-assemble" data-skill="wechat-svg-puzzle-assemble" data-preview-kind="interactive">
+<h2>拼图拼合</h2>
+<p>点击播放，看碎片逐块拼合。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 570" width="100%" style="display:block;width:100%;height:auto;" data-component="wechat-svg-puzzle-assemble">
+<rect x="1" y="1" width="598" height="568" rx="20" fill="#FFF9EF"/>
+<text x="30" y="52" font-size="34" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">把想法拼成一个完整作品</text>
+<rect x="172" y="138" width="256" height="256" rx="15" fill="#E3E8DF" stroke="#B8C7C7" stroke-width="2" stroke-dasharray="5 8"/>
+<g id="puzzle_5a03f7985c1545b2972667b15227ddf1_piece_0" data-piece-index="0" transform="translate(-112 -38)">
+<rect x="176" y="142" width="120" height="120" rx="13" fill="#167E99"/>
+<path d="M192 160H280 M192 244H280" stroke="#FFFFFF" stroke-width="2" opacity="0.45"/>
+<text x="236" text-anchor="middle" y="215" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">想法</text>
+<set attributeName="transform" to="translate(-112 -38)" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="-112 -38" to="0 0" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click+0s" dur="1.2s" fill="freeze"/>
+</g>
+<g id="puzzle_5a03f7985c1545b2972667b15227ddf1_piece_1" data-piece-index="1" transform="translate(112 -30)">
+<rect x="304" y="142" width="120" height="120" rx="13" fill="#E6B55B"/>
+<path d="M320 160H408 M320 244H408" stroke="#FFFFFF" stroke-width="2" opacity="0.45"/>
+<text x="364" text-anchor="middle" y="215" font-size="32" fill="#26383E" font-weight="700" font-family="sans-serif" xml:space="preserve">行动</text>
+<set attributeName="transform" to="translate(112 -30)" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="112 -30" to="0 0" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click+0.12s" dur="1.2s" fill="freeze"/>
+</g>
+<g id="puzzle_5a03f7985c1545b2972667b15227ddf1_piece_2" data-piece-index="2" transform="translate(-105 35)">
+<rect x="176" y="270" width="120" height="120" rx="13" fill="#A7CBC4"/>
+<path d="M192 288H280 M192 372H280" stroke="#FFFFFF" stroke-width="2" opacity="0.45"/>
+<text x="236" text-anchor="middle" y="343" font-size="32" fill="#26383E" font-weight="700" font-family="sans-serif" xml:space="preserve">反馈</text>
+<set attributeName="transform" to="translate(-105 35)" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="-105 35" to="0 0" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click+0.24s" dur="1.2s" fill="freeze"/>
+</g>
+<g id="puzzle_5a03f7985c1545b2972667b15227ddf1_piece_3" data-piece-index="3" transform="translate(110 42)">
+<rect x="304" y="270" width="120" height="120" rx="13" fill="#F0D3B9"/>
+<path d="M320 288H408 M320 372H408" stroke="#FFFFFF" stroke-width="2" opacity="0.45"/>
+<text x="364" text-anchor="middle" y="343" font-size="32" fill="#26383E" font-weight="700" font-family="sans-serif" xml:space="preserve">作品</text>
+<set attributeName="transform" to="translate(110 42)" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="110 42" to="0 0" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click+0.36s" dur="1.2s" fill="freeze"/>
+</g>
+<text x="300" text-anchor="middle" y="449" font-size="28" fill="#586D73" font-weight="400" font-family="sans-serif" xml:space="preserve">四小步，拼起一次真正的开始</text>
+<g id="puzzle_5a03f7985c1545b2972667b15227ddf1_play" data-action="play" style="cursor:pointer;pointer-events:auto;">
+<set attributeName="pointer-events" to="none" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="puzzle_5a03f7985c1545b2972667b15227ddf1_play.click+1.56s" fill="freeze"/>
+<rect x="32" y="492" width="536" height="60" rx="13" fill="#167E99"/>
+<text x="300" y="532" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">点击拼合 / 重播</text>
+</g></svg></section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-puzzle-assemble/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-puzzle-assemble.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-timeline" data-skill="wechat-svg-timeline" data-preview-kind="interactive">
+<h2>动态时间线</h2>
+<p>沿时间线依次展开节点与信息。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 580" width="100%" style="display:block;width:100%;height:auto;" data-component="wechat-svg-timeline">
+<rect x="1" y="1" width="598" height="578" rx="20" fill="#FFF9EF"/>
+<text x="30" y="52" font-size="34" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">一次行动，怎样慢慢发生</text>
+<text x="30" y="98" font-size="27" fill="#586D73" font-family="sans-serif">把一次行动的几个节点串起来</text>
+<path d="M70 145V385" fill="none" stroke="#D7E2DA" stroke-width="8"/>
+<g id="timeline_277f999ffa364806a58f64b498da0332_line" data-timeline-line="true"><path d="M70 145V385" fill="none" stroke="#167E99" stroke-width="8" stroke-dasharray="240" stroke-dashoffset="240"><animate attributeName="stroke-dashoffset" from="240" to="0" begin="timeline_277f999ffa364806a58f64b498da0332_play.click" dur="2.4s" fill="freeze"/></path></g>
+<g id="timeline_277f999ffa364806a58f64b498da0332_step_0" data-timeline-step="0" opacity="0.3" style="opacity:0.3;">
+<rect x="110" y="107" width="455" height="104" rx="12" fill="#FFFFFF" stroke="#D2DEDA"/>
+<circle cx="70" cy="145" r="17" fill="#167E99" stroke="#FFF9EF" stroke-width="5"/>
+<text x="128" y="133" font-size="24" fill="#167E99" font-weight="700" font-family="sans-serif" xml:space="preserve">第1天</text>
+<text x="128" y="164" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">先把想法写出来</text>
+<text x="128" y="196" font-size="30" fill="#586D73" font-weight="400" font-family="sans-serif" xml:space="preserve">明确想解决的小问题</text>
+<set attributeName="opacity" to="0.3" begin="timeline_277f999ffa364806a58f64b498da0332_play.click" fill="freeze"/>
+<animate attributeName="opacity" from="0.3" to="1" begin="timeline_277f999ffa364806a58f64b498da0332_play.click+0s" dur="0.25s" fill="freeze"/>
+</g>
+<g id="timeline_277f999ffa364806a58f64b498da0332_step_1" data-timeline-step="1" opacity="0.3" style="opacity:0.3;">
+<rect x="110" y="227" width="455" height="104" rx="12" fill="#FFFFFF" stroke="#D2DEDA"/>
+<circle cx="70" cy="265" r="17" fill="#167E99" stroke="#FFF9EF" stroke-width="5"/>
+<text x="128" y="253" font-size="24" fill="#167E99" font-weight="700" font-family="sans-serif" xml:space="preserve">第2天</text>
+<text x="128" y="284" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">做出最小作品</text>
+<text x="128" y="316" font-size="30" fill="#586D73" font-weight="400" font-family="sans-serif" xml:space="preserve">把流程真正跑一遍</text>
+<set attributeName="opacity" to="0.3" begin="timeline_277f999ffa364806a58f64b498da0332_play.click" fill="freeze"/>
+<animate attributeName="opacity" from="0.3" to="1" begin="timeline_277f999ffa364806a58f64b498da0332_play.click+1.2s" dur="0.25s" fill="freeze"/>
+</g>
+<g id="timeline_277f999ffa364806a58f64b498da0332_step_2" data-timeline-step="2" opacity="0.3" style="opacity:0.3;">
+<rect x="110" y="347" width="455" height="104" rx="12" fill="#FFFFFF" stroke="#D2DEDA"/>
+<circle cx="70" cy="385" r="17" fill="#167E99" stroke="#FFF9EF" stroke-width="5"/>
+<text x="128" y="373" font-size="24" fill="#167E99" font-weight="700" font-family="sans-serif" xml:space="preserve">第3天</text>
+<text x="128" y="404" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">拿到真实反馈</text>
+<text x="128" y="436" font-size="30" fill="#586D73" font-weight="400" font-family="sans-serif" xml:space="preserve">再决定下一步改哪里</text>
+<set attributeName="opacity" to="0.3" begin="timeline_277f999ffa364806a58f64b498da0332_play.click" fill="freeze"/>
+<animate attributeName="opacity" from="0.3" to="1" begin="timeline_277f999ffa364806a58f64b498da0332_play.click+2.4s" dur="0.25s" fill="freeze"/>
+</g>
+<g id="timeline_277f999ffa364806a58f64b498da0332_play" data-action="play" style="cursor:pointer;pointer-events:auto;">
+<set attributeName="pointer-events" to="none" begin="timeline_277f999ffa364806a58f64b498da0332_play.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="timeline_277f999ffa364806a58f64b498da0332_play.click+2.65s" fill="freeze"/>
+<rect x="32" y="492" width="536" height="60" rx="13" fill="#167E99"/>
+<text x="300" y="532" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">播放时间线 / 重播</text>
+</g></svg></section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-timeline/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-timeline.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-confetti" data-skill="wechat-svg-confetti" data-preview-kind="interactive">
+<h2>点按礼花</h2>
+<p>点燃粒子礼花，显示祝福，再次播放。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 570" width="100%" style="display:block;width:100%;height:auto;" data-component="wechat-svg-confetti">
+<rect x="1" y="1" width="598" height="568" rx="20" fill="#FFF9EF"/>
+<text x="30" y="52" font-size="34" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">为迈出的这一步，庆祝一下</text>
+<circle cx="300" cy="220" r="120" fill="#E8EFE5"/>
+<path d="M260 304 L275 248 L317 282 Z" fill="#167E99"/><path d="M272 273L302 294" stroke="#FFFFFF" stroke-width="7"/>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_0" data-particle-index="0" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="175.000 -25.000" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#167E99"/><animateTransform attributeName="transform" type="rotate" from="0" to="180" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_1" data-particle-index="1" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="161.679 34.316" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#E6B55B"/><animateTransform attributeName="transform" type="rotate" from="0" to="201" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_2" data-particle-index="2" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="123.744 84.602" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#D78269"/><animateTransform attributeName="transform" type="rotate" from="0" to="222" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_3" data-particle-index="3" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="66.970 118.201" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#75B6A7"/><animateTransform attributeName="transform" type="rotate" from="0" to="243" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_4" data-particle-index="4" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="0.000 130.000" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#167E99"/><animateTransform attributeName="transform" type="rotate" from="0" to="264" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_5" data-particle-index="5" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-66.970 118.201" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#E6B55B"/><animateTransform attributeName="transform" type="rotate" from="0" to="285" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_6" data-particle-index="6" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-123.744 84.602" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#D78269"/><animateTransform attributeName="transform" type="rotate" from="0" to="306" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_7" data-particle-index="7" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-161.679 34.316" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#75B6A7"/><animateTransform attributeName="transform" type="rotate" from="0" to="327" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_8" data-particle-index="8" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-175.000 -25.000" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#167E99"/><animateTransform attributeName="transform" type="rotate" from="0" to="348" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_9" data-particle-index="9" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-161.679 -84.316" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#E6B55B"/><animateTransform attributeName="transform" type="rotate" from="0" to="369" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_10" data-particle-index="10" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-123.744 -134.602" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#D78269"/><animateTransform attributeName="transform" type="rotate" from="0" to="390" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_11" data-particle-index="11" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-66.970 -168.201" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#75B6A7"/><animateTransform attributeName="transform" type="rotate" from="0" to="411" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_12" data-particle-index="12" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-0.000 -180.000" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#167E99"/><animateTransform attributeName="transform" type="rotate" from="0" to="432" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_13" data-particle-index="13" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="66.970 -168.201" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#E6B55B"/><animateTransform attributeName="transform" type="rotate" from="0" to="453" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_14" data-particle-index="14" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="123.744 -134.602" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#D78269"/><animateTransform attributeName="transform" type="rotate" from="0" to="474" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g transform="translate(300 220)"><g id="confetti_63123772d5124362bfbed356d3867e0b_particle_15" data-particle-index="15" transform="translate(0 0)" opacity="0" style="opacity:0;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="161.679 -84.316" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.6;1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/>
+<g><rect x="-5" y="-10" width="10" height="20" rx="2" fill="#75B6A7"/><animateTransform attributeName="transform" type="rotate" from="0" to="495" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" dur="1.6s" fill="freeze"/></g>
+</g></g>
+<g id="confetti_63123772d5124362bfbed356d3867e0b_message" data-confetti-message="true" opacity="0" style="opacity:0;">
+<text x="300" text-anchor="middle" y="398" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">恭喜，你已经开始行动了！</text>
+<set attributeName="opacity" to="0" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" fill="freeze"/>
+<animate attributeName="opacity" from="0" to="1" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click+0.8s" dur="0.48s" fill="freeze"/>
+</g>
+<g id="confetti_63123772d5124362bfbed356d3867e0b_play" data-action="play" style="cursor:pointer;pointer-events:auto;">
+<set attributeName="pointer-events" to="none" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="confetti_63123772d5124362bfbed356d3867e0b_play.click+1.6s" fill="freeze"/>
+<rect x="32" y="492" width="536" height="60" rx="13" fill="#167E99"/>
+<text x="300" y="532" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">点燃礼花 / 再来一次</text>
+</g></svg></section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-confetti/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-confetti.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-hotspots" data-skill="wechat-svg-hotspots" data-preview-kind="interactive">
+<h2>多热区点击与返回</h2>
+<p>点开不同节点查看说明，再返回总图。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 600" width="100%" style="display:block;width:100%;height:auto;" data-component="wechat-svg-hotspots" data-instance="hotspots_4812592a932a4a66" role="group" aria-label="多热区点击查看说明">
+<desc>点击编号热区打开对应说明，点击返回回到总图。</desc>
+<rect width="600" height="600" rx="20" fill="#FFF9EE"/>
+<text x="40" y="60" fill="#1F2937" font-size="36" font-weight="700" font-family="sans-serif" xml:space="preserve">点开三个制作节点</text>
+<text x="40" y="132" fill="#52616A" font-size="24" font-weight="400" font-family="sans-serif" xml:space="preserve">点击卡片查看，再点返回</text>
+<path d="M42 565 Q175 530 305 563 T555 561" fill="none" stroke="#197B8B" stroke-width="3" stroke-dasharray="5 10" opacity="0.35"/>
+<g id="hotspots_4812592a932a4a66_open_0" data-hotspot="0" style="cursor:pointer;" role="button" aria-label="收齐客户材料">
+<rect x="40" y="150" width="520" height="76" rx="14" fill="#FFF9EE" fill-opacity="0.94" stroke="#197B8B" stroke-width="2" pointer-events="all"/>
+<circle cx="71" cy="188" r="20" fill="#197B8B" pointer-events="none"/>
+<text x="61" y="199" fill="#FFFFFF" font-size="30" font-weight="700" font-family="sans-serif" xml:space="preserve">1</text>
+<text x="106" y="200" fill="#1F2937" font-size="32" font-weight="700" font-family="sans-serif" xml:space="preserve">收齐客户材料</text>
+</g>
+<g id="hotspots_4812592a932a4a66_open_1" data-hotspot="1" style="cursor:pointer;" role="button" aria-label="确认每页文字">
+<rect x="40" y="250" width="520" height="76" rx="14" fill="#FFF9EE" fill-opacity="0.94" stroke="#197B8B" stroke-width="2" pointer-events="all"/>
+<circle cx="71" cy="288" r="20" fill="#197B8B" pointer-events="none"/>
+<text x="61" y="299" fill="#FFFFFF" font-size="30" font-weight="700" font-family="sans-serif" xml:space="preserve">2</text>
+<text x="106" y="300" fill="#1F2937" font-size="32" font-weight="700" font-family="sans-serif" xml:space="preserve">确认每页文字</text>
+</g>
+<g id="hotspots_4812592a932a4a66_open_2" data-hotspot="2" style="cursor:pointer;" role="button" aria-label="确认样稿风格">
+<rect x="40" y="350" width="520" height="76" rx="14" fill="#FFF9EE" fill-opacity="0.94" stroke="#197B8B" stroke-width="2" pointer-events="all"/>
+<circle cx="71" cy="388" r="20" fill="#197B8B" pointer-events="none"/>
+<text x="61" y="399" fill="#FFFFFF" font-size="30" font-weight="700" font-family="sans-serif" xml:space="preserve">3</text>
+<text x="106" y="400" fill="#1F2937" font-size="32" font-weight="700" font-family="sans-serif" xml:space="preserve">确认样稿风格</text>
+</g>
+<g visibility="hidden" style="visibility:hidden;" data-hotspot-detail="0">
+<set attributeName="visibility" to="visible" begin="hotspots_4812592a932a4a66_open_0.click" end="hotspots_4812592a932a4a66_back_0.click" restart="always"/>
+<g opacity="0" data-hotspot-fade="0">
+<animate attributeName="opacity" from="0" to="1" dur="0.28s" begin="hotspots_4812592a932a4a66_open_0.click" fill="freeze" restart="always"/>
+<rect width="600" height="600" rx="20" fill="#FFF9EE" pointer-events="visiblePainted"/>
+<path d="M40 150 H560" stroke="#197B8B" stroke-width="3"/>
+<text x="40" y="70" fill="#1F2937" font-size="36" font-weight="700" font-family="sans-serif" xml:space="preserve">先把材料收齐</text>
+<text x="40" y="206" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">把收到的文件发回群里，</text>
+<text x="40" y="250" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">请客户确认有无补充。</text>
+<text x="40" y="294" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">资料齐全后再交给 AI。</text>
+<g id="hotspots_4812592a932a4a66_back_0" data-hotspot-back="0" role="button" aria-label="返回总图" style="cursor:pointer;">
+<rect x="40" y="500" width="520" height="60" rx="14" fill="#197B8B" pointer-events="visiblePainted"/>
+<text x="236" y="542" fill="#FFFFFF" font-size="32" font-weight="700" font-family="sans-serif" xml:space="preserve">返回总图</text>
+</g>
+</g>
+</g>
+<g visibility="hidden" style="visibility:hidden;" data-hotspot-detail="1">
+<set attributeName="visibility" to="visible" begin="hotspots_4812592a932a4a66_open_1.click" end="hotspots_4812592a932a4a66_back_1.click" restart="always"/>
+<g opacity="0" data-hotspot-fade="1">
+<animate attributeName="opacity" from="0" to="1" dur="0.28s" begin="hotspots_4812592a932a4a66_open_1.click" fill="freeze" restart="always"/>
+<rect width="600" height="600" rx="20" fill="#FFF9EE" pointer-events="visiblePainted"/>
+<path d="M40 150 H560" stroke="#197B8B" stroke-width="3"/>
+<text x="40" y="70" fill="#1F2937" font-size="36" font-weight="700" font-family="sans-serif" xml:space="preserve">每页文字内容方案</text>
+<text x="40" y="206" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">让客户逐页检查标题和正文。</text>
+<text x="40" y="250" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">这里的文字会放进对应页面。</text>
+<text x="40" y="294" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">确认后再制作整套。</text>
+<g id="hotspots_4812592a932a4a66_back_1" data-hotspot-back="1" role="button" aria-label="返回总图" style="cursor:pointer;">
+<rect x="40" y="500" width="520" height="60" rx="14" fill="#197B8B" pointer-events="visiblePainted"/>
+<text x="236" y="542" fill="#FFFFFF" font-size="32" font-weight="700" font-family="sans-serif" xml:space="preserve">返回总图</text>
+</g>
+</g>
+</g>
+<g visibility="hidden" style="visibility:hidden;" data-hotspot-detail="2">
+<set attributeName="visibility" to="visible" begin="hotspots_4812592a932a4a66_open_2.click" end="hotspots_4812592a932a4a66_back_2.click" restart="always"/>
+<g opacity="0" data-hotspot-fade="2">
+<animate attributeName="opacity" from="0" to="1" dur="0.28s" begin="hotspots_4812592a932a4a66_open_2.click" fill="freeze" restart="always"/>
+<rect width="600" height="600" rx="20" fill="#FFF9EE" pointer-events="visiblePainted"/>
+<path d="M40 150 H560" stroke="#197B8B" stroke-width="3"/>
+<text x="40" y="70" fill="#1F2937" font-size="36" font-weight="700" font-family="sans-serif" xml:space="preserve">把视觉方向对齐</text>
+<text x="40" y="206" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">用三到五页展示配色和排版。</text>
+<text x="40" y="250" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">客户明确同意继续后，</text>
+<text x="40" y="294" fill="#1F2937" font-size="36" font-weight="400" font-family="sans-serif" xml:space="preserve">再沿用这套方向完成终稿。</text>
+<g id="hotspots_4812592a932a4a66_back_2" data-hotspot-back="2" role="button" aria-label="返回总图" style="cursor:pointer;">
+<rect x="40" y="500" width="520" height="60" rx="14" fill="#197B8B" pointer-events="visiblePainted"/>
+<text x="236" y="542" fill="#FFFFFF" font-size="32" font-weight="700" font-family="sans-serif" xml:space="preserve">返回总图</text>
+</g>
+</g>
+</g>
+</svg>
+</section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-hotspots/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-hotspots.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-switch" data-skill="wechat-svg-switch" data-preview-kind="interactive">
+<h2>点击旋转切换</h2>
+<p>短卡片循环展示，末张可回到第一张。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" fill="#1F2937" data-component="wechat-svg-switch" role="img" aria-label="点击按钮逐张查看内容">
+<desc>每次点击底部按钮切换一张卡片，最后一张可返回第一张。</desc>
+<g data-switch-panel="0" display="inline" style="display:inline;">
+  <set attributeName="display" to="inline" begin="switch_50e4da48f60d4048974e240271939b9c_next_2.click" fill="freeze" />
+  <set attributeName="display" to="none" begin="switch_50e4da48f60d4048974e240271939b9c_next_0.click" fill="freeze" />
+  <animate attributeName="opacity" from="0" to="1" begin="switch_50e4da48f60d4048974e240271939b9c_next_2.click" dur="0.36s" fill="freeze" />
+  <animateTransform attributeName="transform" type="rotate" from="-4 300 210" to="0 300 210" begin="switch_50e4da48f60d4048974e240271939b9c_next_2.click" dur="0.36s" fill="freeze" />
+  <rect x="1" y="1" width="598" height="418" rx="20" fill="#FFFDF7" stroke="#158A9A" stroke-width="2" />
+  <path d="M36 46 H104" stroke="#158A9A" stroke-width="5" stroke-linecap="round" />
+  <text x="564" y="52" text-anchor="end" fill="#158A9A" font-size="27">1 / 3</text>
+  <text x="36" y="104" font-size="34" font-weight="700">先让读者看到结果</text>
+  <text x="36" y="155" font-size="34">开头放一张效果图。</text>
+<text x="36" y="198" font-size="34">让读者先看懂能学到什么。</text>
+  <g id="switch_50e4da48f60d4048974e240271939b9c_next_0" data-switch-trigger="next" style="cursor:pointer;">
+    <rect x="36" y="338" width="528" height="58" rx="12" fill="#158A9A" />
+    <text x="300" y="377" text-anchor="middle" font-size="30" fill="#FFFFFF" pointer-events="none">点击，查看下一张 →</text>
+  </g>
+</g>
+<g data-switch-panel="1" display="none" style="display:none;">
+  <set attributeName="display" to="inline" begin="switch_50e4da48f60d4048974e240271939b9c_next_0.click" fill="freeze" />
+  <set attributeName="display" to="none" begin="switch_50e4da48f60d4048974e240271939b9c_next_1.click" fill="freeze" />
+  <animate attributeName="opacity" from="0" to="1" begin="switch_50e4da48f60d4048974e240271939b9c_next_0.click" dur="0.36s" fill="freeze" />
+  <animateTransform attributeName="transform" type="rotate" from="-4 300 210" to="0 300 210" begin="switch_50e4da48f60d4048974e240271939b9c_next_0.click" dur="0.36s" fill="freeze" />
+  <rect x="1" y="1" width="598" height="418" rx="20" fill="#FFFDF7" stroke="#158A9A" stroke-width="2" />
+  <path d="M36 46 H104" stroke="#158A9A" stroke-width="5" stroke-linecap="round" />
+  <text x="564" y="52" text-anchor="end" fill="#158A9A" font-size="27">2 / 3</text>
+  <text x="36" y="104" font-size="34" font-weight="700">再带读者走流程</text>
+  <text x="36" y="155" font-size="34">把操作拆成小步骤。</text>
+<text x="36" y="198" font-size="34">每一步都说清输入和产出。</text>
+  <g id="switch_50e4da48f60d4048974e240271939b9c_next_1" data-switch-trigger="next" style="cursor:pointer;">
+    <rect x="36" y="338" width="528" height="58" rx="12" fill="#158A9A" />
+    <text x="300" y="377" text-anchor="middle" font-size="30" fill="#FFFFFF" pointer-events="none">点击，查看下一张 →</text>
+  </g>
+</g>
+<g data-switch-panel="2" display="none" style="display:none;">
+  <set attributeName="display" to="inline" begin="switch_50e4da48f60d4048974e240271939b9c_next_1.click" fill="freeze" />
+  <set attributeName="display" to="none" begin="switch_50e4da48f60d4048974e240271939b9c_next_2.click" fill="freeze" />
+  <animate attributeName="opacity" from="0" to="1" begin="switch_50e4da48f60d4048974e240271939b9c_next_1.click" dur="0.36s" fill="freeze" />
+  <animateTransform attributeName="transform" type="rotate" from="-4 300 210" to="0 300 210" begin="switch_50e4da48f60d4048974e240271939b9c_next_1.click" dur="0.36s" fill="freeze" />
+  <rect x="1" y="1" width="598" height="418" rx="20" fill="#FFFDF7" stroke="#158A9A" stroke-width="2" />
+  <path d="M36 46 H104" stroke="#158A9A" stroke-width="5" stroke-linecap="round" />
+  <text x="564" y="52" text-anchor="end" fill="#158A9A" font-size="27">3 / 3</text>
+  <text x="36" y="104" font-size="34" font-weight="700">最后给行动入口</text>
+  <text x="36" y="155" font-size="34">准备一份练习素材。</text>
+<text x="36" y="198" font-size="34">看完就能照着跑一遍，嘻嘻。</text>
+  <g id="switch_50e4da48f60d4048974e240271939b9c_next_2" data-switch-trigger="next" style="cursor:pointer;">
+    <rect x="36" y="338" width="528" height="58" rx="12" fill="#158A9A" />
+    <text x="300" y="377" text-anchor="middle" font-size="30" fill="#FFFFFF" pointer-events="none">返回第一张 →</text>
+  </g>
+</g>
+</svg>
+</section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-switch/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-switch.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-layer-peel" data-skill="wechat-svg-layer-peel" data-preview-kind="interactive">
+<h2>点击逐层掉落</h2>
+<p>依次揭开内容，结尾持续保留。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" fill="#1F2937" data-component="wechat-svg-layer-peel" role="img" aria-label="点击画面逐层查看内容">
+<desc>每次点击移走一层，最后一张一直保留。刷新预览可重新体验。</desc>
+<g id="peel_2d052a6ab4bf4830981fb3796fae8019_layer_2" data-peel-layer="2" data-final="true" style="pointer-events:auto;">
+  
+  <rect x="1" y="1" width="598" height="418" rx="20" fill="#FFF8EE" stroke="#D97706" stroke-width="2" />
+  <path d="M36 46 H104" stroke="#D97706" stroke-width="5" stroke-linecap="round" />
+  <text x="564" y="52" text-anchor="end" fill="#D97706" font-size="27">3 / 3</text>
+  <text x="36" y="104" font-size="34" font-weight="700">最后，跑通完整交付</text>
+  <text x="36" y="155" font-size="34">把整套结果检查一遍。</text>
+<text x="36" y="198" font-size="34">确认能打开、能阅读、能修改。</text>
+  <rect x="36" y="338" width="528" height="58" rx="12" fill="#D97706" />
+  <text x="300" y="377" text-anchor="middle" font-size="30" fill="#FFFFFF">已经看到最后一张啦</text>
+  
+</g>
+<g id="peel_2d052a6ab4bf4830981fb3796fae8019_layer_1" data-peel-layer="1" data-final="false" style="pointer-events:auto;">
+  <animateTransform attributeName="transform" type="translate" from="0 0" to="0 440" begin="click" dur="0.45s" fill="freeze" restart="never" />
+  <set attributeName="pointer-events" to="none" begin="click" fill="freeze" />
+  <set attributeName="display" to="none" begin="click+0.45s" fill="freeze" />
+  <rect x="1" y="1" width="598" height="418" rx="20" fill="#FFF8EE" stroke="#D97706" stroke-width="2" />
+  <path d="M36 46 H104" stroke="#D97706" stroke-width="5" stroke-linecap="round" />
+  <text x="564" y="52" text-anchor="end" fill="#D97706" font-size="27">2 / 3</text>
+  <text x="36" y="104" font-size="34" font-weight="700">第二层，确认方向</text>
+  <text x="36" y="155" font-size="34">先看一小段样稿。</text>
+<text x="36" y="198" font-size="34">文字和视觉都确认，再继续。</text>
+  <rect x="36" y="338" width="528" height="58" rx="12" fill="#D97706" />
+  <text x="300" y="377" text-anchor="middle" font-size="30" fill="#FFFFFF">点击画面，揭开下一层 ↓</text>
+  <rect data-peel-trigger="next" x="0" y="0" width="600" height="420" fill="#000000" fill-opacity="0" style="cursor:pointer;" />
+</g>
+<g id="peel_2d052a6ab4bf4830981fb3796fae8019_layer_0" data-peel-layer="0" data-final="false" style="pointer-events:auto;">
+  <animateTransform attributeName="transform" type="translate" from="0 0" to="0 440" begin="click" dur="0.45s" fill="freeze" restart="never" />
+  <set attributeName="pointer-events" to="none" begin="click" fill="freeze" />
+  <set attributeName="display" to="none" begin="click+0.45s" fill="freeze" />
+  <rect x="1" y="1" width="598" height="418" rx="20" fill="#FFF8EE" stroke="#D97706" stroke-width="2" />
+  <path d="M36 46 H104" stroke="#D97706" stroke-width="5" stroke-linecap="round" />
+  <text x="564" y="52" text-anchor="end" fill="#D97706" font-size="27">1 / 3</text>
+  <text x="36" y="104" font-size="34" font-weight="700">第一层，先收齐资料</text>
+  <text x="36" y="155" font-size="34">把需求、文字和参考图放一起。</text>
+<text x="36" y="198" font-size="34">先搞清楚这份内容要做给谁看。</text>
+  <rect x="36" y="338" width="528" height="58" rx="12" fill="#D97706" />
+  <text x="300" y="377" text-anchor="middle" font-size="30" fill="#FFFFFF">点击画面，揭开下一层 ↓</text>
+  <rect data-peel-trigger="next" x="0" y="0" width="600" height="420" fill="#000000" fill-opacity="0" style="cursor:pointer;" />
+</g>
+</svg>
+</section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-layer-peel/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-layer-peel.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-open-window" data-skill="wechat-svg-open-window" data-preview-kind="interactive">
+<h2>双扇开窗</h2>
+<p>点开窗户看内容，合上后可以重新打开。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;" data-component="wechat-svg-open-window" data-instance="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350" role="img" aria-label="双扇开窗">
+<rect x="1" y="1" width="598" height="458" rx="18" fill="#FFF9EE" stroke="#167E99" stroke-width="2"/>
+<text x="40" y="70" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve" style="font-weight:700;">窗外，是你的下一步</text>
+<text x="40" y="130" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">把想法做成一个小作品。</text>
+<text x="40" y="172" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">让真实反馈告诉你，</text>
+<text x="40" y="214" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">接下来可以怎样继续。</text>
+<g data-window-panel="left" style="pointer-events:none;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-300 0" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_open.click" dur="0.6s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="-300 0" to="0 0" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_close.click" dur="0.6s" fill="freeze"/>
+<rect x="0" y="0" width="300" height="350" fill="#167E99"/>
+<path d="M24 24 H276 V326 H24 Z M150 24 V326 M24 175 H276" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.45"/>
+<circle cx="273" cy="205" r="8" fill="#F8CA74"/>
+</g>
+<g data-window-panel="right" style="pointer-events:none;">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="300 0" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_open.click" dur="0.6s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="300 0" to="0 0" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_close.click" dur="0.6s" fill="freeze"/>
+<rect x="300" y="0" width="300" height="350" fill="#167E99"/>
+<path d="M324 24 H576 V326 H324 Z M450 24 V326 M324 175 H576" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.45"/>
+<circle cx="327" cy="205" r="8" fill="#F8CA74"/>
+</g>
+<g data-window-cover-label="true" opacity="1" style="pointer-events:none;">
+<set attributeName="opacity" to="0" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_open.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_close.click+0.6s" fill="freeze"/>
+<text x="300" y="145" font-size="34" fill="#FFFFFF" font-family="sans-serif" text-anchor="middle" xml:space="preserve" style="font-weight:700;">点开这扇窗</text>
+</g>
+<g id="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_open" data-window-action="open" style="display:inline;cursor:pointer;">
+<set attributeName="display" to="inline" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_close.click" fill="freeze"/>
+<set attributeName="display" to="none" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_open.click" fill="freeze"/>
+<rect x="36" y="378" width="528" height="58" rx="13" fill="#167E99"/>
+<text x="300" y="417" font-size="30" fill="#FFFFFF" font-family="sans-serif" text-anchor="middle" xml:space="preserve">点开窗户</text>
+</g>
+<g id="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_close" data-window-action="close" style="display:none;cursor:pointer;">
+<set attributeName="display" to="inline" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_open.click" fill="freeze"/>
+<set attributeName="display" to="none" begin="wechat_svg_open_window_2e20005a01f24a9eb451afc1243d5350_close.click" fill="freeze"/>
+<rect x="36" y="378" width="528" height="58" rx="13" fill="#167E99"/>
+<text x="300" y="417" font-size="30" fill="#FFFFFF" font-family="sans-serif" text-anchor="middle" xml:space="preserve">合上窗户，再看一次</text>
+</g>
+</svg>
+</section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-open-window/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-open-window.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-press-reveal" data-skill="wechat-svg-press-reveal" data-preview-kind="interactive">
+<h2>长按显影与松手复原</h2>
+<p>按住画面查看答案，松开恢复。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;" data-component="wechat-svg-press-reveal" data-instance="wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929" role="img" aria-label="长按显影与松手复原">
+<rect x="1" y="1" width="598" height="458" rx="18" fill="#FFF9EE" stroke="#167E99" stroke-width="2"/>
+<text x="40" y="66" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve" style="font-weight:700;">按住，看看里面的答案</text>
+<rect x="20" y="100" width="560" height="260" rx="16" fill="#167E99"/>
+<text x="300" y="225" font-size="34" fill="#FFFFFF" font-family="sans-serif" text-anchor="middle" xml:space="preserve" style="font-weight:700;">按住，让内容显现</text>
+<g data-press-detail="true" style="visibility:hidden;pointer-events:none;">
+<set attributeName="visibility" to="visible" begin="wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold.mousedown;wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold.touchstart" end="wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold.mouseup;wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold.mouseleave;wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold.touchend;wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold.touchcancel" restart="always"/>
+<g data-press-fade="true" opacity="0">
+<animate attributeName="opacity" from="0" to="1" begin="wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold.mousedown;wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold.touchstart" dur="0.5s" fill="freeze" restart="always"/>
+<rect x="20" y="100" width="560" height="260" rx="16" fill="#FFF9EE" stroke="#167E99" stroke-width="2"/>
+<text x="42" y="150" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve" style="font-weight:700;">先行动，再收集反馈</text>
+<text x="42" y="202" font-size="32" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">准备一份小材料。</text>
+<text x="42" y="241" font-size="32" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">跑完一个完整流程。</text>
+<text x="42" y="280" font-size="32" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">把结果交给真实的人看。</text>
+</g></g>
+<text x="300" y="414" font-size="28" fill="#167E99" font-family="sans-serif" text-anchor="middle" xml:space="preserve">松开或移出，回到初始画面</text>
+<g id="wechat_svg_press_reveal_5f2d0461a0bf4ebc96391dbea34c6929_hold" data-press-trigger="hold" style="cursor:pointer;">
+<rect x="20" y="100" width="560" height="260" rx="16" fill="#000000" fill-opacity="0"/>
+</g></svg></section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-press-reveal/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-press-reveal.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-hold-cards" data-skill="wechat-svg-hold-cards" data-preview-kind="interactive">
+<h2>长按轮播与松手定格</h2>
+<p>按住让卡片轮播，松手停在当时的内容。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;" data-component="wechat-svg-hold-cards" data-instance="wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f" role="img" aria-label="长按轮播与松手定格">
+<rect x="1" y="1" width="598" height="458" rx="18" fill="#FFF9EE" stroke="#167E99" stroke-width="2"/>
+<text x="40" y="66" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve" style="font-weight:700;">今天先试哪一个？</text>
+<g data-hold-card="0" opacity="1" style="pointer-events:none;">
+<animate attributeName="opacity" values="1;0;0;1" keyTimes="0;0.33333333;0.66666667;1" calcMode="discrete" dur="0.72s" repeatCount="indefinite" begin="wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mousedown;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchstart" end="wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mouseup;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mouseleave;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchend;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchcancel" fill="freeze" restart="always"/>
+<rect x="20" y="100" width="560" height="260" rx="16" fill="#FFF9EE" stroke="#167E99" stroke-width="2"/>
+<text x="548" y="141" font-size="26" fill="#167E99" font-family="sans-serif" text-anchor="end" xml:space="preserve">1 / 3</text>
+<text x="42" y="187" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve" style="font-weight:700;">写一段真实经历</text>
+<text x="42" y="234" font-size="32" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">把今天做过的一件事写下来。</text>
+</g>
+<g data-hold-card="1" opacity="0" style="pointer-events:none;">
+<animate attributeName="opacity" values="0;1;0;0" keyTimes="0;0.33333333;0.66666667;1" calcMode="discrete" dur="0.72s" repeatCount="indefinite" begin="wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mousedown;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchstart" end="wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mouseup;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mouseleave;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchend;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchcancel" fill="freeze" restart="always"/>
+<rect x="20" y="100" width="560" height="260" rx="16" fill="#FFF9EE" stroke="#167E99" stroke-width="2"/>
+<text x="548" y="141" font-size="26" fill="#167E99" font-family="sans-serif" text-anchor="end" xml:space="preserve">2 / 3</text>
+<text x="42" y="187" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve" style="font-weight:700;">完成一个小实验</text>
+<text x="42" y="234" font-size="32" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">选一个能在今天跑通的任务。</text>
+</g>
+<g data-hold-card="2" opacity="0" style="pointer-events:none;">
+<animate attributeName="opacity" values="0;0;1;0" keyTimes="0;0.33333333;0.66666667;1" calcMode="discrete" dur="0.72s" repeatCount="indefinite" begin="wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mousedown;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchstart" end="wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mouseup;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.mouseleave;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchend;wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold.touchcancel" fill="freeze" restart="always"/>
+<rect x="20" y="100" width="560" height="260" rx="16" fill="#FFF9EE" stroke="#167E99" stroke-width="2"/>
+<text x="548" y="141" font-size="26" fill="#167E99" font-family="sans-serif" text-anchor="end" xml:space="preserve">3 / 3</text>
+<text x="42" y="187" font-size="34" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve" style="font-weight:700;">展示一份作品</text>
+<text x="42" y="234" font-size="32" fill="#24343B" font-family="sans-serif" text-anchor="start" xml:space="preserve">把你已经做出的结果发出来。</text>
+</g>
+<text x="300" y="414" font-size="30" fill="#167E99" font-family="sans-serif" text-anchor="middle" xml:space="preserve">按住开始 · 松手定格</text>
+<g id="wechat_svg_hold_cards_b81bc995aa7c43eeacd70c828725ff5f_hold" data-hold-trigger="hold" style="cursor:pointer;">
+<rect x="20" y="100" width="560" height="260" rx="16" fill="#000000" fill-opacity="0"/>
+</g></svg></section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-hold-cards/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-hold-cards.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-wipe-compare" data-skill="wechat-svg-wipe-compare" data-preview-kind="interactive">
+<h2>擦拭前后对比</h2>
+<p>来回切换，在同一位置比较前后变化。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 600" width="100%" style="display:block;width:100%;height:auto;" data-component="wechat-svg-wipe-compare" role="group" aria-label="点击擦拭查看前后对比">
+<desc>点击右侧按钮擦出制作后画面，点击左侧按钮回到制作前。</desc>
+<rect width="600" height="600" rx="20" fill="#FFF9EF"/>
+<text x="30" y="48" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">同一份内容，看看前后变化</text>
+<rect x="0" y="80" width="600" height="390" fill="#FFF9EF"/>
+<path d="M32 122H568 M32 432H568" stroke="#A9B4B9" stroke-width="2" stroke-dasharray="5 8"/>
+<text x="40" y="170" font-size="36" fill="#68777E" font-weight="700" font-family="sans-serif" xml:space="preserve">信息放在一起</text>
+<text x="40" y="284" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">标题和内容没有分组。</text>
+<text x="40" y="326" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">读者需要自己寻找重点。</text>
+<rect x="20" y="92" width="200" height="44" rx="10" fill="#68777E"/>
+<text x="34" y="123" font-size="26" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">制作前</text>
+<svg x="-600" y="0" width="600" height="480" overflow="hidden" style="width:600px;height:480px;overflow:hidden;" data-wipe-layer="after">
+<animate attributeName="x" attributeType="XML" from="-600" to="0" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_after.click" dur="0.7s" fill="freeze"/>
+<animate attributeName="x" attributeType="XML" from="0" to="-600" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_before.click" dur="0.7s" fill="freeze"/>
+<g transform="translate(600 0)" data-wipe-content="after">
+<animateTransform attributeName="transform" type="translate" from="600 0" to="0 0" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_after.click" dur="0.7s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="0 0" to="600 0" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_before.click" dur="0.7s" fill="freeze"/>
+<rect x="0" y="80" width="600" height="390" fill="#FFF9EF"/>
+<rect x="32" y="112" width="536" height="326" rx="18" fill="#FFFFFF" stroke="#177F91" stroke-width="2"/>
+<rect x="52" y="150" width="8" height="250" rx="4" fill="#177F91"/>
+<text x="80" y="170" font-size="36" fill="#177F91" font-weight="700" font-family="sans-serif" xml:space="preserve">先分组，再强调重点</text>
+<text x="80" y="284" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">把相关信息放在一起。</text>
+<text x="80" y="326" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">用层级带着读者往下看。</text>
+<rect x="20" y="92" width="200" height="44" rx="10" fill="#177F91"/>
+<text x="34" y="123" font-size="26" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">制作后</text>
+</g>
+</svg>
+<g id="wipe_57f07bd5fcfe4828afd835609c5bf80f_before" data-wipe-trigger="before" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<set attributeName="pointer-events" to="none" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_after.click;wipe_57f07bd5fcfe4828afd835609c5bf80f_before.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_after.click+0.7s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_after.click;wipe_57f07bd5fcfe4828afd835609c5bf80f_before.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_after.click+0.7s" fill="freeze"/>
+<rect x="24" y="510" width="264" height="62" rx="12" fill="#68777E"/>
+<text x="70" y="551" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">回到制作前</text>
+</g>
+<g id="wipe_57f07bd5fcfe4828afd835609c5bf80f_after" data-wipe-trigger="after" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<set attributeName="pointer-events" to="none" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_after.click;wipe_57f07bd5fcfe4828afd835609c5bf80f_before.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_before.click+0.7s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_after.click;wipe_57f07bd5fcfe4828afd835609c5bf80f_before.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="wipe_57f07bd5fcfe4828afd835609c5bf80f_before.click+0.7s" fill="freeze"/>
+<rect x="312" y="510" width="264" height="62" rx="12" fill="#177F91"/>
+<text x="358" y="551" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">查看制作后</text>
+</g>
+</svg></section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-wipe-compare/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-wipe-compare.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-quiz" data-skill="wechat-svg-quiz" data-preview-kind="interactive">
+<h2>单题点击答题</h2>
+<p>选择一个答案，查看反馈，再返回重选。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" style="display:block;width:100%;height:auto;" data-component="wechat-svg-quiz" role="group" aria-label="单题点击答题">
+<desc>点击选项查看反馈，返回后可重新作答。</desc>
+<rect width="600" height="600" rx="20" fill="#FFF9EF"/>
+<text x="36" y="63" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">做全案PPT，先确认什么？</text>
+<g id="quiz_ad353005de784b0f8c16bf19544effa6_choose_0" data-quiz-choice="0" style="cursor:pointer;">
+<rect x="36" y="160" width="528" height="70" rx="14" fill="#FFFFFF" stroke="#177F91" stroke-width="2"/>
+<circle cx="68" cy="195" r="21" fill="#177F91"/>
+<text x="57" y="206" font-size="29" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">A</text>
+<text x="104" y="206" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">只确认大纲</text>
+</g><g id="quiz_ad353005de784b0f8c16bf19544effa6_choose_1" data-quiz-choice="1" style="cursor:pointer;">
+<rect x="36" y="250" width="528" height="70" rx="14" fill="#FFFFFF" stroke="#177F91" stroke-width="2"/>
+<circle cx="68" cy="285" r="21" fill="#177F91"/>
+<text x="57" y="296" font-size="29" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">B</text>
+<text x="104" y="296" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">每页文字内容和样稿</text>
+</g><g id="quiz_ad353005de784b0f8c16bf19544effa6_choose_2" data-quiz-choice="2" style="cursor:pointer;">
+<rect x="36" y="340" width="528" height="70" rx="14" fill="#FFFFFF" stroke="#177F91" stroke-width="2"/>
+<circle cx="68" cy="375" r="21" fill="#177F91"/>
+<text x="57" y="386" font-size="29" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">C</text>
+<text x="104" y="386" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">全部做完再确认</text>
+</g>
+<text x="36" y="564" font-size="26" fill="#68777E" font-weight="400" font-family="sans-serif" xml:space="preserve">点一个选项，看看你的判断</text>
+<g visibility="hidden" style="visibility:hidden;" data-quiz-feedback="0">
+<set attributeName="visibility" to="visible" begin="quiz_ad353005de784b0f8c16bf19544effa6_choose_0.click" end="quiz_ad353005de784b0f8c16bf19544effa6_retry_0.click" restart="always"/>
+<g opacity="0">
+<animate attributeName="opacity" from="0" to="1" begin="quiz_ad353005de784b0f8c16bf19544effa6_choose_0.click" dur="0.24s" fill="freeze" restart="always"/>
+<rect width="600" height="600" rx="20" fill="#FFF9EF" pointer-events="visiblePainted"/>
+<text x="36" y="72" font-size="38" fill="#B75D27" font-weight="700" font-family="sans-serif" xml:space="preserve">再想一想</text>
+<text x="36" y="130" font-size="27" fill="#68777E" font-weight="400" font-family="sans-serif" xml:space="preserve">你选了 A</text>
+<text x="36" y="174" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">只确认大纲</text>
+<text x="36" y="244" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">大纲只描述整体结构。</text>
+<text x="36" y="288" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">每页具体文字还需要确认。</text>
+<g id="quiz_ad353005de784b0f8c16bf19544effa6_retry_0" data-quiz-retry="0" style="cursor:pointer;">
+<rect x="36" y="510" width="528" height="62" rx="12" fill="#177F91" pointer-events="visiblePainted"/>
+<text x="145" y="552" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">返回题目，再选一次</text>
+</g></g></g><g visibility="hidden" style="visibility:hidden;" data-quiz-feedback="1">
+<set attributeName="visibility" to="visible" begin="quiz_ad353005de784b0f8c16bf19544effa6_choose_1.click" end="quiz_ad353005de784b0f8c16bf19544effa6_retry_1.click" restart="always"/>
+<g opacity="0">
+<animate attributeName="opacity" from="0" to="1" begin="quiz_ad353005de784b0f8c16bf19544effa6_choose_1.click" dur="0.24s" fill="freeze" restart="always"/>
+<rect width="600" height="600" rx="20" fill="#FFF9EF" pointer-events="visiblePainted"/>
+<text x="36" y="72" font-size="38" fill="#19785A" font-weight="700" font-family="sans-serif" xml:space="preserve">答对啦</text>
+<text x="36" y="130" font-size="27" fill="#68777E" font-weight="400" font-family="sans-serif" xml:space="preserve">你选了 B</text>
+<text x="36" y="174" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">每页文字内容和样稿</text>
+<text x="36" y="244" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">先确认每页的具体文字。</text>
+<text x="36" y="288" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">再确认排版和视觉方向。</text>
+<text x="36" y="332" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">两项都通过后，再做整套。</text>
+<g id="quiz_ad353005de784b0f8c16bf19544effa6_retry_1" data-quiz-retry="1" style="cursor:pointer;">
+<rect x="36" y="510" width="528" height="62" rx="12" fill="#177F91" pointer-events="visiblePainted"/>
+<text x="145" y="552" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">返回题目，再选一次</text>
+</g></g></g><g visibility="hidden" style="visibility:hidden;" data-quiz-feedback="2">
+<set attributeName="visibility" to="visible" begin="quiz_ad353005de784b0f8c16bf19544effa6_choose_2.click" end="quiz_ad353005de784b0f8c16bf19544effa6_retry_2.click" restart="always"/>
+<g opacity="0">
+<animate attributeName="opacity" from="0" to="1" begin="quiz_ad353005de784b0f8c16bf19544effa6_choose_2.click" dur="0.24s" fill="freeze" restart="always"/>
+<rect width="600" height="600" rx="20" fill="#FFF9EF" pointer-events="visiblePainted"/>
+<text x="36" y="72" font-size="38" fill="#B75D27" font-weight="700" font-family="sans-serif" xml:space="preserve">再想一想</text>
+<text x="36" y="130" font-size="27" fill="#68777E" font-weight="400" font-family="sans-serif" xml:space="preserve">你选了 C</text>
+<text x="36" y="174" font-size="32" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">全部做完再确认</text>
+<text x="36" y="244" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">先做整套容易造成返工。</text>
+<text x="36" y="288" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">把确认节点放到终稿之前。</text>
+<g id="quiz_ad353005de784b0f8c16bf19544effa6_retry_2" data-quiz-retry="2" style="cursor:pointer;">
+<rect x="36" y="510" width="528" height="62" rx="12" fill="#177F91" pointer-events="visiblePainted"/>
+<text x="145" y="552" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">返回题目，再选一次</text>
+</g></g></g>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-quiz/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-quiz.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-story-branches" data-skill="wechat-svg-story-branches" data-preview-kind="interactive">
+<h2>多步分支故事</h2>
+<p>沿着选择走到结局，再从起点尝试另一条路。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 640" width="100%" style="display:block;width:100%;height:auto;" data-component="wechat-svg-story-branches" role="group" aria-label="选择不同路径阅读故事">
+<desc>点击选项继续下一步，在结局处可以回到起点。</desc>
+<g id="story_503d79f6029745649d2160c6482a43e4_node_start" data-story-node="start" display="inline" style="display:inline;">
+<set attributeName="display" to="inline" begin="story_503d79f6029745649d2160c6482a43e4_restart_delivery.click;story_503d79f6029745649d2160c6482a43e4_restart_materials.click" fill="freeze"/>
+<set attributeName="display" to="none" begin="story_503d79f6029745649d2160c6482a43e4_pick_start_0.click;story_503d79f6029745649d2160c6482a43e4_pick_start_1.click" fill="freeze"/>
+<rect width="600" height="640" rx="20" fill="#FFF8ED"/>
+<path d="M36 34H106" stroke="#8C6544" stroke-width="5" stroke-linecap="round"/>
+<text x="36" y="90" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">你准备怎样开始？</text>
+<text x="36" y="200" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">选一条更适合自己的路。</text>
+<text x="36" y="244" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">接下来还会遇到一次选择。</text>
+<g id="story_503d79f6029745649d2160c6482a43e4_pick_start_0" data-story-choice="0" style="cursor:pointer;">
+<rect x="36" y="360" width="528" height="66" rx="12" fill="#8C6544"/>
+<text x="58" y="404" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">先做一份练习作品</text>
+</g><g id="story_503d79f6029745649d2160c6482a43e4_pick_start_1" data-story-choice="1" style="cursor:pointer;">
+<rect x="36" y="442" width="528" height="66" rx="12" fill="#8C6544"/>
+<text x="58" y="486" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">先找一个真实小需求</text>
+</g>
+</g><g id="story_503d79f6029745649d2160c6482a43e4_node_practice" data-story-node="practice" display="none" style="display:none;">
+<set attributeName="display" to="inline" begin="story_503d79f6029745649d2160c6482a43e4_pick_start_0.click" fill="freeze"/>
+<set attributeName="display" to="none" begin="story_503d79f6029745649d2160c6482a43e4_pick_practice_0.click;story_503d79f6029745649d2160c6482a43e4_pick_practice_1.click" fill="freeze"/>
+<rect width="600" height="640" rx="20" fill="#FFF8ED"/>
+<path d="M36 34H106" stroke="#8C6544" stroke-width="5" stroke-linecap="round"/>
+<text x="36" y="90" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">练习作品已经做好</text>
+<text x="36" y="200" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">下一步想先推进什么？</text>
+<g id="story_503d79f6029745649d2160c6482a43e4_pick_practice_0" data-story-choice="0" style="cursor:pointer;">
+<rect x="36" y="360" width="528" height="66" rx="12" fill="#8C6544"/>
+<text x="58" y="404" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">带着作品联系合作方</text>
+</g><g id="story_503d79f6029745649d2160c6482a43e4_pick_practice_1" data-story-choice="1" style="cursor:pointer;">
+<rect x="36" y="442" width="528" height="66" rx="12" fill="#8C6544"/>
+<text x="58" y="486" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">先检查源文件能否修改</text>
+</g>
+</g><g id="story_503d79f6029745649d2160c6482a43e4_node_task" data-story-node="task" display="none" style="display:none;">
+<set attributeName="display" to="inline" begin="story_503d79f6029745649d2160c6482a43e4_pick_start_1.click" fill="freeze"/>
+<set attributeName="display" to="none" begin="story_503d79f6029745649d2160c6482a43e4_pick_task_0.click;story_503d79f6029745649d2160c6482a43e4_pick_task_1.click" fill="freeze"/>
+<rect width="600" height="640" rx="20" fill="#FFF8ED"/>
+<path d="M36 34H106" stroke="#8C6544" stroke-width="5" stroke-linecap="round"/>
+<text x="36" y="90" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">有人愿意让你试一试</text>
+<text x="36" y="200" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">先看看材料是否齐全。</text>
+<g id="story_503d79f6029745649d2160c6482a43e4_pick_task_0" data-story-choice="0" style="cursor:pointer;">
+<rect x="36" y="360" width="528" height="66" rx="12" fill="#8C6544"/>
+<text x="58" y="404" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">资料齐全，确认交付范围</text>
+</g><g id="story_503d79f6029745649d2160c6482a43e4_pick_task_1" data-story-choice="1" style="cursor:pointer;">
+<rect x="36" y="442" width="528" height="66" rx="12" fill="#8C6544"/>
+<text x="58" y="486" font-size="32" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">还缺材料，整理补充清单</text>
+</g>
+</g><g id="story_503d79f6029745649d2160c6482a43e4_node_delivery" data-story-node="delivery" display="none" style="display:none;">
+<set attributeName="display" to="inline" begin="story_503d79f6029745649d2160c6482a43e4_pick_practice_0.click;story_503d79f6029745649d2160c6482a43e4_pick_task_0.click" fill="freeze"/>
+<set attributeName="display" to="none" begin="story_503d79f6029745649d2160c6482a43e4_restart_delivery.click" fill="freeze"/>
+<rect width="600" height="640" rx="20" fill="#FFF8ED"/>
+<path d="M36 34H106" stroke="#8C6544" stroke-width="5" stroke-linecap="round"/>
+<text x="36" y="90" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">带着作品，往前一步</text>
+<text x="36" y="200" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">你已经走到了真实交付。</text>
+<text x="36" y="244" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">把这次过程记录下来，</text>
+<text x="36" y="288" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">下次就多了一份可复用经验。</text>
+<g id="story_503d79f6029745649d2160c6482a43e4_restart_delivery" data-story-restart="delivery" style="cursor:pointer;">
+<rect x="36" y="510" width="528" height="66" rx="12" fill="#8C6544"/>
+<text x="118" y="554" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">回到起点，再走一条路</text>
+</g>
+</g><g id="story_503d79f6029745649d2160c6482a43e4_node_materials" data-story-node="materials" display="none" style="display:none;">
+<set attributeName="display" to="inline" begin="story_503d79f6029745649d2160c6482a43e4_pick_practice_1.click;story_503d79f6029745649d2160c6482a43e4_pick_task_1.click" fill="freeze"/>
+<set attributeName="display" to="none" begin="story_503d79f6029745649d2160c6482a43e4_restart_materials.click" fill="freeze"/>
+<rect width="600" height="640" rx="20" fill="#FFF8ED"/>
+<path d="M36 34H106" stroke="#8C6544" stroke-width="5" stroke-linecap="round"/>
+<text x="36" y="90" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">把准备工作做扎实</text>
+<text x="36" y="200" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">检查素材和可编辑文件。</text>
+<text x="36" y="244" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">把缺项补齐后再继续推进，</text>
+<text x="36" y="288" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">也能为后面省下返工时间。</text>
+<g id="story_503d79f6029745649d2160c6482a43e4_restart_materials" data-story-restart="materials" style="cursor:pointer;">
+<rect x="36" y="510" width="528" height="66" rx="12" fill="#8C6544"/>
+<text x="118" y="554" font-size="30" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">回到起点，再走一条路</text>
+</g>
+</g>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-story-branches/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-story-branches.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-motion-path" data-skill="wechat-svg-motion-path" data-preview-kind="interactive">
+<h2>点击轨迹运动</h2>
+<p>点击播放，看图形沿路线移动。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 430" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-motion-path">
+<desc>图形沿指定的三次贝塞尔路线运动。可点击按钮重播。</desc>
+<rect x="1" y="1" width="598" height="428" rx="20" fill="#FFF9EE" />
+<text x="36" y="59" font-size="34" fill="#24343B" font-weight="700" xml:space="preserve">让想法沿路线落地</text><text x="36" y="103" font-size="25" fill="#24343B" font-weight="400" xml:space="preserve">点一下，沿路线出发</text><path d="M 50 260 C 180 126 420 300 550 170" fill="none" stroke="#167E99" stroke-width="5" stroke-dasharray="7 9" opacity="0.45" />
+<g id="motion_d435d2ced4be4f18b8a0776b1faa5e08_marker" data-motion-marker="true" transform="translate(50 260)">
+<g data-motion-traveler="true">
+<circle r="20" fill="#167E99" />
+<path d="M-7 -7 L9 0 L-7 7 Z" fill="#FFFFFF" />
+<animateMotion path="M 0 0 C 130 -134 370 40 500 -90" begin="motion_d435d2ced4be4f18b8a0776b1faa5e08_play.click" dur="2s" rotate="auto" fill="freeze" restart="always" />
+</g></g><g id="motion_d435d2ced4be4f18b8a0776b1faa5e08_play" data-action="play" style="cursor:pointer;">
+<rect x="36" y="347" width="528" height="58" rx="13" fill="#167E99" />
+<text x="300" y="386" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">点击出发 / 重新播放</text>
+</g>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-motion-path/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-motion-path.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-typewriter" data-skill="wechat-svg-typewriter" data-preview-kind="interactive">
+<h2>逐字打印与重播</h2>
+<p>让短句逐字出现，结束后可以重播。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 515" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-typewriter">
+<desc>先做一件小事。
+然后让结果继续说话，嘻嘻。</desc>
+<rect x="1" y="1" width="598" height="513" rx="20" fill="#FFF9EE" />
+<text x="36" y="60" font-size="34" fill="#24343B" font-weight="700" xml:space="preserve">把一句话慢慢说出来</text><path d="M36 92 H564" stroke="#996940" stroke-width="3" /><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_0" data-char-index="0" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0s" dur="0.01s" fill="freeze" restart="always" />
+<text x="40" y="153" font-size="34" fill="#24343B" xml:space="preserve">先</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_1" data-char-index="1" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.09s" dur="0.01s" fill="freeze" restart="always" />
+<text x="74" y="153" font-size="34" fill="#24343B" xml:space="preserve">做</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_2" data-char-index="2" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.18s" dur="0.01s" fill="freeze" restart="always" />
+<text x="108" y="153" font-size="34" fill="#24343B" xml:space="preserve">一</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_3" data-char-index="3" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.27s" dur="0.01s" fill="freeze" restart="always" />
+<text x="142" y="153" font-size="34" fill="#24343B" xml:space="preserve">件</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_4" data-char-index="4" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.36s" dur="0.01s" fill="freeze" restart="always" />
+<text x="176" y="153" font-size="34" fill="#24343B" xml:space="preserve">小</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_5" data-char-index="5" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.45s" dur="0.01s" fill="freeze" restart="always" />
+<text x="210" y="153" font-size="34" fill="#24343B" xml:space="preserve">事</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_6" data-char-index="6" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.54s" dur="0.01s" fill="freeze" restart="always" />
+<text x="244" y="153" font-size="34" fill="#24343B" xml:space="preserve">。</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_7" data-char-index="7" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.63s" dur="0.01s" fill="freeze" restart="always" />
+<text x="40" y="197" font-size="34" fill="#24343B" xml:space="preserve">然</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_8" data-char-index="8" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.72s" dur="0.01s" fill="freeze" restart="always" />
+<text x="74" y="197" font-size="34" fill="#24343B" xml:space="preserve">后</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_9" data-char-index="9" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.81s" dur="0.01s" fill="freeze" restart="always" />
+<text x="108" y="197" font-size="34" fill="#24343B" xml:space="preserve">让</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_10" data-char-index="10" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.9s" dur="0.01s" fill="freeze" restart="always" />
+<text x="142" y="197" font-size="34" fill="#24343B" xml:space="preserve">结</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_11" data-char-index="11" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+0.99s" dur="0.01s" fill="freeze" restart="always" />
+<text x="176" y="197" font-size="34" fill="#24343B" xml:space="preserve">果</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_12" data-char-index="12" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+1.08s" dur="0.01s" fill="freeze" restart="always" />
+<text x="210" y="197" font-size="34" fill="#24343B" xml:space="preserve">继</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_13" data-char-index="13" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+1.17s" dur="0.01s" fill="freeze" restart="always" />
+<text x="244" y="197" font-size="34" fill="#24343B" xml:space="preserve">续</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_14" data-char-index="14" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+1.26s" dur="0.01s" fill="freeze" restart="always" />
+<text x="278" y="197" font-size="34" fill="#24343B" xml:space="preserve">说</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_15" data-char-index="15" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+1.35s" dur="0.01s" fill="freeze" restart="always" />
+<text x="312" y="197" font-size="34" fill="#24343B" xml:space="preserve">话</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_16" data-char-index="16" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+1.44s" dur="0.01s" fill="freeze" restart="always" />
+<text x="346" y="197" font-size="34" fill="#24343B" xml:space="preserve">，</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_17" data-char-index="17" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+1.53s" dur="0.01s" fill="freeze" restart="always" />
+<text x="380" y="197" font-size="34" fill="#24343B" xml:space="preserve">嘻</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_18" data-char-index="18" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+1.62s" dur="0.01s" fill="freeze" restart="always" />
+<text x="414" y="197" font-size="34" fill="#24343B" xml:space="preserve">嘻</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_char_19" data-char-index="19" opacity="0" style="opacity:0;">
+<set attributeName="opacity" to="0" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click" fill="freeze" />
+<animate attributeName="opacity" from="0" to="1" begin="typewriter_30fe3f299a2a48eda2d614556f4d8896_play.click+1.71s" dur="0.01s" fill="freeze" restart="always" />
+<text x="448" y="197" font-size="34" fill="#24343B" xml:space="preserve">。</text>
+</g><g id="typewriter_30fe3f299a2a48eda2d614556f4d8896_play" data-action="play" style="cursor:pointer;">
+<rect x="36" y="430" width="528" height="58" rx="13" fill="#996940" />
+<text x="300" y="469" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">点击打字 / 重新播放</text>
+</g>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-typewriter/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-typewriter.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-zoom-detail" data-skill="wechat-svg-zoom-detail" data-preview-kind="interactive">
+<h2>同图局部放大与返回</h2>
+<p>在同一幅画面中放大细节，再回到全景。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 530" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-zoom-detail">
+<desc>点击放大同一幅画面的指定区域，再返回完整画面。</desc>
+<rect x="1" y="1" width="598" height="528" rx="20" fill="#FFF9EE" />
+<text x="36" y="59" font-size="34" fill="#24343B" font-weight="700" xml:space="preserve">这一处细节，放大看看</text><svg x="24" y="90" width="552" height="331.2" viewBox="0 0 600 360" style="overflow:hidden;" data-zoom-viewport="true">
+<animate attributeName="viewBox" from="0 0 600 360" to="290 70 260 156" begin="zoom_d909c727bb144209a5c6c35459f7b6a1_zoom.click" dur="0.5s" fill="freeze" restart="always" />
+<animate attributeName="viewBox" from="290 70 260 156" to="0 0 600 360" begin="zoom_d909c727bb144209a5c6c35459f7b6a1_reset.click" dur="0.5s" fill="freeze" restart="always" />
+<rect width="600" height="360" rx="16" fill="#E7F0F0" />
+<rect x="24" y="25" width="552" height="310" rx="15" fill="#FFFFFF" />
+<rect x="48" y="52" width="180" height="18" rx="8" fill="#277D8C" opacity="0.25" />
+<text x="48" y="119" font-size="34" fill="#24343B" font-weight="700">我的项目方案</text>
+<path d="M48 151 H255 M48 185 H225 M48 218 H235" stroke="#A4B7BB" stroke-width="15" stroke-linecap="round" />
+<rect x="310" y="73" width="235" height="222" rx="15" fill="#FFF3D7" />
+<text x="332" y="113" font-size="26" fill="#705E35">看这里的细节</text>
+<path d="M337 245 V200 H376 V245 M393 245 V167 H432 V245 M449 245 V140 H488 V245" fill="#277D8C" />
+<path d="M331 257 H519" stroke="#705E35" stroke-width="3" />
+<circle cx="524" cy="91" r="8" fill="#E2B44D" /></svg><g id="zoom_d909c727bb144209a5c6c35459f7b6a1_zoom" data-action="zoom" style="cursor:pointer;">
+<rect x="36" y="446" width="252" height="58" rx="13" fill="#277D8C" />
+<text x="162" y="485" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">放大细节</text>
+</g><g id="zoom_d909c727bb144209a5c6c35459f7b6a1_reset" data-action="reset" style="cursor:pointer;">
+<rect x="312" y="446" width="252" height="58" rx="13" fill="#277D8C" />
+<text x="438" y="485" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">返回全景</text>
+</g>
+</svg></section>
+<p class="entry-links"><a href="../skills/wechat-svg-zoom-detail/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-zoom-detail.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-data-chart" data-skill="wechat-svg-data-chart" data-preview-kind="interactive">
+<h2>数据柱形图入场</h2>
+<p>点击播放柱形变化，示例采用演示数据。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 540" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-data-chart">
+<desc>按输入数值绘制柱形图，数值标签持续可见。点击按钮播放柱形入场。</desc>
+<rect x="1" y="1" width="598" height="538" rx="20" fill="#FFF9EE" />
+<text x="36" y="59" font-size="34" fill="#24343B" font-weight="700" xml:space="preserve">示例数据：三阶段用时</text><text x="36" y="101" font-size="26" fill="#24343B" font-weight="400" xml:space="preserve">分钟，演示数据</text><path d="M40 348 H560" stroke="#80999E" stroke-width="2" /><g id="chart_b137cbe9ae83475c877f989233eee952_bar_0" data-chart-bar="0">
+<rect x="88.6667" y="288" width="76" height="60" rx="8" fill="#167E99">
+<animate attributeName="height" from="0" to="60" begin="chart_b137cbe9ae83475c877f989233eee952_play.click" dur="1s" fill="freeze" restart="always" />
+<animate attributeName="y" from="348" to="288" begin="chart_b137cbe9ae83475c877f989233eee952_play.click" dur="1s" fill="freeze" restart="always" />
+</rect><text x="126.667" y="275" text-anchor="middle" font-size="32" fill="#24343B" data-true-value="12">12</text><text x="126.667" y="391" text-anchor="middle" font-size="30" fill="#24343B">理解</text></g><g id="chart_b137cbe9ae83475c877f989233eee952_bar_1" data-chart-bar="1">
+<rect x="262" y="223" width="76" height="125" rx="8" fill="#167E99">
+<animate attributeName="height" from="0" to="125" begin="chart_b137cbe9ae83475c877f989233eee952_play.click" dur="1s" fill="freeze" restart="always" />
+<animate attributeName="y" from="348" to="223" begin="chart_b137cbe9ae83475c877f989233eee952_play.click" dur="1s" fill="freeze" restart="always" />
+</rect><text x="300" y="210" text-anchor="middle" font-size="32" fill="#24343B" data-true-value="25">25</text><text x="300" y="391" text-anchor="middle" font-size="30" fill="#24343B">样稿</text></g><g id="chart_b137cbe9ae83475c877f989233eee952_bar_2" data-chart-bar="2">
+<rect x="435.333" y="148" width="76" height="200" rx="8" fill="#167E99">
+<animate attributeName="height" from="0" to="200" begin="chart_b137cbe9ae83475c877f989233eee952_play.click" dur="1s" fill="freeze" restart="always" />
+<animate attributeName="y" from="348" to="148" begin="chart_b137cbe9ae83475c877f989233eee952_play.click" dur="1s" fill="freeze" restart="always" />
+</rect><text x="473.333" y="135" text-anchor="middle" font-size="32" fill="#24343B" data-true-value="40">40</text><text x="473.333" y="391" text-anchor="middle" font-size="30" fill="#24343B">终稿</text></g><g id="chart_b137cbe9ae83475c877f989233eee952_play" data-action="play" style="cursor:pointer;">
+<rect x="36" y="454" width="528" height="58" rx="13" fill="#167E99" />
+<text x="300" y="493" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">点击播放 / 重新播放</text>
+</g>
+</svg></section><section data-chart-values="true" style="margin:0 0 18px;font-family:sans-serif;color:#24343B;"><p style="margin:5px 0;font-size:16px;line-height:1.7;overflow-wrap:anywhere;">理解　12 分钟，演示数据</p><p style="margin:5px 0;font-size:16px;line-height:1.7;overflow-wrap:anywhere;">样稿　25 分钟，演示数据</p><p style="margin:5px 0;font-size:16px;line-height:1.7;overflow-wrap:anywhere;">终稿　40 分钟，演示数据</p></section>
+<p class="entry-links"><a href="../skills/wechat-svg-data-chart/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-data-chart.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-click-reveal" data-skill="wechat-svg-click-reveal" data-preview-kind="interactive">
+<h2>点击揭秘</h2>
+<p>在固定画面里点开一段短答案。</p>
+<section style="margin:20px 0;padding:0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" style="display:block;width:100%;height:auto;cursor:pointer;" data-component="wechat-svg-click-reveal" role="img" aria-label="点一下，查看答案">
+  <desc>点击画面，在固定区域内显示答案。刷新后可重新体验。</desc>
+  <rect x="1" y="1" width="598" height="358" rx="16" fill="#FFF8EE" stroke="#D97706" stroke-width="2" />
+  <path d="M40 58 H100" fill="none" stroke="#D97706" stroke-width="5" stroke-linecap="round" />
+    <text x="40" y="142" fill="#1F2937" font-size="36" font-family="sans-serif" xml:space="preserve">点一下，查看答案</text>
+  <g opacity="0" data-reveal-layer="answer">
+    <rect x="1" y="1" width="598" height="358" rx="16" fill="#FFF8EE" stroke="#D97706" stroke-width="2" />
+    <text x="40" y="58" fill="#1F2937" font-size="36" font-weight="700" font-family="sans-serif">答案</text>
+    <text x="40" y="120" fill="#1F2937" font-size="36" font-family="sans-serif" xml:space="preserve">先准备正文、参考文章和图片，</text>
+    <text x="40" y="164" fill="#1F2937" font-size="36" font-family="sans-serif" xml:space="preserve">再让AI检查缺项。</text>
+    <animate attributeName="opacity" begin="click" dur="0.28s" from="0" to="1" fill="freeze" restart="never" />
+    <rect x="0" y="0" width="600" height="360" fill="#000000" fill-opacity="0" pointer-events="all" data-reveal-trigger="tap" />
+  </g>
+</svg>
+</section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-click-reveal/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-click-reveal.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-svg-drawline" data-skill="wechat-svg-drawline" data-preview-kind="interactive">
+<h2>SVG 描边</h2>
+<p>线条逐渐画出，完成后保持完整。刷新页面可重看。</p>
+<section style="margin:16px 0;padding:0;line-height:0;" data-component="wechat-svg-drawline">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 48" width="100%" style="display:block;width:100%;height:auto;" role="img" aria-label="描边分隔线">
+  <desc>线条从左向右描画，完成后保持完整状态。</desc>
+  <path d="M 16 24 H 584" fill="none" stroke="#D97706" stroke-width="3" stroke-linecap="round" pathLength="100" stroke-dasharray="100 100" stroke-dashoffset="0">
+    <animate attributeName="stroke-dashoffset" values="100;0;0" keyTimes="0;0.6;1" dur="2.8s" begin="0s" repeatCount="1" fill="freeze" />
+  </path>
+</svg>
+</section>
+
+<p class="entry-links"><a href="../skills/wechat-svg-drawline/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-svg-drawline.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-xiumi-gallery" data-skill="wechat-xiumi-gallery" data-preview-kind="interactive">
+<h2>图片图集</h2>
+<p>先试点击切图，再试左右滑动。示例色块用于检查图片顺序。</p>
+<h3>点击切图</h3>
+<section data-component="wechat-svg-click-gallery" style="margin:22px 0;font-family:system-ui,sans-serif;">
+<p style="margin:0 0 8px;font-size:13px;line-height:1.65;color:#826B54;">点击图片切换，共 3 张，最后一张停留显示</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 411.5" width="100%" role="img" aria-label="按顺序点击查看图片" style="display:block;width:100%;height:auto;overflow:hidden;pointer-events:none;">
+<g data-gallery-slide="3">
+<rect width="600" height="411.5" fill="#FFF8EE" pointer-events="none" />
+<image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAACHCAIAAACnEEO8AAABg0lEQVR4nO3SwQkAIBDAsFtN8O/+27iEIJRABuijs/aBjPleAA8ZmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJuRP51VlRFocuAAAAAElFTkSuQmCC" x="0" y="0" width="600" height="337.5" preserveAspectRatio="xMidYMid meet" pointer-events="none"><title>原创测试色块3</title></image>
+<text x="24" y="385.5" fill="#352D25" font-size="36" font-family="sans-serif" xml:space="preserve" pointer-events="none">第三张，停留在这里</text>
+
+</g><g data-gallery-slide="2">
+<rect width="600" height="411.5" fill="#FFF8EE" pointer-events="none" />
+<image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAACHCAIAAACnEEO8AAABg0lEQVR4nO3SUQkAIBTAwFfOimY0hiUEYRxcgH1szl6QMd8L4CFDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQpF4xhBMLooc/wAAAAAElFTkSuQmCC" x="0" y="0" width="600" height="337.5" preserveAspectRatio="xMidYMid meet" pointer-events="none"><title>原创测试色块2</title></image>
+<text x="24" y="385.5" fill="#352D25" font-size="36" font-family="sans-serif" xml:space="preserve" pointer-events="none">第二张，按顺序展示</text>
+<animateTransform attributeName="transform" type="translate" values="0 0;-600 0" begin="click" dur="0.35s" fill="freeze" restart="never" />
+<rect width="600" height="411.5" fill="#000000" fill-opacity="0" pointer-events="all" data-gallery-trigger="tap">
+  <animate attributeName="width" begin="click" from="600" to="0" dur="0.001s" fill="freeze" restart="never" />
+</rect>
+</g><g data-gallery-slide="1">
+<rect width="600" height="411.5" fill="#FFF8EE" pointer-events="none" />
+<image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAACHCAIAAACnEEO8AAABg0lEQVR4nO3SUQkAIBTAwNfE2jaxniUEYRxcgH1s1j6QMd8L4CFDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQpF5Rd/G1GOtUmAAAAAElFTkSuQmCC" x="0" y="0" width="600" height="337.5" preserveAspectRatio="xMidYMid meet" pointer-events="none"><title>原创测试色块1</title></image>
+<text x="24" y="385.5" fill="#352D25" font-size="36" font-family="sans-serif" xml:space="preserve" pointer-events="none">第一张，准备素材</text>
+<animateTransform attributeName="transform" type="translate" values="0 0;-600 0" begin="click" dur="0.35s" fill="freeze" restart="never" />
+<rect width="600" height="411.5" fill="#000000" fill-opacity="0" pointer-events="all" data-gallery-trigger="tap">
+  <animate attributeName="width" begin="click" from="600" to="0" dur="0.001s" fill="freeze" restart="never" />
+</rect>
+</g>
+</svg>
+</section>
+<h3>横向滑动</h3>
+<section data-component="wechat-html-scroll-gallery" style="margin:22px 0;font-family:system-ui,sans-serif;">
+<p style="margin:0 0 8px;font-size:13px;line-height:1.65;color:#826B54;">左右滑动查看，共 3 张</p>
+<section role="region" aria-label="左右滑动查看图片" tabindex="0" style="overflow-x:auto;white-space:nowrap;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;"><section data-gallery-slide="1" style="display:inline-block;vertical-align:top;width:88%;margin-right:12px;white-space:normal;scroll-snap-align:start;box-sizing:border-box;">
+  <section style="position:relative;height:0;padding-top:56.25%;overflow:hidden;background-color:#FFF8EE;border:1px solid #DCC7B0;box-sizing:border-box;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAACHCAIAAACnEEO8AAABg0lEQVR4nO3SUQkAIBTAwNfE2jaxniUEYRxcgH1s1j6QMd8L4CFDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQpF5Rd/G1GOtUmAAAAAElFTkSuQmCC" alt="原创测试色块1" style="position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;" />
+  </section>
+  <p style="margin:9px 0 0;white-space:normal;font-size:16px;line-height:1.65;color:#352D25;">第一张，准备素材</p>
+</section><section data-gallery-slide="2" style="display:inline-block;vertical-align:top;width:88%;margin-right:12px;white-space:normal;scroll-snap-align:start;box-sizing:border-box;">
+  <section style="position:relative;height:0;padding-top:56.25%;overflow:hidden;background-color:#FFF8EE;border:1px solid #DCC7B0;box-sizing:border-box;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAACHCAIAAACnEEO8AAABg0lEQVR4nO3SUQkAIBTAwFfOimY0hiUEYRxcgH1szl6QMd8L4CFDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQpF4xhBMLooc/wAAAAAElFTkSuQmCC" alt="原创测试色块2" style="position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;" />
+  </section>
+  <p style="margin:9px 0 0;white-space:normal;font-size:16px;line-height:1.65;color:#352D25;">第二张，按顺序展示</p>
+</section><section data-gallery-slide="3" style="display:inline-block;vertical-align:top;width:88%;margin-right:12px;white-space:normal;scroll-snap-align:start;box-sizing:border-box;">
+  <section style="position:relative;height:0;padding-top:56.25%;overflow:hidden;background-color:#FFF8EE;border:1px solid #DCC7B0;box-sizing:border-box;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAACHCAIAAACnEEO8AAABg0lEQVR4nO3SwQkAIBDAsFtN8O/+27iEIJRABuijs/aBjPleAA8ZmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJuRP51VlRFocuAAAAAElFTkSuQmCC" alt="原创测试色块3" style="position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;" />
+  </section>
+  <p style="margin:9px 0 0;white-space:normal;font-size:16px;line-height:1.65;color:#352D25;">第三张，停留在这里</p>
+</section></section>
+</section>
+<p class="entry-links"><a href="../skills/wechat-xiumi-gallery/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-xiumi-gallery.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-layout-blocks" data-skill="wechat-layout-blocks" data-preview-kind="layout">
+<h2>正文排版组件</h2>
+<p>按信息关系组织标题、步骤、引用和短表。</p>
+<section class="layout-example"><section data-no-dark="" style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:1.8;color:#352D25;word-break:break-word;"><section data-no-dark="" style="margin:28px 0 18px;padding:12px 0;border-bottom:1px solid #DCC7B0;"><span data-no-dark="" style="display:inline-block;margin-right:10px;color:#BD652E;font-size:25px;font-weight:700;vertical-align:baseline;">01</span><strong style="font-size:21px;line-height:1.5;">先把文章主线排清楚</strong></section><p style="margin:18px 0;">这是一组教学示例。先提供自己的正文和风格，再按内容关系选择组件。</p><section><section data-no-dark="" style="margin:14px 0;padding:10px 14px;border-left:2px solid #BD652E;border-bottom:1px solid #DCC7B0;"><p style="margin:0 0 6px;font-weight:700;">1. 提供正文</p><p style="margin:0;">把本篇文字与图片顺序交给 AI。</p></section><section data-no-dark="" style="margin:14px 0;padding:10px 14px;border-left:2px solid #BD652E;border-bottom:1px solid #DCC7B0;"><p style="margin:0 0 6px;font-weight:700;">2. 选取组件</p><p style="margin:0;">操作顺序使用步骤，有限维度比较使用表格。</p></section><section data-no-dark="" style="margin:14px 0;padding:10px 14px;border-left:2px solid #BD652E;border-bottom:1px solid #DCC7B0;"><p style="margin:0 0 6px;font-weight:700;">3. 检查草稿</p><p style="margin:0;">重新打开，检查图片、文字和手机阅读效果。</p></section></section><section data-no-dark="" style="margin:22px 0;padding:12px 16px;border-left:3px solid #BD652E;background-color:#FAF6EE;"><p style="margin:0;font-weight:600;">每个组件都要让信息更容易理解。</p></section><table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:14px;line-height:1.65;word-break:break-word;"><thead><tr><th data-no-dark="" style="padding:9px;border:1px solid #DCC7B0;background-color:#FAF6EE;text-align:left;">提供什么</th><th data-no-dark="" style="padding:9px;border:1px solid #DCC7B0;background-color:#FAF6EE;text-align:left;">用于什么</th></tr></thead><tbody><tr><td data-no-dark="" style="padding:9px;border:1px solid #DCC7B0;vertical-align:top;">正文与图片</td><td data-no-dark="" style="padding:9px;border:1px solid #DCC7B0;vertical-align:top;">保留本篇内容</td></tr><tr><td data-no-dark="" style="padding:9px;border:1px solid #DCC7B0;vertical-align:top;">参考文章</td><td data-no-dark="" style="padding:9px;border:1px solid #DCC7B0;vertical-align:top;">提炼主题与排版要求</td></tr><tr><td data-no-dark="" style="padding:9px;border:1px solid #DCC7B0;vertical-align:top;">公众号原生卡片</td><td data-no-dark="" style="padding:9px;border:1px solid #DCC7B0;vertical-align:top;">制作对应账号的头像入口</td></tr></tbody></table></section></section>
+<p class="entry-links"><a href="../skills/wechat-layout-blocks/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-blocks.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-avatar-profile" data-skill="wechat-avatar-profile" data-preview-kind="workflow">
+<h2>头像跳转公众号</h2>
+<p>使用目标账号的真实原生名片，制作对应的头像入口。</p>
+<section class="workflow" aria-label="头像入口所需材料">
+<ol><li><strong>提供账号线索</strong><br>目标公众号名称、微信号或已发表文章链接。</li>
+<li><strong>取得真实原生名片</strong><br>AI在已登录的编辑器中核对账号，再读取对应名片。</li>
+<li><strong>生成头像入口</strong><br>使用本次头像与名片，保存后检查实际跳转。</li></ol>
+</section>
+<p class="entry-links"><a href="../skills/wechat-avatar-profile/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-avatar-profile.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<article id="component-wechat-xiumi-svg-layout" data-skill="wechat-xiumi-svg-layout" data-preview-kind="workflow">
+<h2>秀米原生 SVG 布局</h2>
+<p>在秀米中配置展开、开窗、长按与局部热区等效果。</p>
+<section class="workflow" aria-label="秀米原生布局操作">
+<ol><li><strong>准备分层素材</strong><br>给出前景、内容层，以及点击前后的目标画面。</li>
+<li><strong>配置触发与转场</strong><br>在秀米中设置动画方向、时长、热区和松手行为。</li>
+<li><strong>保存重开并预览</strong><br>检查层级、返回和连续操作，再核对公众号与手机表现。</li></ol>
+</section>
+<p class="entry-links"><a href="../skills/wechat-xiumi-svg-layout/SKILL.md">读取使用说明</a><a href="https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-xiumi-svg-layout.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+</article>
+<footer><p>本页展示浏览器效果。秀米保存、公众号同步和手机表现请查对应Skill的实际记录。</p></footer>
+</main></body></html>

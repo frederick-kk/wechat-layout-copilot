@@ -1,0 +1,41 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>双面翻牌</title><body style="margin:0;background:#F5F3ED;font-family:system-ui,sans-serif;color:#27383F;">
+<main style="box-sizing:border-box;max-width:632px;margin:24px auto;padding:16px;"><h1 style="font-size:24px;">双面翻牌</h1><p style="line-height:1.8;">点击亮起的按钮，动画完成后再切回。</p><section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-flip-card">
+<rect x="1" y="1" width="598" height="598" rx="20" fill="#FFF9EE"/>
+<text x="30" y="52" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">换个角度，看看另一面</text>
+<g transform="translate(300 270)"><g id="flipcard_4064f90a6e834f2d8a5738af4f642f75_front" data-face="front" transform="scale(1 1)" visibility="visible" style="visibility:visible;">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="0 1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click" dur="0.5s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="1 1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+0.5s" dur="0.5s" fill="freeze"/>
+<set attributeName="visibility" to="hidden" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+0.5s" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+0.5s" fill="freeze"/>
+<rect x="-258" y="-170" width="516" height="340" rx="22" fill="#FFFFFF" stroke="#167E99" stroke-width="2"/>
+<text x="-226" y="-112" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">我还没准备好</text>
+<text x="-226" y="-32" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">总想再多学一点。</text>
+<text x="-226" y="12" font-size="34" fill="#27383F" font-weight="400" font-family="sans-serif" xml:space="preserve">等准备好了，再开始。</text>
+</g></g>
+<g transform="translate(300 270)"><g id="flipcard_4064f90a6e834f2d8a5738af4f642f75_back" data-face="back" transform="scale(0 1)" visibility="hidden" style="visibility:hidden;">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="0 1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" dur="0.5s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="0 1" to="1 1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+0.5s" dur="0.5s" fill="freeze"/>
+<set attributeName="visibility" to="hidden" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+0.5s" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+0.5s" fill="freeze"/>
+<rect x="-258" y="-170" width="516" height="340" rx="22" fill="#167E99" stroke="#167E99" stroke-width="2"/>
+<text x="-226" y="-112" font-size="36" fill="#FFFFFF" font-weight="700" font-family="sans-serif" xml:space="preserve">先做一个小作品</text>
+<text x="-226" y="-32" font-size="34" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">把真实想法做出来。</text>
+<text x="-226" y="12" font-size="34" fill="#FFFFFF" font-weight="400" font-family="sans-serif" xml:space="preserve">下一步，交给真实反馈。</text>
+</g></g><g id="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse" data-action="reverse" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<set attributeName="pointer-events" to="none" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click;flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+1s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click;flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click+1s" fill="freeze"/>
+<rect x="24" y="502" width="264" height="60" rx="13" fill="#167E99"/>
+<text x="156" y="542" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">翻回正面</text>
+</g><g id="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward" data-action="forward" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<set attributeName="pointer-events" to="none" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click;flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+1s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_forward.click;flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="flipcard_4064f90a6e834f2d8a5738af4f642f75_reverse.click+1s" fill="freeze"/>
+<rect x="312" y="502" width="264" height="60" rx="13" fill="#167E99"/>
+<text x="444" y="542" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">翻到背面</text>
+</g>
+</svg></section></main></body></html>

@@ -1,0 +1,46 @@
+{
+  "start": "start",
+  "accent": "#8C6544",
+  "background": "#FFF8ED",
+  "nodes": [
+    {
+      "id": "start",
+      "title": "你准备怎样开始？",
+      "body": "选一条更适合自己的路。\n接下来还会遇到一次选择。",
+      "choices": [
+        {"label": "先做一份练习作品", "to": "practice"},
+        {"label": "先找一个真实小需求", "to": "task"}
+      ]
+    },
+    {
+      "id": "practice",
+      "title": "练习作品已经做好",
+      "body": "下一步想先推进什么？",
+      "choices": [
+        {"label": "带着作品联系合作方", "to": "delivery"},
+        {"label": "先检查源文件能否修改", "to": "materials"}
+      ]
+    },
+    {
+      "id": "task",
+      "title": "有人愿意让你试一试",
+      "body": "先看看材料是否齐全。",
+      "choices": [
+        {"label": "资料齐全，确认交付范围", "to": "delivery"},
+        {"label": "还缺材料，整理补充清单", "to": "materials"}
+      ]
+    },
+    {
+      "id": "delivery",
+      "title": "带着作品，往前一步",
+      "body": "你已经走到了真实交付。\n把这次过程记录下来，\n下次就多了一份可复用经验。",
+      "choices": []
+    },
+    {
+      "id": "materials",
+      "title": "把准备工作做扎实",
+      "body": "检查素材和可编辑文件。\n把缺项补齐后再继续推进，\n也能为后面省下返工时间。",
+      "choices": []
+    }
+  ]
+}

@@ -87,4 +87,6 @@ python scripts/render_avatar.py --card-html account-card.html --out avatar-compo
 
 本版已有600px浏览器操作／播放采集、320／375px布局检查，GIF记录与实际文件校验一致。
 
-本组件演示为操作流程示意。真实公众号名片、秀米保存重开、公众号同步与手机效果按目标平台继续核对。
+[查看手机微信真实跳转录像](examples/real-demo.html) · [下载完整原片](examples/account-jump-real.mp4) · [读取录像来源记录](examples/real-demo.json)
+
+用户提供的完整手机实录展示了文章头像入口、微信确认弹窗及进入“小鱼FRED”公众号主页的过程。复用到自己的账号和新稿时，按本Skill的编辑器与手机检查步骤核对。

@@ -1,0 +1,19 @@
+{
+  "source": "user-supplied-screen-recording",
+  "account": "小鱼FRED",
+  "video": "account-jump-real.mp4",
+  "viewer": "real-demo.html",
+  "poster": "account-jump-poster.jpg",
+  "sha256": "bd85bb46dfaef30b8c3b6933d00d72acda064d48278b8b15e993021108560063",
+  "bytes": 728630,
+  "width": 592,
+  "height": 1280,
+  "duration_seconds": 4.133333,
+  "original_file_preserved": true,
+  "observed_sequence": [
+    "微信文章内的自定义头像入口",
+    "出现即将打开公众号的确认弹窗，目标为小鱼FRED",
+    "进入小鱼FRED公众号主页"
+  ],
+  "scope": "本段用户实录中可见的头像跳转流程"
+}

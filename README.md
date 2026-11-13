@@ -4,9 +4,9 @@
 
 [查看30款品牌GIF演示](https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html) · [下载完整组件库](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-copilot.zip) · [查看原版交互目录](examples/preview.html) · [选择单项Skill](#30个入口)
 
-v0.5.1提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
+v0.5.2提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
 
-已有600px浏览器操作／播放采集记录30／30项、320／375px布局检查30／30项。头像入口与秀米原生布局提供操作示意。品牌输出的秀米保存重开、公众号同步和真实手机微信效果按目标平台继续核对，各组件原有检查记录见下表。
+已有600px浏览器操作／播放采集记录30／30项、320／375px布局检查30／30项。头像入口另附[手机微信真实跳转录像](skills/wechat-avatar-profile/examples/real-demo.html)，秀米原生布局提供操作示意。各组件的目标账号保存、同步与手机检查范围见下表。
 
 ## 怎么开始
 
@@ -32,7 +32,7 @@ v0.5.1提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽
 
 | 组件 | 做什么 | 当前完成范围 |
 |---|---|---|
-| [头像跳转](skills/wechat-avatar-profile/SKILL.md) | 原生公众号名片与可见头像结合 | 参数化脚本、合成输入与缺项测试。新组件手机点击待测 |
+| [头像跳转](skills/wechat-avatar-profile/SKILL.md) | 原生公众号名片与可见头像结合 | 参数化与缺项测试，另附用户提供的手机微信完整跳转实录 |
 | [SVG 描边](skills/wechat-svg-drawline/SKILL.md) | 小型分隔线逐渐画出 | 可生成片段与预览，Ego lite 浏览器播放通过 |
 | [点击揭秘](skills/wechat-svg-click-reveal/SKILL.md) | 固定画面内点击显示短内容 | 可生成片段与预览，真实点击和320/375px窄屏检查通过 |
 | [多热区点击与返回](skills/wechat-svg-hotspots/SKILL.md) | 点开不同注释，再返回总图 | 生成器、双实例、窄屏点击及秀米保存重开后交互通过 |

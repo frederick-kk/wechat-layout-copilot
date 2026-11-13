@@ -14,7 +14,7 @@ from build_preview import CatalogCheck, ENTRIES
 
 PUBLISHED_DOWNLOADS = (
     "https://github.com/frederick-kk/wechat-layout-copilot/"
-    "releases/download/v0.5.1/"
+    "releases/download/v0.5.2/"
 )
 
 STYLE = """
@@ -44,6 +44,9 @@ article{min-width:0;scroll-margin-top:24px}
 .purpose{color:var(--muted);font-size:15px;line-height:1.75;min-height:3.5em;margin-bottom:18px}
 figure{margin:0}
 .demo{display:block;width:100%;height:auto;background:#fffaf1}
+.real-demo-video{display:block;width:100%;height:auto;object-fit:contain;background:#111}
+.operation-gif{margin-top:16px}
+.operation-gif summary{font-size:14px;margin-bottom:12px}
 figcaption{font-size:13px;line-height:1.7;margin-top:10px;color:var(--muted)}
 .links{display:flex;flex-wrap:wrap;gap:8px 20px;border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:14px}
 .links a:first-child{font-weight:700}
@@ -160,6 +163,12 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
                 f'alt="{title}动态演示">'
             )
         links = []
+        recording = folder / "examples/account-jump-real.mp4"
+        recording_page = folder / "examples/real-demo.html"
+        has_recording = entry.name == "wechat-avatar-profile" and recording.is_file()
+        if has_recording:
+            required.extend([recording, recording_page, folder / "examples/account-jump-poster.jpg"])
+            links.append(f'<a href="{html.escape(relative_url(recording_page, destination), quote=True)}">打开真实演示</a>')
         if preview.is_file():
             preview_label = "打开操作示意" if entry.kind == "workflow" else "打开可操作演示"
             links.append(f'<a href="{html.escape(relative_url(preview, destination), quote=True)}">{preview_label}</a>')
@@ -171,9 +180,20 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
         if entry.name == "wechat-xiumi-gallery":
             description = "切换或横向浏览配图，把几张作品放在同一个位置。"
         caption = '<figcaption>操作示意</figcaption>' if entry.kind == "workflow" else ""
+        media = f'<figure>{image}{caption}</figure>'
+        if has_recording:
+            video_url = html.escape(relative_url(recording, destination), quote=True)
+            poster_url = html.escape(relative_url(folder / "examples/account-jump-poster.jpg", destination), quote=True)
+            media = (
+                f'<figure><video class="real-demo-video" controls playsinline preload="metadata" '
+                f'poster="{poster_url}" width="592" height="1280" aria-label="公众号头像跳转完整实录">'
+                f'<source src="{video_url}" type="video/mp4"><a href="{video_url}">打开完整录像</a></video>'
+                '<figcaption>手机微信真实跳转 · 4.13秒完整原片</figcaption></figure>'
+                f'<details class="operation-gif"><summary>查看操作示意GIF</summary>{media}</details>'
+            )
         articles.append(
             f'<article id="{anchor}"><h2>{title}</h2>'
-            f'<p class="purpose">{html.escape(description)}</p><figure>{image}{caption}</figure>'
+            f'<p class="purpose">{html.escape(description)}</p>{media}'
             f'<div class="links">{"".join(links)}</div></article>'
         )
         records.append({"component": entry.name, "kind": entry.kind, "gif": info, "missing": [str(path) for path in missing]})
@@ -193,7 +213,7 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
         '</div><p class="header-links"><a href="' + html.escape((download_base or PUBLISHED_DOWNLOADS).rstrip('/') + '/wechat-layout-copilot.zip', quote=True) + '">下载全部组件</a> · <a href="https://github.com/frederick-kk/wechat-layout-copilot">查看GitHub仓库</a></p></header><details class="directory"><summary>按名称查找30个组件</summary>'
         '<nav aria-label="全部组件目录"><ol>' + "".join(directory) + '</ol></nav></details>'
         '<section class="gallery" aria-label="30款组件GIF演示">' + "".join(articles) + '</section>'
-        '<footer><p>点开组件演示后，可按对应 Skill 替换正文和配图。头像跳转与秀米原生布局提供操作示意，实际公众号名片、秀米保存重开和手机效果按各组件继续核对。</p>'
+        '<footer><p>头像跳转附有用户提供的手机微信实录，秀米原生布局提供操作示意。按对应 Skill 替换正文和配图后，在目标账号中核对保存、同步和手机效果。</p>'
         '<a href="#top">返回目录</a></footer></main></body></html>'
     )
     check = CatalogCheck()

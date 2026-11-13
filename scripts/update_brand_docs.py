@@ -14,7 +14,7 @@ from encode_demo_gifs import commit_pair
 
 
 SECTION = "## 品牌演示与GIF"
-VERSION = "0.5.1"
+VERSION = "0.5.2"
 GALLERY = "examples/brand-gallery.html"
 ONLINE = "https://frederick-kk.github.io/wechat-layout-copilot/"
 DOWNLOAD = (
@@ -148,9 +148,26 @@ def capture_evidence(root, entry, metadata, snapshots):
     return True
 
 
-def style_record(entry, record, metadata, assets, captured, widths):
+def real_recording(root, snapshots):
+    folder = root / "skills/wechat-avatar-profile/examples"
+    source = folder / "real-demo.json"
+    if not source.is_file():
+        return None
+    record = read_json(source, snapshots)
+    expected = {"video": "account-jump-real.mp4", "viewer": "real-demo.html", "poster": "account-jump-poster.jpg"}
+    if any(record.get(key) != filename for key, filename in expected.items()):
+        raise ValueError("头像实录的素材位置与组件目录不一致")
+    video = read_source(folder / record["video"], snapshots)
+    if record.get("sha256") != hashlib.sha256(video).hexdigest() or record.get("bytes") != len(video):
+        raise ValueError("头像实录与原片校验记录不一致")
+    read_source(folder / record["viewer"], snapshots)
+    read_source(folder / record["poster"], snapshots)
+    return record
+
+
+def style_record(entry, record, metadata, assets, captured, widths, recording=None):
     workflow = entry.kind == "workflow"
-    return {
+    result = {
         "version": VERSION,
         "component": entry.name,
         "title": entry.title,
@@ -192,9 +209,18 @@ def style_record(entry, record, metadata, assets, captured, widths):
             "native_account_jump": "pending-in-wechat" if entry.name == "wechat-avatar-profile" else "not-applicable",
         },
     }
+    if recording and entry.name == "wechat-avatar-profile":
+        result["files"].update({
+            "real_recording": recording["video"],
+            "real_demo": recording["viewer"],
+            "real_recording_record": "real-demo.json",
+        })
+        result["validation"]["native_account_jump"] = "observed-in-user-supplied-recording"
+        result["validation"]["phone_recording_scope"] = recording["scope"]
+    return result
 
 
-def section_text(entry, captured, widths):
+def section_text(entry, captured, widths, recording=None):
     opener = "操作示意" if entry.kind == "workflow" else "可操作演示"
     text = f'''{SECTION}
 
@@ -212,7 +238,10 @@ def section_text(entry, captured, widths):
         evidence.append("320／375px布局检查")
     if evidence:
         text += "\n本版已有" + "、".join(evidence) + "，GIF记录与实际文件校验一致。\n"
-    if entry.kind == "workflow":
+    if recording and entry.name == "wechat-avatar-profile":
+        text += "\n[查看手机微信真实跳转录像](examples/real-demo.html) · [下载完整原片](examples/account-jump-real.mp4) · [读取录像来源记录](examples/real-demo.json)\n"
+        text += "\n用户提供的完整手机实录展示了文章头像入口、微信确认弹窗及进入“小鱼FRED”公众号主页的过程。复用到自己的账号和新稿时，按本Skill的编辑器与手机检查步骤核对。\n"
+    elif entry.kind == "workflow":
         text += "\n本组件演示为操作流程示意。真实公众号名片、秀米保存重开、公众号同步与手机效果按目标平台继续核对。\n"
     else:
         text += "\n品牌输出的秀米保存重开、公众号同步与真实手机微信效果待按目标环境核对。\n"
@@ -253,7 +282,7 @@ def root_readme(text, captured, narrow):
 
 v{VERSION}提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
 
-已有600px浏览器操作／播放采集记录{captured}／30项、320／375px布局检查{narrow}／30项。头像入口与秀米原生布局提供操作示意。品牌输出的秀米保存重开、公众号同步和真实手机微信效果按目标平台继续核对，各组件原有检查记录见下表。
+已有600px浏览器操作／播放采集记录{captured}／30项、320／375px布局检查{narrow}／30项。头像入口另附[手机微信真实跳转录像](skills/wechat-avatar-profile/examples/real-demo.html)，秀米原生布局提供操作示意。各组件的目标账号保存、同步与手机检查范围见下表。
 
 '''
     return intro + text[heading.start():]
@@ -270,7 +299,7 @@ def root_skill(text):
 
 单项包包含品牌HTML、GIF及其相邻素材。读取 `examples/brand-component.html` 后，可按使用者自己的头像、正文和风格修改。图片留在对应动画组或状态组中，保留事件ID、点击区与时序；多个实例使用独立ID。原有生成器的可用参数以对应子Skill正文为准。
 
-头像入口和秀米原生布局提供操作示意。交付时分别说明本地浏览器、编辑器保存重开、公众号同步和真实手机微信的实际验证范围。
+头像入口另附[手机微信真实跳转录像](skills/wechat-avatar-profile/examples/real-demo.html)，秀米原生布局提供操作示意。交付时分别说明本地浏览器、编辑器保存重开、公众号同步和真实手机微信的实际验证范围。
 '''
     return replace_section(text, section)
 
@@ -297,6 +326,7 @@ def build_changes(root):
     if len(records) != 30 or set(records) != {entry.name for entry in ENTRIES}:
         raise ValueError("演示清单的组件身份重复或不完整")
     layouts = layout_evidence(root, snapshots)
+    recording = real_recording(root, snapshots)
     captured_count, narrow_count = 0, 0
     for entry in ENTRIES:
         record = records[entry.name]
@@ -309,8 +339,8 @@ def build_changes(root):
         narrow_count += int(widths == [320, 375])
         folder = root / "skills" / entry.name
         skill, newline, bom = text_source(folder / "SKILL.md", snapshots)
-        plans[folder / "SKILL.md"] = encoded_text(replace_section(skill, section_text(entry, captured, widths)), newline, bom)
-        style = style_record(entry, record, metadata, assets, captured, widths)
+        plans[folder / "SKILL.md"] = encoded_text(replace_section(skill, section_text(entry, captured, widths, recording)), newline, bom)
+        style = style_record(entry, record, metadata, assets, captured, widths, recording)
         plans[folder / "examples/brand-style.json"] = (json.dumps(style, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     for name, transform in [("README.md", lambda text: root_readme(text, captured_count, narrow_count)), ("SKILL.md", root_skill), ("index.html", root_index)]:
         text, newline, bom = text_source(root / name, snapshots)

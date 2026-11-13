@@ -1,5 +1,5 @@
 {
-  "version": "0.5.1",
+  "version": "0.5.2",
   "component": "wechat-avatar-profile",
   "title": "头像跳转公众号",
   "kind": "workflow",
@@ -43,7 +43,10 @@
     "template": "brand-component.html",
     "preview": "brand-preview.html",
     "gif": "demo.gif",
-    "gif_record": "demo-gif.json"
+    "gif_record": "demo-gif.json",
+    "real_recording": "account-jump-real.mp4",
+    "real_demo": "real-demo.html",
+    "real_recording_record": "real-demo.json"
   },
   "editing": {
     "native_text_editable": true,
@@ -67,6 +70,7 @@
     "demo_type": "operation-illustration",
     "editor_save_reload": "pending-for-branded-output",
     "wechat_sync_and_phone": "pending",
-    "native_account_jump": "pending-in-wechat"
+    "native_account_jump": "observed-in-user-supplied-recording",
+    "phone_recording_scope": "本段用户实录中可见的头像跳转流程"
   }
 }

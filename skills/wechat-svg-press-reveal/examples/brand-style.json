@@ -1,5 +1,5 @@
 {
-  "version": "0.5.1",
+  "version": "0.5.2",
   "component": "wechat-svg-press-reveal",
   "title": "长按显影与松手复原",
   "kind": "interactive",

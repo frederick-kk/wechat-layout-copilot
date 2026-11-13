@@ -14,7 +14,7 @@ from encode_demo_gifs import commit_pair
 
 
 SECTION = "## 品牌演示与GIF"
-VERSION = "0.5.0"
+VERSION = "0.5.1"
 GALLERY = "examples/brand-gallery.html"
 ONLINE = "https://frederick-kk.github.io/wechat-layout-copilot/"
 DOWNLOAD = (
@@ -156,7 +156,7 @@ def style_record(entry, record, metadata, assets, captured, widths):
         "title": entry.title,
         "kind": entry.kind,
         "author_ip": {
-            "demo_name": "FRE.D 进一",
+            "demo_name": "小鱼FRED",
             "avatar": assets.get("avatar", {}).get("path"),
             "reuse": "按本次任务采用使用者自己的头像、账号资料和正文",
         },

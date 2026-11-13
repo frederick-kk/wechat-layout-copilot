@@ -14,7 +14,7 @@ from build_preview import CatalogCheck, ENTRIES
 
 PUBLISHED_DOWNLOADS = (
     "https://github.com/frederick-kk/wechat-layout-copilot/"
-    "releases/download/v0.4.1/"
+    "releases/download/v0.5.1/"
 )
 
 STYLE = """
@@ -189,7 +189,7 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         f'<title>公众号排版外挂 · 30款组件与GIF演示</title><style>{STYLE}</style></head>'
         '<body><main id="top"><header><div class="identity">' + avatar_html +
-        '<div><h1>公众号排版外挂</h1><p>30个组件，先看动图，再挑一个交给 AI。纸纹、暖橙和橙帽 Fred，贯穿每一段演示。</p></div>'
+        '<div><h1>公众号排版外挂</h1><p>小鱼FRED · 30个组件，先看动图，再挑一个交给 AI。纸纹、暖橙和橙帽 Fred，贯穿每一段演示。</p></div>'
         '</div><p class="header-links"><a href="' + html.escape((download_base or PUBLISHED_DOWNLOADS).rstrip('/') + '/wechat-layout-copilot.zip', quote=True) + '">下载全部组件</a> · <a href="https://github.com/frederick-kk/wechat-layout-copilot">查看GitHub仓库</a></p></header><details class="directory"><summary>按名称查找30个组件</summary>'
         '<nav aria-label="全部组件目录"><ol>' + "".join(directory) + '</ol></nav></details>'
         '<section class="gallery" aria-label="30款组件GIF演示">' + "".join(articles) + '</section>'

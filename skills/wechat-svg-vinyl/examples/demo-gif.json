@@ -2,7 +2,7 @@
   "slug": "wechat-svg-vinyl",
   "source": "browser-capture",
   "source_sha256": {
-    "brand-preview.html": "8692383781d8e06fb2f8f06a886fbc867c1417a8b66aceb70dee1aec3c9ac7f0",
+    "brand-preview.html": "07870e608c40d8e7136da7b6ca1ad4edb8986b128014f59c88205198baff86d4",
     "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
     "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071",
     "brand-assets/record-disc.webp": "4553d0e49feb430784a7e9a5b89f94f77d4a79539118be568fda8b568bdf8b46"
@@ -18,9 +18,9 @@
   "sampling_fps": 8,
   "palette_colors": 192,
   "source_frame_count": 38,
-  "capture_duration_seconds": 5.009771,
+  "capture_duration_seconds": 4.989755,
   "tail_hold_seconds": 0.8,
-  "source_manifest_sha256": "7bcfe022593f952b526b600347ecef83f4bbcd4b908e4dc91347e263fe59269f",
-  "bytes": 778545,
-  "sha256": "718da04aa8fdec1eb1b8a707eb6652e941ec7bb45fb2aacab01dc55cd32789c5"
+  "source_manifest_sha256": "554fad8203b55e9cf8472212d60db63f656d54269d3ba091fe2de8d12272f9d8",
+  "bytes": 769799,
+  "sha256": "58d7bc489e4de9ddbdcebc7bd98258d135ae2186503c6690cd11429c50a0a614"
 }

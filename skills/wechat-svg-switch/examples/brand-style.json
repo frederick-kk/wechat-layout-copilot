@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-switch",
   "title": "点击旋转切换",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -57,8 +57,8 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "73269fe553504262a394eaec1e864a4514ae1a39cc665c973711567696d6a9c0",
-    "gif_frames": 38,
+    "gif_sha256": "5134e69ce45c3ee8666174a9e4886fd1911759946e60b2c30fae7a7511d94e64",
+    "gif_frames": 39,
     "gif_size": [
       480,
       416

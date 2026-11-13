@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-typewriter",
   "title": "逐字打印与重播",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -49,7 +49,7 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "8c043ee7ba8df18803e23444472fbd311f3f34208ee830494b8403bca6dacae5",
+    "gif_sha256": "2005a9a8969c2389bc32469bd022f72e2ad5a9aeec29a99fc3923c04872ed408",
     "gif_frames": 41,
     "gif_size": [
       480,

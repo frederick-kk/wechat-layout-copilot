@@ -4,7 +4,7 @@
 
 [查看30款品牌GIF演示](https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html) · [下载完整组件库](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-copilot.zip) · [查看原版交互目录](examples/preview.html) · [选择单项Skill](#30个入口)
 
-v0.5.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
+v0.5.1提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
 
 已有600px浏览器操作／播放采集记录30／30项、320／375px布局检查30／30项。头像入口与秀米原生布局提供操作示意。品牌输出的秀米保存重开、公众号同步和真实手机微信效果按目标平台继续核对，各组件原有检查记录见下表。
 

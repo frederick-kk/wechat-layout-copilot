@@ -94,7 +94,7 @@ def wrap_svg(svg, art, uid):
     portrait = image(art['avatar'], 24, 18, 62, 62)
     portrait.set('clip-path', 'url(#' + uid + '_avatar)')
     outer.append(portrait)
-    outer.append(text('FRE.D 进一', 104, 47, 27, '#A94B21', 700))
+    outer.append(text('小鱼FRED', 104, 47, 27, '#A94B21', 700))
     outer.append(text('AI · 商业 · 成长', 104, 76, 19, '#765B45'))
     outer.append(node('path', {'d':'M24 96H576','stroke':'#C6AA7B','stroke-width':1}))
     svg.set('x', '0')
@@ -110,7 +110,7 @@ def workflow_svg(name, art, uid):
     avatar = name == 'wechat-avatar-profile'
     title = '头像入口流程示意' if avatar else '秀米原生布局操作示意'
     headings = ['找到自己的公众号', '把头像接到原生名片', '保存后检查真实跳转'] if avatar else ['准备前景与内容层', '设置触发与转场', '保存重开，手机检查']
-    copies = [('核对公众号名称、微信号与头像。','本例账号为 FRE.D 进一。'), ('读取真实 mp-common-profile。','让可见头像与原生点击层对齐。'), ('核对点击范围与目标账号。','在手机微信里检查最终表现。')] if avatar else [('一张前景图，一张内容图。','先让各层尺寸与位置保持一致。'), ('配置点击、长按与打开方向。','逐层检查遮挡和热区位置。'), ('保存草稿后重新打开。','再核对公众号同步与手机效果。')]
+    copies = [('核对公众号名称、微信号与头像。','本例账号为 小鱼FRED。'), ('读取真实 mp-common-profile。','让可见头像与原生点击层对齐。'), ('核对点击范围与目标账号。','在手机微信里检查最终表现。')] if avatar else [('一张前景图，一张内容图。','先让各层尺寸与位置保持一致。'), ('配置点击、长按与打开方向。','逐层检查遮挡和热区位置。'), ('保存草稿后重新打开。','再核对公众号同步与手机效果。')]
     root = node('svg', {'viewBox':'0 0 600 720','data-component':name,'width':'100%'})
     for index in range(3):
         visible = index == 0
@@ -125,7 +125,7 @@ def workflow_svg(name, art, uid):
             group.append(text(value, 30, 183 + line * 44, 28))
         if avatar and index == 0:
             group.append(image(art['avatar'], 210, 270, 180, 180, 'xMidYMid meet'))
-            group.append(text('FRE.D 进一', 213, 505, 30, '#A94B21', 700))
+            group.append(text('小鱼FRED', 213, 505, 30, '#A94B21', 700))
         else:
             group.append(image(art[['idea','studio','launch'][index]], 30, 260, 540, 300))
         action = node('g', {'id':f'{uid}_next_{index}','data-workflow-next':index,'style':'cursor:pointer;'})
@@ -150,7 +150,7 @@ def drawline_svg(source, art):
 
 
 def body_demo(art):
-    return f'''<div class="brand-heading"><img src="{art['avatar']}" alt="Fred橙帽头像"><div><b>FRE.D 进一</b><small>AI · 商业 · 成长</small></div></div>
+    return f'''<div class="brand-heading"><img src="{art['avatar']}" alt="Fred橙帽头像"><div><b>小鱼FRED</b><small>AI · 商业 · 成长</small></div></div>
 <div id="reading-scroll"><h1>把想法，做成第一份作品。</h1><p>如果你也想用 AI 做点真实的事情，先找一个能动手的小需求。跑通之后，再一点点往前，嘻嘻。</p><img class="scene" src="{art['studio']}" alt="创作工作台"><h2>先让读者看懂流程</h2><ol><li><strong>准备素材</strong><p>收齐需求与原始资料。</p></li><li><strong>做出样稿</strong><p>把风格和每页内容讲清楚。</p></li><li><strong>确认后交付</strong><p>检查文字与可编辑效果。</p></li></ol><blockquote>每一步都说清楚给什么、拿到什么、检查什么。</blockquote><h2>用一张表，抓住确认节点</h2><table><thead><tr><th>阶段</th><th>产出</th><th>确认</th></tr></thead><tbody><tr><td>样稿</td><td>3–5页示例</td><td>视觉方向</td></tr><tr><td>内容</td><td>每页具体文字</td><td>信息是否到位</td></tr><tr><td>终稿</td><td>可编辑文件</td><td>内容与排版</td></tr></tbody></table><img class="scene" src="{art['launch']}" alt="作品完成"><p>先迈出一步，让真实的反馈告诉你下一步怎么走。</p></div>'''
 
 

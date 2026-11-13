@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-data-chart",
   "title": "数据柱形图入场",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -45,8 +45,8 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "b469c47d81d82e901f86572036a0e5b9dfcc1fce9ef139c84a2f5ab329a029d8",
-    "gif_frames": 36,
+    "gif_sha256": "11d429fedd356551e514f488c689a5271126795f31bd3668cad3540edc48fa2f",
+    "gif_frames": 37,
     "gif_size": [
       480,
       512

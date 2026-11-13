@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-parallax",
   "title": "多层视差",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -57,8 +57,8 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "4a08ae42702851f9a9efc7bd876f6d025c57d15634a2c5ff41ca9c5cf2e9c3ef",
-    "gif_frames": 36,
+    "gif_sha256": "2cd714747c0ff58aeb78c5f5e14db990633e237d8725f546697a7034e52cf147",
+    "gif_frames": 35,
     "gif_size": [
       480,
       624

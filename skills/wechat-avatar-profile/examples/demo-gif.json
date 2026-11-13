@@ -2,7 +2,7 @@
   "slug": "wechat-avatar-profile",
   "source": "browser-capture",
   "source_sha256": {
-    "brand-preview.html": "2d9f393f505bd698c9bd2dac81246373b14abc0ac27af8295b577b85dc4c34c0",
+    "brand-preview.html": "5510a80931449f79ebe320d271fe29616ab61ff15a9ef92033f6cebe6987f33f",
     "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
     "brand-assets/launch.webp": "b75d10aaa5a2db25e5c9c4986300208500a95ea4396956070ac923892ed29fb8",
     "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071",
@@ -14,14 +14,14 @@
   "height": 656,
   "duration_seconds": 5.01,
   "loop": 0,
-  "distinct_frames": 7,
+  "distinct_frames": 4,
   "visible_changes": true,
   "sampling_fps": 8,
   "palette_colors": 192,
-  "source_frame_count": 30,
-  "capture_duration_seconds": 4.213442,
+  "source_frame_count": 32,
+  "capture_duration_seconds": 4.202333,
   "tail_hold_seconds": 0.8,
-  "source_manifest_sha256": "f6b0e656a381d5d6480619142e3a7f8413710bb7b913296be7af0f413099b5a8",
-  "bytes": 343097,
-  "sha256": "46c8aa1c55b585a56755f365394fa51514f53aec944ca1ecf38d13072f69f147"
+  "source_manifest_sha256": "20c0749586a9d4d47658200ed48e091321607ca5351c0dc1d8da609b6de6ad02",
+  "bytes": 337529,
+  "sha256": "4a3d9f7f7fefad513c5014fd3952655e63af57a975d1db0570cf21c5762a6f23"
 }

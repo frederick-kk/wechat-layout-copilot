@@ -2,7 +2,7 @@
   "slug": "wechat-xiumi-gallery",
   "source": "browser-capture",
   "source_sha256": {
-    "brand-preview.html": "b6b202ce32737d53210f10bea7b0ed9a7b79f85b888cd926d96af0a27bdb9ab9",
+    "brand-preview.html": "1d36552a15feee75bb8ac85adaf29f63e0da23e895198f67eb2d0c530ab7b373",
     "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
     "brand-assets/idea.webp": "6d4afc4d76761545cf7dafb1e9d93d0843eae381068333e399f84b3a9156b345",
     "brand-assets/launch.webp": "b75d10aaa5a2db25e5c9c4986300208500a95ea4396956070ac923892ed29fb8",
@@ -10,19 +10,19 @@
     "brand-assets/studio.webp": "188cd2bea7b2bac0f62e69d7af80680a58bbf107792ef1e9dd994bb4ad434f1e"
   },
   "play": "component-demo",
-  "frame_count": 55,
+  "frame_count": 60,
   "width": 480,
   "height": 598,
-  "duration_seconds": 6.88,
+  "duration_seconds": 7.51,
   "loop": 0,
   "distinct_frames": 18,
   "visible_changes": true,
   "sampling_fps": 8,
   "palette_colors": 192,
-  "source_frame_count": 42,
-  "capture_duration_seconds": 6.090033,
+  "source_frame_count": 34,
+  "capture_duration_seconds": 6.746334,
   "tail_hold_seconds": 0.8,
-  "source_manifest_sha256": "175a376cbfd012b77b1b112097f8dae8a612231857586d41aa8ddb5b696e94b0",
-  "bytes": 895134,
-  "sha256": "e39b9731568f95b17e2e3e29956a386ab2dbe4ef8b453f6a3c454efab6d9a6cc"
+  "source_manifest_sha256": "6f1458dab16fe93aa491fe2f8ba91430aabca77e3d9ee8a0e3b6b942db5427bc",
+  "bytes": 894602,
+  "sha256": "6e47cef4724871c011d87a4660f79eb4d1bbd19bd29b2fcca05262d785c3946f"
 }

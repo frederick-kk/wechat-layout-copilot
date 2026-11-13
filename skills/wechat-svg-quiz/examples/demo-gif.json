@@ -2,26 +2,26 @@
   "slug": "wechat-svg-quiz",
   "source": "browser-capture",
   "source_sha256": {
-    "brand-preview.html": "901d70c32a3fe00d7344ff9811d8836c70445868ad02d8f1f525ba69ba92ccfb",
+    "brand-preview.html": "b6255ba8231dcb68bd2a6cac6f4afbdbcf26a0976336aea7d1420a5cf464b423",
     "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
     "brand-assets/banner-idea.webp": "c5c8467d33a21bf23566982cc6254964050126664f5a874bb929000d5153a237",
     "brand-assets/banner-launch.webp": "372e21ccc8fa5aba9ad95ad92a37b61b3cdc4bf79cf478279703df23a3506814",
     "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
   },
   "play": "component-demo",
-  "frame_count": 40,
+  "frame_count": 41,
   "width": 480,
   "height": 560,
-  "duration_seconds": 5.01,
+  "duration_seconds": 5.13,
   "loop": 0,
   "distinct_frames": 8,
   "visible_changes": true,
   "sampling_fps": 8,
   "palette_colors": 192,
   "source_frame_count": 33,
-  "capture_duration_seconds": 4.209737,
+  "capture_duration_seconds": 4.27353,
   "tail_hold_seconds": 0.8,
-  "source_manifest_sha256": "3ce237aeb68a149305c81979a4868e82d37b81b00ad1e751154ef3e42e0ec062",
-  "bytes": 779006,
-  "sha256": "20367884d543f21573cfa34f74f032f2b0db91d45f99fff06063755362bceb49"
+  "source_manifest_sha256": "d85d5a7a3f28ce338a1afc2e1dad41fd4e03154f0fcdf1f31c5ae10b77a83fe1",
+  "bytes": 782869,
+  "sha256": "36cc677c987a41be9478bcb19ab8fac24e7fdf94142f37e1888e424a05a96841"
 }

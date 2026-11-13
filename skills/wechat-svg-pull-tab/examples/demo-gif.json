@@ -2,7 +2,7 @@
   "slug": "wechat-svg-pull-tab",
   "source": "browser-capture",
   "source_sha256": {
-    "brand-preview.html": "ef843ec34a71989494d6892375c143184a51946d4fce6342c89d87b38e480273",
+    "brand-preview.html": "4150807ee05df52f2e537a598d88738ae6b88174f6d93f7e890a2ba54add731a",
     "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
     "brand-assets/banner-studio.webp": "87408c60541b4180ef40a9aa0041260168789440a113d7e9dd491f5e597ddc2f",
     "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
@@ -13,14 +13,14 @@
   "height": 496,
   "duration_seconds": 4.51,
   "loop": 0,
-  "distinct_frames": 12,
+  "distinct_frames": 13,
   "visible_changes": true,
   "sampling_fps": 8,
   "palette_colors": 192,
   "source_frame_count": 28,
-  "capture_duration_seconds": 3.644189,
+  "capture_duration_seconds": 3.64697,
   "tail_hold_seconds": 0.8,
-  "source_manifest_sha256": "a8102255444b5542e5309e8376426a1e4c200ed78fc335391296d65ec6e90e42",
-  "bytes": 155624,
-  "sha256": "73261023d38466df2403c640b3824c237088d75e166b199a0e8c8669623f921e"
+  "source_manifest_sha256": "d3963437333cb80dabcdbfa0c291d551605f88565cab765acd1f8a2f72330bd0",
+  "bytes": 162992,
+  "sha256": "0bc5247f9316bbc85f3ff9a5c485c044969808fb60d82e0986324f84b7954bcc"
 }

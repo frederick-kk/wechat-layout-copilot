@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-pull-tab",
   "title": "抽拉标签",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -49,7 +49,7 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "73261023d38466df2403c640b3824c237088d75e166b199a0e8c8669623f921e",
+    "gif_sha256": "0bc5247f9316bbc85f3ff9a5c485c044969808fb60d82e0986324f84b7954bcc",
     "gif_frames": 36,
     "gif_size": [
       480,

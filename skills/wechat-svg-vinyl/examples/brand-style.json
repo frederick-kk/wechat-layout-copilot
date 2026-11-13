@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-vinyl",
   "title": "唱片启停",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -49,7 +49,7 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "718da04aa8fdec1eb1b8a707eb6652e941ec7bb45fb2aacab01dc55cd32789c5",
+    "gif_sha256": "58d7bc489e4de9ddbdcebc7bd98258d135ae2186503c6690cd11429c50a0a614",
     "gif_frames": 46,
     "gif_size": [
       480,

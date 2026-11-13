@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-click-reveal",
   "title": "点击揭秘",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -53,8 +53,8 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "ab7d4899ec54906ca0b95ddcf1eb88a6db0c9f280ed47353b818783762a49c12",
-    "gif_frames": 36,
+    "gif_sha256": "09bd635a6d9ae5391ffc347c4ea2b2accc6f1018e10dc76fd84779278183c899",
+    "gif_frames": 37,
     "gif_size": [
       480,
       368

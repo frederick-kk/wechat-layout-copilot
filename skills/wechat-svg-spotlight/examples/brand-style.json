@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-spotlight",
   "title": "探照灯",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -49,8 +49,8 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "712d38bc29efbc05c70746bc955c2515d0bff17f65057cc30a128d93300aa5be",
-    "gif_frames": 48,
+    "gif_sha256": "2d69301e86cc6afa32798f63cf4771e765887a9b94c7e39b2529256b50e4ecb7",
+    "gif_frames": 49,
     "gif_size": [
       480,
       720

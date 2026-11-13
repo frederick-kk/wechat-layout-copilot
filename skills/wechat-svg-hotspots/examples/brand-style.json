@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-hotspots",
   "title": "多热区点击与返回",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -61,7 +61,7 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "707037a1594a850c270db1b8ce6c61ebe15b1fceeadab336635d9358bb364f3d",
+    "gif_sha256": "830c468e92d65632b7e7a6dc7110bc80b17e99b6b964229634edf427fba6ca6f",
     "gif_frames": 45,
     "gif_size": [
       480,

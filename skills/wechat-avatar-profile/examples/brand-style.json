@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-avatar-profile",
   "title": "头像跳转公众号",
   "kind": "workflow",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -53,7 +53,7 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "46c8aa1c55b585a56755f365394fa51514f53aec944ca1ecf38d13072f69f147",
+    "gif_sha256": "4a3d9f7f7fefad513c5014fd3952655e63af57a975d1db0570cf21c5762a6f23",
     "gif_frames": 40,
     "gif_size": [
       480,

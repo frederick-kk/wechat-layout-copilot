@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-svg-wipe-compare",
   "title": "擦拭前后对比",
   "kind": "interactive",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -53,7 +53,7 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "574a06b8429d30b4261c07179597a63436204e6c753817eaee257af4e3cca19a",
+    "gif_sha256": "615eea7ae3e4c0324a0915dbb141c964f314d2fb3da32149ec5ec4df4a2c217d",
     "gif_frames": 38,
     "gif_size": [
       480,

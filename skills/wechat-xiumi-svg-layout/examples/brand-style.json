@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-xiumi-svg-layout",
   "title": "秀米原生 SVG 布局",
   "kind": "workflow",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -57,8 +57,8 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "f7881a43f6bfd0f67f2e57a0ad6cb6eddc8288b1cd18b7469c3edeef710eb861",
-    "gif_frames": 42,
+    "gif_sha256": "8ebe218ea0953833af759f912a6d8cad2ec2786178652fb705f01a665bd8901d",
+    "gif_frames": 38,
     "gif_size": [
       480,
       656

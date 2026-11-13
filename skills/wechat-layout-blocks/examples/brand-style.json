@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "component": "wechat-layout-blocks",
   "title": "正文排版组件",
   "kind": "layout",
   "author_ip": {
-    "demo_name": "FRE.D 进一",
+    "demo_name": "小鱼FRED",
     "avatar": "brand-assets/avatar.webp",
     "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
   },
@@ -49,8 +49,8 @@
     "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
   },
   "validation": {
-    "gif_sha256": "6d6bc56d8b9a9b94b5fe8d7177baa2a7ca51f0973c37605fbea40b87f6bfffcc",
-    "gif_frames": 54,
+    "gif_sha256": "6c4ce05900c61333269a6a52cd1c119c70c08ff2073ce2f322d66247085dce1b",
+    "gif_frames": 78,
     "gif_size": [
       480,
       688

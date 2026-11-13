@@ -2,7 +2,7 @@
   "slug": "wechat-svg-motion-path",
   "source": "browser-capture",
   "source_sha256": {
-    "brand-preview.html": "3837b9b6c6d249fedb07813ac67c6613a8d52f66975806dd258044a63ac17368",
+    "brand-preview.html": "9697dc645637ba3b973482ea69e36300a4dd403a2d8b78becf78c7554a336761",
     "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
     "brand-assets/banner-launch.webp": "372e21ccc8fa5aba9ad95ad92a37b61b3cdc4bf79cf478279703df23a3506814",
     "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
@@ -17,10 +17,10 @@
   "visible_changes": true,
   "sampling_fps": 8,
   "palette_colors": 192,
-  "source_frame_count": 32,
-  "capture_duration_seconds": 4.026343,
+  "source_frame_count": 31,
+  "capture_duration_seconds": 4.031928,
   "tail_hold_seconds": 0.8,
-  "source_manifest_sha256": "92ced66d99f276928bf825d1206e87abb14787ebd019b6ca55f968f480a4d15c",
-  "bytes": 157114,
-  "sha256": "d7f1daaea4109546f3473bdb5ef319496fef5ccb3168c5a8e91c6937c4b1d05b"
+  "source_manifest_sha256": "5e15e73ab8e056db97eda6c97999e6a6bf99aafa9e6b1ba9d42e8cd6249f091e",
+  "bytes": 157650,
+  "sha256": "a6064a10bd7ba73486ea9f2af49f563161a49edbb073f091b7762369a1c690cc"
 }

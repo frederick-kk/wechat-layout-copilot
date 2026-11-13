@@ -1,0 +1,92 @@
+{
+  "avatar": {
+    "file": "avatar.webp",
+    "bytes": 30268,
+    "sha256": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "direction": "用户提供的橙帽头像"
+  },
+  "paper": {
+    "file": "paper.webp",
+    "bytes": 86850,
+    "sha256": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071",
+    "direction": "白色折痕纸纹"
+  },
+  "studio": {
+    "file": "studio.webp",
+    "bytes": 174702,
+    "sha256": "188cd2bea7b2bac0f62e69d7af80680a58bbf107792ef1e9dd994bb4ad434f1e",
+    "direction": "连贯的创作工作台、橙帽作者与黑线小人"
+  },
+  "envelope": {
+    "file": "envelope.webp",
+    "bytes": 176238,
+    "sha256": "985ff30b8565be5f94533e42e6531433f8250578753b465c032710cb9f1277ab",
+    "direction": "透明纸纹信封口袋与作者贴纸"
+  },
+  "far": {
+    "file": "far.webp",
+    "bytes": 55602,
+    "sha256": "c7f127b3f1317a63337a2af51c1045c317622f3d0910a4da4d98c69605ba8c9c",
+    "direction": "暖白纸张远山"
+  },
+  "middle": {
+    "file": "middle.webp",
+    "bytes": 100526,
+    "sha256": "592167ddc33f226afdcf956c88201d8ac77bbaaf0b350b9533504efa2d64643e",
+    "direction": "透明纸拼校园与工作室"
+  },
+  "near": {
+    "file": "near.webp",
+    "bytes": 86304,
+    "sha256": "6e0a1a05fbb0829bd72efafab37d7d2c541bca59d9dbb0585518a965f3bf6285",
+    "direction": "透明橙帽作者与桌面"
+  },
+  "idea": {
+    "file": "idea.webp",
+    "bytes": 172262,
+    "sha256": "6d4afc4d76761545cf7dafb1e9d93d0843eae381068333e399f84b3a9156b345",
+    "direction": "读书、放大镜、纸张灯泡和小人"
+  },
+  "launch": {
+    "file": "launch.webp",
+    "bytes": 172910,
+    "sha256": "b75d10aaa5a2db25e5c9c4986300208500a95ea4396956070ac923892ed29fb8",
+    "direction": "纸飞机起飞、完成的作品与作者"
+  },
+  "record": {
+    "file": "record.webp",
+    "bytes": 238604,
+    "sha256": "d05863bd8f9dbfa4ca020bfdc2671240ff3a17c05245a1fc23d9c8a3b018f827",
+    "direction": "暖橙纸拼唱机、黑线小人与头像贴纸"
+  },
+  "before": {
+    "file": "before.webp",
+    "bytes": 230292,
+    "sha256": "beb12857d4bd79950edeaafdd8e0ea017b616377a8a26e521a79c2d0eded515e",
+    "direction": "待整理的纸张初稿和思考中的作者"
+  },
+  "banner-idea": {
+    "file": "banner-idea.webp",
+    "bytes": 105118,
+    "sha256": "c5c8467d33a21bf23566982cc6254964050126664f5a874bb929000d5153a237",
+    "direction": "适合窄幅纸卡的阅读与灵感场景"
+  },
+  "banner-studio": {
+    "file": "banner-studio.webp",
+    "bytes": 93760,
+    "sha256": "87408c60541b4180ef40a9aa0041260168789440a113d7e9dd491f5e597ddc2f",
+    "direction": "适合窄幅纸卡的制作与协作场景"
+  },
+  "banner-launch": {
+    "file": "banner-launch.webp",
+    "bytes": 104814,
+    "sha256": "372e21ccc8fa5aba9ad95ad92a37b61b3cdc4bf79cf478279703df23a3506814",
+    "direction": "适合窄幅纸卡的完成与出发场景"
+  },
+  "record-disc": {
+    "file": "record-disc.webp",
+    "bytes": 200076,
+    "sha256": "4553d0e49feb430784a7e9a5b89f94f77d4a79539118be568fda8b568bdf8b46",
+    "direction": "透明顶视暖橙唱片，头像独立叠在中间并随唱片转动"
+  }
+}

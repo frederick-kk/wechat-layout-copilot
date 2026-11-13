@@ -48,3 +48,16 @@ python <本Skill目录>/scripts/render.py --config <本次目录>/hotspots.json 
 本组件代码和示例图形独立编写。调研参考了“多热区点击渐显（返回）”教程及作者关于返回热区、底图重复、同尺寸对齐的说明。[小红书教程 05](https://www.xiaohongshu.com/explore/674d2e98000000000702a8e0)
 
 SMIL 事件、区间结束与可见性遵循 SVG 动画机制。编辑器可能清理相关属性，保存后继续核对。[W3C SVG 动画规范](https://www.w3.org/TR/SVG11/animate.html)
+
+## 品牌演示与GIF
+
+[查看可操作演示](examples/brand-preview.html) · [查看GIF](examples/demo.gif) · [读取品牌样式与素材](examples/brand-style.json)
+
+1. 先看GIF选择效果，再读取 `examples/brand-style.json` 和 `examples/brand-component.html`，确认本组件的画布、配色及素材。
+2. 按本次任务采用使用者自己的头像、账号资料、正文与配图。直接修改本地品牌HTML模板和相邻素材即可复用单项包。原有生成器的参数能力以本Skill正文为准。
+3. 文字保留原生编辑。图片放在对应动画组或状态组里，保留事件ID、SMIL时序与透明点击区。同篇放多个实例时，分别生成独立ID并同步事件引用。
+4. 修改后检查完整动作与返回，核对文字、图片和按钮边界，再检查目标编辑器中的保存结果。
+
+本版已有600px浏览器操作／播放采集、320／375px布局检查，GIF记录与实际文件校验一致。
+
+品牌输出的秀米保存重开、公众号同步与真实手机微信效果待按目标环境核对。

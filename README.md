@@ -1,18 +1,16 @@
 # 公众号排版外挂
 
-30套组件Skill，让AI看懂你想要的效果，再替你动手排版。
+30套组件Skill，先看GIF选效果，再让AI替你排版。
 
-[在线体验30种效果](https://frederick-kk.github.io/wechat-layout-copilot/) · [下载完整组件库](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-copilot.zip) · [选择单项Skill](#30个入口)
+[查看30款品牌GIF演示](https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html) · [下载完整组件库](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-copilot.zip) · [查看原版交互目录](examples/preview.html) · [选择单项Skill](#30个入口)
 
-把正文、素材和参考要求交给AI，让它读取相应组件的Skill，检查缺项，生成可修改的组件或操作秀米完成排版。
+v0.5.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
 
-2026-11-13扩展为30个组件入口。本轮增加十一种效果，每项均含独立Skill、JSON输入示例、生成器、片段和预览。各组件可单独使用，也可整包读取。
-
-各组件的实际测试范围见下表与调研记录。公众号同步与真实手机微信触摸按各组件继续验证。
+已有600px浏览器操作／播放采集记录30／30项、320／375px布局检查30／30项。头像入口与秀米原生布局提供操作示意。品牌输出的秀米保存重开、公众号同步和真实手机微信效果按目标平台继续核对，各组件原有检查记录见下表。
 
 ## 怎么开始
 
-1. 打开在线预览，点按、长按或滑动，挑选适合正文的效果。
+1. 打开GIF总览，选择适合正文的效果，再点“打开可操作演示”体验点击、长按或滑动。
 2. 点击该效果下的“下载此Skill”，解压后把整个文件夹交给能读取本地文件的AI。需要整套时下载完整组件库，从根目录 [SKILL.md](SKILL.md) 开始。
 3. 提供正文、素材和个人风格，AI按组件说明生成结果或通过浏览器操作秀米，再检查实际草稿。
 
@@ -73,6 +71,7 @@
 
 ## 直接看示例
 
+- [Fred 纸纹暖橙插画试做 · 拆信、探照灯、三层视差](examples/artwork-pilots.html)
 - [整包交互预览](examples/preview.html)
 - [SVG 描边预览](skills/wechat-svg-drawline/examples/preview.html)
 - [点击揭秘预览](skills/wechat-svg-click-reveal/examples/preview.html)

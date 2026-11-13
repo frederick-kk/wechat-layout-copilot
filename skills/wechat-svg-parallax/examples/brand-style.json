@@ -1,0 +1,76 @@
+{
+  "version": "0.5.0",
+  "component": "wechat-svg-parallax",
+  "title": "多层视差",
+  "kind": "interactive",
+  "author_ip": {
+    "demo_name": "FRE.D 进一",
+    "avatar": "brand-assets/avatar.webp",
+    "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
+  },
+  "tokens": {
+    "paper_base": "#FAF6ED",
+    "warm_white": "#FFFCF6",
+    "ink": "#30271F",
+    "accent": "#A94B21",
+    "muted": "#765B45",
+    "rule": "#C6AA7B"
+  },
+  "assets": {
+    "avatar": {
+      "path": "brand-assets/avatar.webp",
+      "sha256": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd"
+    },
+    "far": {
+      "path": "brand-assets/far.webp",
+      "sha256": "c7f127b3f1317a63337a2af51c1045c317622f3d0910a4da4d98c69605ba8c9c"
+    },
+    "middle": {
+      "path": "brand-assets/middle.webp",
+      "sha256": "592167ddc33f226afdcf956c88201d8ac77bbaaf0b350b9533504efa2d64643e"
+    },
+    "near": {
+      "path": "brand-assets/near.webp",
+      "sha256": "6e0a1a05fbb0829bd72efafab37d7d2c541bca59d9dbb0585518a965f3bf6285"
+    },
+    "paper": {
+      "path": "brand-assets/paper.webp",
+      "sha256": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+    }
+  },
+  "output_stage": {
+    "width": 600,
+    "height": 780,
+    "aspect_ratio": 0.7692307692307693
+  },
+  "files": {
+    "template": "brand-component.html",
+    "preview": "brand-preview.html",
+    "gif": "demo.gif",
+    "gif_record": "demo-gif.json"
+  },
+  "editing": {
+    "native_text_editable": true,
+    "image_placement": "配图留在对应动画组或状态组中",
+    "interaction": "保留事件ID、SMIL时序及透明点击区",
+    "multiple_instances": "为各实例生成独立ID，并同步更新事件与素材引用",
+    "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
+  },
+  "validation": {
+    "gif_sha256": "4a08ae42702851f9a9efc7bd876f6d025c57d15634a2c5ff41ca9c5cf2e9c3ef",
+    "gif_frames": 36,
+    "gif_size": [
+      480,
+      624
+    ],
+    "browser_capture_600": true,
+    "layout_widths": [
+      320,
+      375
+    ],
+    "demo_type": "component-demo",
+    "editor_save_reload": "pending-for-branded-output",
+    "wechat_sync_and_phone": "pending",
+    "native_account_jump": "not-applicable"
+  }
+}

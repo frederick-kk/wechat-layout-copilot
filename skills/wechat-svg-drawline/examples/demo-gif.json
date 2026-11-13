@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-svg-drawline",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "6c98c00256737de7a793c290884ec85488695a2ac329b0b158eb1bbe5489a35d",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/idea.webp": "6d4afc4d76761545cf7dafb1e9d93d0843eae381068333e399f84b3a9156b345",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 37,
+  "width": 480,
+  "height": 632,
+  "duration_seconds": 4.63,
+  "loop": 0,
+  "distinct_frames": 12,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 29,
+  "capture_duration_seconds": 3.824811,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "3ae3882c8787c021996189226f3ab7bac965387617e7939f375a90f42dff9d9c",
+  "bytes": 132079,
+  "sha256": "388b66321dc390bcc76d83f5e629deae2dca23c2b1cf3037cfe70ad2116fc684"
+}

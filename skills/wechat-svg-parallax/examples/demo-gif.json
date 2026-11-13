@@ -1,0 +1,28 @@
+{
+  "slug": "wechat-svg-parallax",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "1f763c610c88e15ab9c5402e4152a737eef663fa2b6dd4a9e0f37d68378c0708",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/far.webp": "c7f127b3f1317a63337a2af51c1045c317622f3d0910a4da4d98c69605ba8c9c",
+    "brand-assets/middle.webp": "592167ddc33f226afdcf956c88201d8ac77bbaaf0b350b9533504efa2d64643e",
+    "brand-assets/near.webp": "6e0a1a05fbb0829bd72efafab37d7d2c541bca59d9dbb0585518a965f3bf6285",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 36,
+  "width": 480,
+  "height": 624,
+  "duration_seconds": 4.51,
+  "loop": 0,
+  "distinct_frames": 20,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 28,
+  "capture_duration_seconds": 3.668488,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "8fe856e346e8f31cb4557165f136a1f836a564e1e58c282072468c73686dad16",
+  "bytes": 1725273,
+  "sha256": "4a08ae42702851f9a9efc7bd876f6d025c57d15634a2c5ff41ca9c5cf2e9c3ef"
+}

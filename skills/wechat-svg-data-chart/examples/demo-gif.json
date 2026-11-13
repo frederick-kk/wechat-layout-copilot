@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-svg-data-chart",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "6b4448bcc1d0dafd7648f5589ac2cf92866f954a82625088d5a4e7346d9cd0f6",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 36,
+  "width": 480,
+  "height": 512,
+  "duration_seconds": 4.51,
+  "loop": 0,
+  "distinct_frames": 9,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 29,
+  "capture_duration_seconds": 3.732583,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "ca0e73aa469f35e7301c24691868be11f3829aa6343109aa2ccf0756de90a0dd",
+  "bytes": 129172,
+  "sha256": "b469c47d81d82e901f86572036a0e5b9dfcc1fce9ef139c84a2f5ab329a029d8"
+}

@@ -12,7 +12,7 @@ import zipfile
 
 
 BUNDLE_NAME = "wechat-layout-copilot"
-EXCLUDED_DIRECTORIES = {".git", "__pycache__", "dist"}
+EXCLUDED_DIRECTORIES = {".git", "__pycache__", "dist", "output"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
 
 

@@ -1,5 +1,6 @@
 """Generate an original SVG and SMIL article component using Python standard library."""
 import argparse
+import base64
 import html
 import json
 import math
@@ -108,18 +109,86 @@ def read_config(path):
     config = json.loads(path.read_text(encoding='utf-8-sig'))
     if not isinstance(config, dict):
         raise ValueError('配置需要JSON对象')
-    unknown = set(config) - set(FIELDS) - {'accent', 'background', 'duration'}
+    unknown = set(config) - set(FIELDS) - {'accent', 'background', 'duration', 'artwork'}
     if unknown:
         raise ValueError('未知配置字段 ' + ', '.join(sorted(unknown)))
     prepared = {field: wrap(config.get(field), field, width, count) for field, (width, count) in FIELDS.items()}
     prepared['accent'] = color(config.get('accent', '#167E99'), 'accent')
     prepared['background'] = color(config.get('background', '#FFF9EE'), 'background')
     prepared['duration'] = number(config.get('duration', 1), 'duration', 0.4, 3)
+    prepared['inputs'] = {path.resolve()}
+    if 'artwork' in config:
+        artwork = config['artwork']
+        if not isinstance(artwork, dict) or set(artwork) != {'pocket', 'paper'}:
+            raise ValueError('artwork 需要 pocket 和 paper 两张本地图片')
+        prepared['artwork'] = {}
+        for name, value in artwork.items():
+            image_path, uri = raster_asset(path.parent, value, f'artwork.{name}')
+            prepared['inputs'].add(image_path)
+            prepared['artwork'][name] = uri
     return prepared
+
+
+def raster_asset(directory, value, field):
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f'{field} 需要本地图片路径')
+    if re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*://', value) or value.startswith('data:'):
+        raise ValueError(f'{field} 请使用本地图片文件')
+    path = (directory / value).resolve()
+    if not path.is_file():
+        raise ValueError(f'{field} 图片不存在')
+    content = path.read_bytes()
+    if content.startswith(b'\x89PNG\r\n\x1a\n'):
+        mime = 'image/png'
+    elif content.startswith(b'\xff\xd8\xff'):
+        mime = 'image/jpeg'
+    elif content[:4] == b'RIFF' and content[8:12] == b'WEBP':
+        mime = 'image/webp'
+    else:
+        raise ValueError(f'{field} 仅支持PNG、JPEG和WebP图片')
+    return path, f'data:{mime};base64,{base64.b64encode(content).decode("ascii")}'
+
+
+def artwork_render(c, prefix):
+    accent, duration = c['accent'], c['duration']
+    flap_time, paper_time = duration * 0.2, duration * 0.8
+    forward, reverse = f'{prefix}_forward', f'{prefix}_reverse'
+    paper, pocket = c['artwork']['paper'], c['artwork']['pocket']
+    content = f'''<image href="{paper}" x="0" y="0" width="600" height="800" preserveAspectRatio="xMidYMid slice" opacity="0.7"/>
+{text_nodes(c['title'], 30, 58, 36, '#30271F', '700')}
+<path d="M30 83H570" fill="none" stroke="#C6AA7B" stroke-width="1"/>
+<rect x="48" y="369" width="504" height="284" rx="8" fill="#DFC7A2"/>
+<g id="{prefix}_paper" data-paper="true" transform="translate(0 0)">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="0 -250" begin="{forward}.click+{flap_time:g}s" dur="{paper_time:g}s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="0 -250" to="0 0" begin="{reverse}.click" dur="{paper_time:g}s" fill="freeze"/>
+<rect x="75" y="370" width="450" height="296" rx="5" fill="#FFFEFA"/>
+<svg x="75" y="370" width="450" height="296" viewBox="0 0 450 296" style="overflow:hidden;">
+<image href="{paper}" width="450" height="296" preserveAspectRatio="xMidYMid slice" opacity="0.32"/>
+</svg>
+<path d="M107 400H493" fill="none" stroke="#C6AA7B" stroke-width="1"/>
+{text_nodes(c['letter_title'], 108, 450, 30, accent, '700')}
+{text_nodes(c['letter_body'], 108, 500, 30, '#30271F', spacing=39)}
+</g>
+<image href="{pocket}" x="24" y="355" width="552" height="335" preserveAspectRatio="xMidYMid meet"/>
+<g transform="translate(300 370)"><g id="{prefix}_flap" data-flap="true" transform="scale(1 1)" visibility="visible" style="visibility:visible;">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 -0.8" begin="{forward}.click" dur="{flap_time:g}s" fill="freeze"/>
+<set attributeName="visibility" to="hidden" begin="{forward}.click+{flap_time:g}s" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="{reverse}.click+{paper_time:g}s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 -0.8" to="1 1" begin="{reverse}.click+{paper_time:g}s" dur="{flap_time:g}s" fill="freeze"/>
+<path d="M-252 0L0 152L252 0Z" fill="#F3E5CF" stroke="#C6AA7B" stroke-width="1.5"/>
+<circle cx="0" cy="138" r="23" fill="{accent}"/>
+<path d="M-8 137L-1 145L10 132" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+</g></g>
+'''
+    content += button(prefix, 'reverse', '收好这封信', 24, 714, accent, duration)
+    content += button(prefix, 'forward', '拆开来看看', 312, 714, accent, duration)
+    return shell(content, 800, c['background'])
 
 
 
 def render(c, prefix):
+    if 'artwork' in c:
+        return artwork_render(c, prefix)
     accent, background, duration = c['accent'], c['background'], c['duration']
     flap_time, paper_time = duration * 0.2, duration * 0.8
     forward, reverse = f'{prefix}_forward', f'{prefix}_reverse'
@@ -204,7 +273,7 @@ def main():
         if len(set(resolved)) != len(resolved):
             raise ValueError('片段和预览需要不同路径')
         script_path = Path(__file__).resolve()
-        protected = {args.config.resolve(), script_path, (script_path.parents[1] / 'SKILL.md').resolve()}
+        protected = config['inputs'] | {script_path, (script_path.parents[1] / 'SKILL.md').resolve()}
         if protected.intersection(resolved):
             raise ValueError('输出不能覆盖输入配置、Skill说明或生成器')
         if any(path.suffix.lower() not in {'.html', '.htm'} for path in targets):

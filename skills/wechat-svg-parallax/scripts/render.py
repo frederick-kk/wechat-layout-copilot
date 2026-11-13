@@ -1,6 +1,7 @@
 """Render parallax as an original SVG/SMIL component."""
 
 import argparse
+import base64
 import html
 import json
 import math
@@ -129,18 +130,18 @@ def svg_start(config, component, height):
 
 
 
-def text_button(identifier, action, label, x, y, width, accent):
+def text_button(identifier, action, label, x, y, width, accent, foreground="#FFFFFF"):
     return f'''<g id="{identifier}" data-action="{action}" style="cursor:pointer;">
 <rect x="{x}" y="{y}" width="{width}" height="60" rx="12" fill="{accent}"/>
-<text x="{x+width/2:g}" y="{y+40}" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">{html.escape(label)}</text>
+<text x="{x+width/2:g}" y="{y+40}" text-anchor="middle" font-size="30" fill="{foreground}" font-family="sans-serif" style="pointer-events:none;">{html.escape(label)}</text>
 </g>'''
 
 
-def gate(identifier, action, label, x, y, width, accent, forward, reverse, duration, initial):
+def gate(identifier, action, label, x, y, width, accent, forward, reverse, duration, initial, foreground="#FFFFFF"):
     available = 'auto' if initial else 'none'
     opacity = '1' if initial else '0.45'
     enabling = reverse if initial else forward
-    content = text_button(identifier, action, label, x, y, width, accent)
+    content = text_button(identifier, action, label, x, y, width, accent, foreground)
     content = content.replace('style="cursor:pointer;"', f'opacity="{opacity}" style="cursor:pointer;pointer-events:{available};opacity:{opacity};"', 1)
     commands = f'''<set attributeName="pointer-events" to="none" begin="{forward}.click;{reverse}.click" fill="freeze"/>
 <set attributeName="pointer-events" to="auto" begin="{enabling}.click+{duration}s" fill="freeze"/>
@@ -153,18 +154,82 @@ TITLE = '三层视差场景'
 INSTRUCTION = '点击向前看看，再点击返回起点，观察三个景层的速度差。'
 PREFIX = 'parallax_'
 HEIGHT = 580
+ARTWORK_HEIGHT = 680
+
+
+def local_image(value, field, directory, inputs):
+    if not isinstance(value, str) or not value.strip() or "://" in value or value.startswith("data:"):
+        raise ValueError(f"{field} 需要本地 PNG、JPEG 或 WebP 图片路径")
+    source = Path(value)
+    if not source.is_absolute():
+        source = directory / source
+    source = source.resolve()
+    if not source.is_file():
+        raise ValueError(f"{field} 图片不存在")
+    data = source.read_bytes()
+    if data.startswith(b"\x89PNG\r\n\x1a\n"):
+        mime = "image/png"
+    elif data.startswith(b"\xff\xd8\xff"):
+        mime = "image/jpeg"
+    elif data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        mime = "image/webp"
+    else:
+        raise ValueError(f"{field} 图片内容需要 PNG、JPEG 或 WebP 格式")
+    inputs.add(source)
+    return f"data:{mime};base64," + base64.b64encode(data).decode("ascii")
 
 
 def read_config(path):
-    config, prepared = common_config(path, {"labels"})
+    config, prepared = common_config(path, {"labels", "artwork"})
     labels = config.get("labels")
     if not isinstance(labels, list) or len(labels) != 3:
         raise ValueError("labels需要远景、中景、近景三段文字")
     prepared["labels"] = [wrap(value, f"labels[{index}]", 6, 1) for index, value in enumerate(labels)]
+    if "artwork" in config:
+        artwork = config["artwork"]
+        if not isinstance(artwork, dict) or not {"far", "middle", "near"}.issubset(artwork) or set(artwork) - {"far", "middle", "near", "paper"}:
+            raise ValueError("artwork需要far、middle、near三层图片，可选paper纸纹")
+        prepared["artwork"] = {
+            key: local_image(value, f"artwork.{key}", path.resolve().parent, prepared["inputs"])
+            for key, value in artwork.items()
+        }
+        prepared["accent"] = color(config.get("accent", "#A64C24"), "accent")
+        prepared["background"] = color(config.get("background", "#FAF6ED"), "background")
     return prepared
 
 
+def artwork_render(config, prefix):
+    accent, duration = config["accent"], config["duration"]
+    forward, reverse = f"{prefix}_forward", f"{prefix}_back"
+    nodes = [f'''<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 {ARTWORK_HEIGHT}" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" data-component="wechat-svg-parallax" role="group">
+<rect width="600" height="{ARTWORK_HEIGHT}" rx="12" fill="{config['background']}"/>''']
+    if "paper" in config["artwork"]:
+        nodes.append(f'<image href="{config["artwork"]["paper"]}" x="0" y="0" width="600" height="{ARTWORK_HEIGHT}" preserveAspectRatio="xMidYMid slice" opacity="0.65"/>')
+    nodes.append(text_nodes(config["title"], 28, 58, 36, "#30271F", "700"))
+    nodes.append('<path d="M28 84H572" stroke="#C6AA7B" stroke-width="1"/>')
+    nodes.append('<svg x="0" y="108" width="600" height="336" viewBox="0 0 600 336" style="overflow:hidden;" aria-label="远中近三层插画">')
+    for name, displacement in [("far", -40), ("middle", -100), ("near", -180)]:
+        image_x = 140 if name == "near" else 0
+        nodes.append(f'''<g id="{prefix}_{name}" data-parallax-layer="{name}" transform="translate(0 0)">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="{displacement} 0" begin="{forward}.click" dur="{duration}s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="{displacement} 0" to="0 0" begin="{reverse}.click" dur="{duration}s" fill="freeze"/>
+<image href="{config['artwork'][name]}" x="{image_x}" y="0" width="840" height="336" preserveAspectRatio="xMidYMid slice"/>
+</g>''')
+    nodes.append('</svg>')
+    for index, label in enumerate(config["labels"]):
+        nodes.append(f'<text x="{100 + index * 200}" y="491" text-anchor="middle" font-size="25" font-weight="600" fill="#6D5038" font-family="sans-serif" xml:space="preserve">{html.escape(label[0])}</text>')
+    nodes.append('<path d="M200 471V499M400 471V499" stroke="#C6AA7B" stroke-width="1"/>')
+    nodes.append(gate(reverse, "back", "返回起点", 24, 541, 264, "#DED0BB", forward, reverse, duration, False, "#493B2F"))
+    nodes.append(gate(forward, "forward", "向前看看", 312, 541, 264, accent, forward, reverse, duration, True))
+    nodes.append('<text x="300" y="646" text-anchor="middle" font-size="25" fill="#715B46" font-family="sans-serif">点一下，看远近景慢慢错开</text>')
+    nodes.append('</svg></section>')
+    return "\n".join(nodes)
+
+
 def render(config, prefix):
+    if "artwork" in config:
+        return artwork_render(config, prefix)
     accent, duration = config["accent"], config["duration"]
     forward, reverse = f'{prefix}_forward', f'{prefix}_back'
     nodes = [svg_start(config, 'wechat-svg-parallax', HEIGHT), '<rect x="0" y="92" width="600" height="310" fill="#DCEEF0"/>']
@@ -215,7 +280,7 @@ def main():
     except (OSError, ValueError) as error:
         parser.error(str(error))
     print(json.dumps({"files": [str(path.resolve()) for path in targets], "instance": prefix,
-                      "canvas": [600, HEIGHT], "verification": "generated; browser/editor/phone checks pending"}, ensure_ascii=False))
+                      "canvas": [600, ARTWORK_HEIGHT if "artwork" in config else HEIGHT], "verification": "generated; browser/editor/phone checks pending"}, ensure_ascii=False))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,12 @@
+{
+  "title": "有封信，想交给现在的你",
+  "letter_title": "写给正在出发的你",
+  "letter_body": "把心里的小想法，\n做成看得见的作品。\n今天，就往前一点点。",
+  "accent": "#A94B21",
+  "background": "#FFFCF5",
+  "duration": 1.2,
+  "artwork": {
+    "pocket": "../assets/envelope-pocket-v1.png",
+    "paper": "../assets/paper-white-folds.png"
+  }
+}

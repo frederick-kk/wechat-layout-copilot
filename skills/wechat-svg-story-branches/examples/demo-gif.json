@@ -1,0 +1,29 @@
+{
+  "slug": "wechat-svg-story-branches",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "97295ac8f4940502c393bfe3e8a2d322fa5196fc76f95b21377a894f0fd088c7",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/banner-idea.webp": "c5c8467d33a21bf23566982cc6254964050126664f5a874bb929000d5153a237",
+    "brand-assets/banner-studio.webp": "87408c60541b4180ef40a9aa0041260168789440a113d7e9dd491f5e597ddc2f",
+    "brand-assets/idea.webp": "6d4afc4d76761545cf7dafb1e9d93d0843eae381068333e399f84b3a9156b345",
+    "brand-assets/launch.webp": "b75d10aaa5a2db25e5c9c4986300208500a95ea4396956070ac923892ed29fb8",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 41,
+  "width": 480,
+  "height": 592,
+  "duration_seconds": 5.13,
+  "loop": 0,
+  "distinct_frames": 3,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 34,
+  "capture_duration_seconds": 4.347344,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "887f827dce6f89b47b260844dc8c81c893b8313fb44cb6152c6b34f5626ceac7",
+  "bytes": 226323,
+  "sha256": "5e42fdc37e1ec3050fbdb04de952419797f6488fdbac0116d46b79b50b73fd42"
+}

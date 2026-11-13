@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-svg-spotlight",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "f6d94c118a7be4f1d0d795d09810cfc0f57a35d66e335bc858300d47c4e26c1b",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071",
+    "brand-assets/studio.webp": "188cd2bea7b2bac0f62e69d7af80680a58bbf107792ef1e9dd994bb4ad434f1e"
+  },
+  "play": "component-demo",
+  "frame_count": 48,
+  "width": 480,
+  "height": 720,
+  "duration_seconds": 6.01,
+  "loop": 0,
+  "distinct_frames": 9,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 40,
+  "capture_duration_seconds": 5.255699,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "2a2c15c25fa0fea0e45a56d128dd592a06e6b6183e7f7402febf7788189c852d",
+  "bytes": 302512,
+  "sha256": "712d38bc29efbc05c70746bc955c2515d0bff17f65057cc30a128d93300aa5be"
+}

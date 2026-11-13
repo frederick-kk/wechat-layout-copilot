@@ -1,0 +1,68 @@
+{
+  "version": "0.5.0",
+  "component": "wechat-svg-drawline",
+  "title": "SVG 描边",
+  "kind": "interactive",
+  "author_ip": {
+    "demo_name": "FRE.D 进一",
+    "avatar": "brand-assets/avatar.webp",
+    "reuse": "按本次任务采用使用者自己的头像、账号资料和正文"
+  },
+  "tokens": {
+    "paper_base": "#FAF6ED",
+    "warm_white": "#FFFCF6",
+    "ink": "#30271F",
+    "accent": "#A94B21",
+    "muted": "#765B45",
+    "rule": "#C6AA7B"
+  },
+  "assets": {
+    "avatar": {
+      "path": "brand-assets/avatar.webp",
+      "sha256": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd"
+    },
+    "idea": {
+      "path": "brand-assets/idea.webp",
+      "sha256": "6d4afc4d76761545cf7dafb1e9d93d0843eae381068333e399f84b3a9156b345"
+    },
+    "paper": {
+      "path": "brand-assets/paper.webp",
+      "sha256": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+    }
+  },
+  "output_stage": {
+    "width": 600,
+    "height": 790,
+    "aspect_ratio": 0.759493670886076
+  },
+  "files": {
+    "template": "brand-component.html",
+    "preview": "brand-preview.html",
+    "gif": "demo.gif",
+    "gif_record": "demo-gif.json"
+  },
+  "editing": {
+    "native_text_editable": true,
+    "image_placement": "配图留在对应动画组或状态组中",
+    "interaction": "保留事件ID、SMIL时序及透明点击区",
+    "multiple_instances": "为各实例生成独立ID，并同步更新事件与素材引用",
+    "standalone_reuse": "读取本组件HTML模板及相邻素材，按本次正文与风格修改"
+  },
+  "validation": {
+    "gif_sha256": "388b66321dc390bcc76d83f5e629deae2dca23c2b1cf3037cfe70ad2116fc684",
+    "gif_frames": 37,
+    "gif_size": [
+      480,
+      632
+    ],
+    "browser_capture_600": true,
+    "layout_widths": [
+      320,
+      375
+    ],
+    "demo_type": "component-demo",
+    "editor_save_reload": "pending-for-branded-output",
+    "wechat_sync_and_phone": "pending",
+    "native_account_jump": "not-applicable"
+  }
+}

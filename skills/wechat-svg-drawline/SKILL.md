@@ -40,3 +40,16 @@ python <本Skill目录>/scripts/render.py --out <本次目录>/drawline.html --p
 2026-11-11已完成文件生成、结构自检和Ego lite浏览器时点验证。0、1.68、2.8秒的实际描边偏移依次为100、约0、0，末帧保留完整线条。秀米及微信保存重开、手机预览继续待实测。组件代码依据SVG规范独立编写，描边表现使用标准 `pathLength`、`stroke-dasharray`、`stroke-dashoffset` 与 `animate`。
 
 示例见 [examples/preview.html](examples/preview.html)。技术依据和参数解释见 [references/implementation.md](references/implementation.md)。
+
+## 品牌演示与GIF
+
+[查看可操作演示](examples/brand-preview.html) · [查看GIF](examples/demo.gif) · [读取品牌样式与素材](examples/brand-style.json)
+
+1. 先看GIF选择效果，再读取 `examples/brand-style.json` 和 `examples/brand-component.html`，确认本组件的画布、配色及素材。
+2. 按本次任务采用使用者自己的头像、账号资料、正文与配图。直接修改本地品牌HTML模板和相邻素材即可复用单项包。原有生成器的参数能力以本Skill正文为准。
+3. 文字保留原生编辑。图片放在对应动画组或状态组里，保留事件ID、SMIL时序与透明点击区。同篇放多个实例时，分别生成独立ID并同步事件引用。
+4. 修改后检查完整动作与返回，核对文字、图片和按钮边界，再检查目标编辑器中的保存结果。
+
+本版已有600px浏览器操作／播放采集、320／375px布局检查，GIF记录与实际文件校验一致。
+
+品牌输出的秀米保存重开、公众号同步与真实手机微信效果待按目标环境核对。

@@ -40,3 +40,16 @@ python <本Skill目录>/scripts/render.py --config <本次目录>/config.json --
 使用 `animateMotion` 的字面量 `path`，避免依赖路径节点ID。图形、路线与按钮均为原创矢量素材。
 
 每次生成采用独立的字母、数字、下划线事件ID，关键事件锚点放在组节点。新导入路径按实际保存结果复核。SVG机制参照 [W3C动画规范](https://www.w3.org/TR/SVG11/animate.html)。
+
+## 品牌演示与GIF
+
+[查看可操作演示](examples/brand-preview.html) · [查看GIF](examples/demo.gif) · [读取品牌样式与素材](examples/brand-style.json)
+
+1. 先看GIF选择效果，再读取 `examples/brand-style.json` 和 `examples/brand-component.html`，确认本组件的画布、配色及素材。
+2. 按本次任务采用使用者自己的头像、账号资料、正文与配图。直接修改本地品牌HTML模板和相邻素材即可复用单项包。原有生成器的参数能力以本Skill正文为准。
+3. 文字保留原生编辑。图片放在对应动画组或状态组里，保留事件ID、SMIL时序与透明点击区。同篇放多个实例时，分别生成独立ID并同步事件引用。
+4. 修改后检查完整动作与返回，核对文字、图片和按钮边界，再检查目标编辑器中的保存结果。
+
+本版已有600px浏览器操作／播放采集、320／375px布局检查，GIF记录与实际文件校验一致。
+
+品牌输出的秀米保存重开、公众号同步与真实手机微信效果待按目标环境核对。

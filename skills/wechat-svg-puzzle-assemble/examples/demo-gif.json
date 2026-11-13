@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-svg-puzzle-assemble",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "83acdede3f9058834e0d25cb0eab029cd1fa40b429d86c69d2d5c26766dd81ed",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 38,
+  "width": 480,
+  "height": 536,
+  "duration_seconds": 4.76,
+  "loop": 0,
+  "distinct_frames": 14,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 30,
+  "capture_duration_seconds": 3.9381549999999996,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "83d6afcab0722f4ad0c29ea53f40c9ed4edaf1e8b6a2ecf05ab4d9adbcddbe92",
+  "bytes": 366283,
+  "sha256": "5bf536a45bf62a50f364d3d85c3531faee1a1370d5afbfcb8953d8141d68e39d"
+}

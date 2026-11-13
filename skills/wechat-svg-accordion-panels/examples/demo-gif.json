@@ -1,0 +1,28 @@
+{
+  "slug": "wechat-svg-accordion-panels",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "03c43f06ca1d7faa4c6b2e01ca607888ef51d521de3a3effa4809fd806c99615",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/idea.webp": "6d4afc4d76761545cf7dafb1e9d93d0843eae381068333e399f84b3a9156b345",
+    "brand-assets/launch.webp": "b75d10aaa5a2db25e5c9c4986300208500a95ea4396956070ac923892ed29fb8",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071",
+    "brand-assets/studio.webp": "188cd2bea7b2bac0f62e69d7af80680a58bbf107792ef1e9dd994bb4ad434f1e"
+  },
+  "play": "component-demo",
+  "frame_count": 39,
+  "width": 480,
+  "height": 512,
+  "duration_seconds": 4.88,
+  "loop": 0,
+  "distinct_frames": 19,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 31,
+  "capture_duration_seconds": 4.089118,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "e59b3c6ec7361c97fd06ea714d835805ef4279562971c174587ff43a23131f38",
+  "bytes": 271699,
+  "sha256": "fa66dacba9b8b782257e9e28ad96de20dc5d24bfdf1db92e32ebb8c5d7a01bdd"
+}

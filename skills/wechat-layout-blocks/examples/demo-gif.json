@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-layout-blocks",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "4d7ec43a6b3b7af24c0ab9be5fa9d0126b4c6646f25bfe2368bdf192542cead8",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/launch.webp": "b75d10aaa5a2db25e5c9c4986300208500a95ea4396956070ac923892ed29fb8",
+    "brand-assets/studio.webp": "188cd2bea7b2bac0f62e69d7af80680a58bbf107792ef1e9dd994bb4ad434f1e"
+  },
+  "play": "component-demo",
+  "frame_count": 54,
+  "width": 480,
+  "height": 688,
+  "duration_seconds": 6.76,
+  "loop": 0,
+  "distinct_frames": 21,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 38,
+  "capture_duration_seconds": 5.955747000000001,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "6521f8d6abcee58577da686f8021d94604db6e8604b3c0ccf125ca1f2389bdb9",
+  "bytes": 475615,
+  "sha256": "6d6bc56d8b9a9b94b5fe8d7177baa2a7ca51f0973c37605fbea40b87f6bfffcc"
+}

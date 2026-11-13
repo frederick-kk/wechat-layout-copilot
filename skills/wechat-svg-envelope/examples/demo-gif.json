@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-svg-envelope",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "ab1bef3261cfcdb590831002afd837dbc202f3eacae8bb98013f95186bb97625",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/envelope.webp": "985ff30b8565be5f94533e42e6531433f8250578753b465c032710cb9f1277ab",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 41,
+  "width": 480,
+  "height": 720,
+  "duration_seconds": 5.13,
+  "loop": 0,
+  "distinct_frames": 21,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 32,
+  "capture_duration_seconds": 4.293154,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "892aef6ddef686e5fd90de666a62470eaf52308fc96544335a4bc81abb219a43",
+  "bytes": 626643,
+  "sha256": "1f813ca9779a96a3380806afc35730f8cebddb9aa00639ae169f5da3e2832975"
+}

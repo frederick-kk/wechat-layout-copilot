@@ -1,0 +1,27 @@
+{
+  "slug": "wechat-svg-flip-card",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "f9fe16fd8dca56c520a34aaebd0e3de811b7ef805e084d12dd2a1dcb0b397aa4",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/banner-idea.webp": "c5c8467d33a21bf23566982cc6254964050126664f5a874bb929000d5153a237",
+    "brand-assets/banner-launch.webp": "372e21ccc8fa5aba9ad95ad92a37b61b3cdc4bf79cf478279703df23a3506814",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 38,
+  "width": 480,
+  "height": 560,
+  "duration_seconds": 4.76,
+  "loop": 0,
+  "distinct_frames": 17,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 30,
+  "capture_duration_seconds": 3.9953339999999997,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "5f1848d6f9bf518c888294756efb69d519a7b09ae231b68e9b560f3c8432e999",
+  "bytes": 588503,
+  "sha256": "d0256008af281fe3b27ac90c13fbd99383b18507189071964a23b88a6e5439fc"
+}

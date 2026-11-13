@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-svg-confetti",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "813591fe3f245b61d53de69d142aae734626fac72bc33410362c7b12058db0a3",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/launch.webp": "b75d10aaa5a2db25e5c9c4986300208500a95ea4396956070ac923892ed29fb8",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 36,
+  "width": 480,
+  "height": 536,
+  "duration_seconds": 4.51,
+  "loop": 0,
+  "distinct_frames": 13,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 29,
+  "capture_duration_seconds": 3.6507389999999997,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "ca7c0496d63f3bb1389fdc0133a593378921e5a965e247754c41f79616de7a9a",
+  "bytes": 225266,
+  "sha256": "c1db7da10f9ae5719d3defe248bab226a01457168d65339d49956b997db48cc4"
+}

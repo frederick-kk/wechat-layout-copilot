@@ -1,0 +1,17 @@
+{
+  "title": "带着作品，慢慢走向更远",
+  "labels": [
+    "远景慢一点",
+    "中景向前走",
+    "近景快一点"
+  ],
+  "accent": "#A64C24",
+  "background": "#FAF6ED",
+  "duration": 1.2,
+  "artwork": {
+    "far": "../assets/journey-far-v1.png",
+    "middle": "../assets/journey-middle-v1.png",
+    "near": "../assets/journey-near-v1.png",
+    "paper": "../assets/paper-white-folds.png"
+  }
+}

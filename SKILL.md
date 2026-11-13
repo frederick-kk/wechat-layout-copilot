@@ -2,7 +2,7 @@
 name: wechat-layout-copilot
 description: 为公众号文章选择头像、排版、图集和SVG交互组件，支持开窗、长按、答题、分支、擦拭、轨迹、逐字显示和图表等效果。检查素材缺项，调用对应生成器或秀米原生做法，再核对实际保存与交互。
 metadata:
-  version: "0.4.1"
+  version: "0.5.0"
 ---
 
 # 公众号排版外挂
@@ -69,3 +69,11 @@ metadata:
 可交互示例见 [组件预览](examples/preview.html)。调研来源与逐项验证见 [调研与复刻计划](docs/调研与复刻计划.md)。
 
 预览包含30个Skill入口。组件示例修改后执行 `python scripts/build_preview.py`，刷新整包预览。根目录 `index.html` 提供相对路径入口，供后续静态托管使用。
+
+## 品牌演示与GIF
+
+先看[全部30款品牌GIF演示](examples/brand-gallery.html)，按正文需要选择效果，再读取对应子Skill和 `examples/brand-style.json`。
+
+单项包包含品牌HTML、GIF及其相邻素材。读取 `examples/brand-component.html` 后，可按使用者自己的头像、正文和风格修改。图片留在对应动画组或状态组中，保留事件ID、点击区与时序；多个实例使用独立ID。原有生成器的可用参数以对应子Skill正文为准。
+
+头像入口和秀米原生布局提供操作示意。交付时分别说明本地浏览器、编辑器保存重开、公众号同步和真实手机微信的实际验证范围。

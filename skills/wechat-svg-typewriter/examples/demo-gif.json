@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-svg-typewriter",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "06b279d58d00ba088ad926b6648943aa77cafd127ae0145e937d138528cce95f",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/banner-idea.webp": "c5c8467d33a21bf23566982cc6254964050126664f5a874bb929000d5153a237",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 41,
+  "width": 480,
+  "height": 492,
+  "duration_seconds": 5.13,
+  "loop": 0,
+  "distinct_frames": 14,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 33,
+  "capture_duration_seconds": 4.291106999999999,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "7d6f6b35f8f70ef2cb4f74ba025d416ad9c4732a75f2422c9f20f708eda50d04",
+  "bytes": 104049,
+  "sha256": "8c043ee7ba8df18803e23444472fbd311f3f34208ee830494b8403bca6dacae5"
+}

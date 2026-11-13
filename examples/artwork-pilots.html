@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fred 的公众号组件 · 插画试做</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:#f5f2eb;color:#30271f;font-family:"Microsoft YaHei",sans-serif;line-height:1.75}main{max-width:1400px;margin:0 auto;padding:48px 28px 64px}h1{font-size:clamp(26px,5.5vw,36px);line-height:1.3;margin:0 0 16px;font-weight:700}h2{font-size:24px;line-height:1.45;margin:0 0 8px}p{margin:0 0 16px}header>p{color:#6a5141}nav{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:28px;padding:16px 0;border-block:1px solid #cbb89c}a{color:#963f1b;text-underline-offset:5px;text-decoration-thickness:1px}a:hover{color:#63280e}a:focus-visible{outline:2px solid #a64c24;outline-offset:5px}::selection{background:#e9c695;color:#30271f}.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:48px;align-items:start}article{min-width:0}article>p{color:#6a5141}.resources{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;padding-top:12px;border-top:1px solid #cbb89c}footer{margin-top:56px;padding-top:20px;border-top:1px solid #cbb89c;font-size:14px;color:#6a5141}svg{max-width:100%}@media(max-width:1000px){main{max-width:664px}.gallery{grid-template-columns:1fr;gap:48px}}@media(max-width:400px){main{padding:32px 16px 48px}h2{font-size:21px}}
+</style></head><body><main>
+<header><h1>让公众号组件，带上 Fred 的样子。</h1><p>纸纹、暖橙、小人和橙帽头像，配上能真正点开的互动。下面三款可以直接试。</p><nav aria-label="三个插画组件"><a href="#envelope">拆一封信</a><a href="#spotlight">照亮细节</a><a href="#parallax">往前走走</a></nav></header>
+<div class="gallery"><article id="envelope">
+<h2>拆信</h2><p>点开封口，再把信纸收好。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" font-family="sans-serif" data-component="wechat-svg-envelope">
+<rect x="1" y="1" width="598" height="798" rx="20" fill="#FFFCF5"/>
+<image href="../skills/wechat-svg-envelope/assets/paper-white-folds.png" x="0" y="0" width="600" height="800" preserveAspectRatio="xMidYMid slice" opacity="0.7"/>
+<text x="30" y="58" font-size="36" fill="#30271F" font-weight="700" font-family="sans-serif" xml:space="preserve">有封信，想交给现在的你</text>
+<path d="M30 83H570" fill="none" stroke="#C6AA7B" stroke-width="1"/>
+<rect x="48" y="369" width="504" height="284" rx="8" fill="#DFC7A2"/>
+<g id="envelope_0d58e7e13fbe4a8891f28cc5548f8733_paper" data-paper="true" transform="translate(0 0)">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="0 -250" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click+0.24s" dur="0.96s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="0 -250" to="0 0" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click" dur="0.96s" fill="freeze"/>
+<rect x="75" y="370" width="450" height="296" rx="5" fill="#FFFEFA"/>
+<svg x="75" y="370" width="450" height="296" viewBox="0 0 450 296" style="overflow:hidden;">
+<image href="../skills/wechat-svg-envelope/assets/paper-white-folds.png" width="450" height="296" preserveAspectRatio="xMidYMid slice" opacity="0.32"/>
+</svg>
+<path d="M107 400H493" fill="none" stroke="#C6AA7B" stroke-width="1"/>
+<text x="108" y="450" font-size="30" fill="#A94B21" font-weight="700" font-family="sans-serif" xml:space="preserve">写给正在出发的你</text>
+<text x="108" y="500" font-size="30" fill="#30271F" font-weight="400" font-family="sans-serif" xml:space="preserve">把心里的小想法，</text>
+<text x="108" y="539" font-size="30" fill="#30271F" font-weight="400" font-family="sans-serif" xml:space="preserve">做成看得见的作品。</text>
+<text x="108" y="578" font-size="30" fill="#30271F" font-weight="400" font-family="sans-serif" xml:space="preserve">今天，就往前一点点。</text>
+</g>
+<image href="../skills/wechat-svg-envelope/assets/envelope-pocket-v1.png" x="24" y="355" width="552" height="335" preserveAspectRatio="xMidYMid meet"/>
+<g transform="translate(300 370)"><g id="envelope_0d58e7e13fbe4a8891f28cc5548f8733_flap" data-flap="true" transform="scale(1 1)" visibility="visible" style="visibility:visible;">
+<animateTransform attributeName="transform" type="scale" from="1 1" to="1 -0.8" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click" dur="0.24s" fill="freeze"/>
+<set attributeName="visibility" to="hidden" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click+0.24s" fill="freeze"/>
+<set attributeName="visibility" to="visible" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click+0.96s" fill="freeze"/>
+<animateTransform attributeName="transform" type="scale" from="1 -0.8" to="1 1" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click+0.96s" dur="0.24s" fill="freeze"/>
+<path d="M-252 0L0 152L252 0Z" fill="#F3E5CF" stroke="#C6AA7B" stroke-width="1.5"/>
+<circle cx="0" cy="138" r="23" fill="#A94B21"/>
+<path d="M-8 137L-1 145L10 132" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+</g></g>
+<g id="envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse" data-action="reverse" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<set attributeName="pointer-events" to="none" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click;envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click+1.2s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click;envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click+1.2s" fill="freeze"/>
+<rect x="24" y="714" width="264" height="60" rx="13" fill="#A94B21"/>
+<text x="156" y="754" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">收好这封信</text>
+</g><g id="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward" data-action="forward" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<set attributeName="pointer-events" to="none" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click;envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click+1.2s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_forward.click;envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="envelope_0d58e7e13fbe4a8891f28cc5548f8733_reverse.click+1.2s" fill="freeze"/>
+<rect x="312" y="714" width="264" height="60" rx="13" fill="#A94B21"/>
+<text x="444" y="754" text-anchor="middle" font-size="30" fill="#FFFFFF" style="pointer-events:none;">拆开来看看</text>
+</g>
+</svg></section>
+<p class="resources"><a href="../skills/wechat-svg-envelope/SKILL.md">读取拆信与收信 Skill</a><a href="../skills/wechat-svg-envelope/examples/artwork-config.json">查看配图配置</a><a href="../skills/wechat-svg-envelope/examples/preview.html">查看原示例</a></p>
+</article>
+<article id="spotlight">
+<h2>探照灯</h2><p>切换光圈，或展开完整插画。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" data-component="wechat-svg-spotlight" role="group">
+<rect width="600" height="800" rx="20" fill="#FAF6ED"/>
+<text x="28" y="53" font-size="36" fill="#27383F" font-weight="700" font-family="sans-serif" xml:space="preserve">给重点打上一束光</text>
+
+<image x="0" y="68" width="600" height="732" href="../skills/wechat-svg-spotlight/assets/paper-white-folds.png" preserveAspectRatio="xMidYMid slice" opacity="0.36" style="pointer-events:none;"/>
+<text x="28" y="87" font-size="22" fill="#6A5141" font-weight="400" font-family="sans-serif" xml:space="preserve">点亮一处，看看藏在细节里的线索</text>
+<svg x="0" y="108" width="600" height="360" viewBox="0 0 600 360" style="overflow:hidden;max-width:none;"><image x="0" y="0" width="600" height="360" href="../skills/wechat-svg-spotlight/assets/studio-exploration-v1.png" preserveAspectRatio="xMidYMid slice"/></svg>
+<g id="spot_04977a3ae841438aaf86ec53f6be6935_cover_0" data-spotlight-cover="left" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="visible" begin="spot_04977a3ae841438aaf86ec53f6be6935_left.click" fill="freeze"/><set attributeName="visibility" to="hidden" begin="spot_04977a3ae841438aaf86ec53f6be6935_center.click;spot_04977a3ae841438aaf86ec53f6be6935_right.click;spot_04977a3ae841438aaf86ec53f6be6935_full.click;spot_04977a3ae841438aaf86ec53f6be6935_reset.click" fill="freeze"/><path d="M 0 108 H 600 V 468 H 0 Z M 16 288 a 96 96 0 1 0 192 0 a 96 96 0 1 0 -192 0 Z" fill="#30251D" fill-opacity="0.90" fill-rule="evenodd"/><circle cx="112" cy="288" r="97" fill="none" stroke="#E8C184" stroke-width="3"/></g>
+<g id="spot_04977a3ae841438aaf86ec53f6be6935_cover_1" data-spotlight-cover="center" visibility="visible" style="visibility:visible;"><set attributeName="visibility" to="visible" begin="spot_04977a3ae841438aaf86ec53f6be6935_center.click;spot_04977a3ae841438aaf86ec53f6be6935_reset.click" fill="freeze"/><set attributeName="visibility" to="hidden" begin="spot_04977a3ae841438aaf86ec53f6be6935_left.click;spot_04977a3ae841438aaf86ec53f6be6935_right.click;spot_04977a3ae841438aaf86ec53f6be6935_full.click" fill="freeze"/><path d="M 0 108 H 600 V 468 H 0 Z M 204 288 a 96 96 0 1 0 192 0 a 96 96 0 1 0 -192 0 Z" fill="#30251D" fill-opacity="0.90" fill-rule="evenodd"/><circle cx="300" cy="288" r="97" fill="none" stroke="#E8C184" stroke-width="3"/></g>
+<g id="spot_04977a3ae841438aaf86ec53f6be6935_cover_2" data-spotlight-cover="right" visibility="hidden" style="visibility:hidden;"><set attributeName="visibility" to="visible" begin="spot_04977a3ae841438aaf86ec53f6be6935_right.click" fill="freeze"/><set attributeName="visibility" to="hidden" begin="spot_04977a3ae841438aaf86ec53f6be6935_left.click;spot_04977a3ae841438aaf86ec53f6be6935_center.click;spot_04977a3ae841438aaf86ec53f6be6935_full.click;spot_04977a3ae841438aaf86ec53f6be6935_reset.click" fill="freeze"/><path d="M 0 108 H 600 V 468 H 0 Z M 392 288 a 96 96 0 1 0 192 0 a 96 96 0 1 0 -192 0 Z" fill="#30251D" fill-opacity="0.90" fill-rule="evenodd"/><circle cx="488" cy="288" r="97" fill="none" stroke="#E8C184" stroke-width="3"/></g>
+<text x="112" y="516" text-anchor="middle" font-size="30" font-weight="700" font-family="sans-serif" fill="#A64C24" xml:space="preserve">想法</text>
+<text x="56" y="561" font-size="28" fill="#30251D" font-weight="400" font-family="sans-serif" xml:space="preserve">看见问题</text>
+<text x="56" y="599" font-size="28" fill="#30251D" font-weight="400" font-family="sans-serif" xml:space="preserve">找到方向</text>
+<text x="300" y="516" text-anchor="middle" font-size="30" font-weight="700" font-family="sans-serif" fill="#A64C24" xml:space="preserve">行动</text>
+<text x="244" y="561" font-size="28" fill="#30251D" font-weight="400" font-family="sans-serif" xml:space="preserve">做出作品</text>
+<text x="244" y="599" font-size="28" fill="#30251D" font-weight="400" font-family="sans-serif" xml:space="preserve">拿到反馈</text>
+<text x="488" y="516" text-anchor="middle" font-size="30" font-weight="700" font-family="sans-serif" fill="#A64C24" xml:space="preserve">复盘</text>
+<text x="432" y="561" font-size="28" fill="#30251D" font-weight="400" font-family="sans-serif" xml:space="preserve">整理经验</text>
+<text x="432" y="599" font-size="28" fill="#30251D" font-weight="400" font-family="sans-serif" xml:space="preserve">再进一步</text>
+<path d="M28 624H572" fill="none" stroke="#CBB89C" stroke-width="1"/>
+<g id="spot_04977a3ae841438aaf86ec53f6be6935_left" data-action="left" style="cursor:pointer;">
+<rect x="24" y="650" width="104" height="60" rx="12" fill="#A64C24"/>
+<text x="76" y="690" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">左侧</text>
+</g>
+<g id="spot_04977a3ae841438aaf86ec53f6be6935_center" data-action="center" style="cursor:pointer;">
+<rect x="136" y="650" width="104" height="60" rx="12" fill="#A64C24"/>
+<text x="188" y="690" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">中间</text>
+</g>
+<g id="spot_04977a3ae841438aaf86ec53f6be6935_right" data-action="right" style="cursor:pointer;">
+<rect x="248" y="650" width="104" height="60" rx="12" fill="#A64C24"/>
+<text x="300" y="690" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">右侧</text>
+</g>
+<g id="spot_04977a3ae841438aaf86ec53f6be6935_full" data-action="full" style="cursor:pointer;">
+<rect x="360" y="650" width="104" height="60" rx="12" fill="#EDE1CB"/>
+<text x="412" y="690" text-anchor="middle" font-size="30" fill="#4A382B" font-family="sans-serif" style="pointer-events:none;">全景</text>
+</g>
+<g id="spot_04977a3ae841438aaf86ec53f6be6935_reset" data-action="reset" style="cursor:pointer;">
+<rect x="472" y="650" width="104" height="60" rx="12" fill="#EDE1CB"/>
+<text x="524" y="690" text-anchor="middle" font-size="30" fill="#4A382B" font-family="sans-serif" style="pointer-events:none;">复原</text>
+</g>
+<text x="50" y="757" font-size="28" fill="#6A5141" font-weight="400" font-family="sans-serif" xml:space="preserve">想看完整画面，点一下「全景」</text>
+</svg></section>
+<p class="resources"><a href="../skills/wechat-svg-spotlight/SKILL.md">读取探照灯 Skill</a><a href="../skills/wechat-svg-spotlight/examples/artwork-config.json">查看配图配置</a><a href="../skills/wechat-svg-spotlight/examples/preview.html">查看原示例</a></p>
+</article>
+<article id="parallax">
+<h2>三层视差</h2><p>向前走，再回到起点。</p>
+<section style="margin:22px 0;line-height:0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 680" width="100%" style="display:block;width:100%;height:auto;overflow:hidden;" data-component="wechat-svg-parallax" role="group">
+<rect width="600" height="680" rx="12" fill="#FAF6ED"/>
+<image href="../skills/wechat-svg-parallax/assets/paper-white-folds.png" x="0" y="0" width="600" height="680" preserveAspectRatio="xMidYMid slice" opacity="0.65"/>
+<text x="28" y="58" font-size="36" fill="#30271F" font-weight="700" font-family="sans-serif" xml:space="preserve">带着作品，慢慢走向更远</text>
+<path d="M28 84H572" stroke="#C6AA7B" stroke-width="1"/>
+<svg x="0" y="108" width="600" height="336" viewBox="0 0 600 336" style="overflow:hidden;" aria-label="远中近三层插画">
+<g id="parallax_874cec042dbf445cb8e0a8beacf36992_far" data-parallax-layer="far" transform="translate(0 0)">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-40 0" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click" dur="1.2s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="-40 0" to="0 0" begin="parallax_874cec042dbf445cb8e0a8beacf36992_back.click" dur="1.2s" fill="freeze"/>
+<image href="../skills/wechat-svg-parallax/assets/journey-far-v1.png" x="0" y="0" width="840" height="336" preserveAspectRatio="xMidYMid slice"/>
+</g>
+<g id="parallax_874cec042dbf445cb8e0a8beacf36992_middle" data-parallax-layer="middle" transform="translate(0 0)">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-100 0" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click" dur="1.2s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="-100 0" to="0 0" begin="parallax_874cec042dbf445cb8e0a8beacf36992_back.click" dur="1.2s" fill="freeze"/>
+<image href="../skills/wechat-svg-parallax/assets/journey-middle-v1.png" x="0" y="0" width="840" height="336" preserveAspectRatio="xMidYMid slice"/>
+</g>
+<g id="parallax_874cec042dbf445cb8e0a8beacf36992_near" data-parallax-layer="near" transform="translate(0 0)">
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-180 0" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click" dur="1.2s" fill="freeze"/>
+<animateTransform attributeName="transform" type="translate" from="-180 0" to="0 0" begin="parallax_874cec042dbf445cb8e0a8beacf36992_back.click" dur="1.2s" fill="freeze"/>
+<image href="../skills/wechat-svg-parallax/assets/journey-near-v1.png" x="140" y="0" width="840" height="336" preserveAspectRatio="xMidYMid slice"/>
+</g>
+</svg>
+<text x="100" y="491" text-anchor="middle" font-size="25" font-weight="600" fill="#6D5038" font-family="sans-serif" xml:space="preserve">远景慢一点</text>
+<text x="300" y="491" text-anchor="middle" font-size="25" font-weight="600" fill="#6D5038" font-family="sans-serif" xml:space="preserve">中景向前走</text>
+<text x="500" y="491" text-anchor="middle" font-size="25" font-weight="600" fill="#6D5038" font-family="sans-serif" xml:space="preserve">近景快一点</text>
+<path d="M200 471V499M400 471V499" stroke="#C6AA7B" stroke-width="1"/>
+<g id="parallax_874cec042dbf445cb8e0a8beacf36992_back" data-action="back" opacity="0.45" style="cursor:pointer;pointer-events:none;opacity:0.45;">
+<rect x="24" y="541" width="264" height="60" rx="12" fill="#DED0BB"/>
+<text x="156" y="581" text-anchor="middle" font-size="30" fill="#493B2F" font-family="sans-serif" style="pointer-events:none;">返回起点</text>
+<set attributeName="pointer-events" to="none" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click;parallax_874cec042dbf445cb8e0a8beacf36992_back.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click+1.2s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click;parallax_874cec042dbf445cb8e0a8beacf36992_back.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click+1.2s" fill="freeze"/></g>
+<g id="parallax_874cec042dbf445cb8e0a8beacf36992_forward" data-action="forward" opacity="1" style="cursor:pointer;pointer-events:auto;opacity:1;">
+<rect x="312" y="541" width="264" height="60" rx="12" fill="#A64C24"/>
+<text x="444" y="581" text-anchor="middle" font-size="30" fill="#FFFFFF" font-family="sans-serif" style="pointer-events:none;">向前看看</text>
+<set attributeName="pointer-events" to="none" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click;parallax_874cec042dbf445cb8e0a8beacf36992_back.click" fill="freeze"/>
+<set attributeName="pointer-events" to="auto" begin="parallax_874cec042dbf445cb8e0a8beacf36992_back.click+1.2s" fill="freeze"/>
+<set attributeName="opacity" to="0.45" begin="parallax_874cec042dbf445cb8e0a8beacf36992_forward.click;parallax_874cec042dbf445cb8e0a8beacf36992_back.click" fill="freeze"/>
+<set attributeName="opacity" to="1" begin="parallax_874cec042dbf445cb8e0a8beacf36992_back.click+1.2s" fill="freeze"/></g>
+<text x="300" y="646" text-anchor="middle" font-size="25" fill="#715B46" font-family="sans-serif">点一下，看远近景慢慢错开</text>
+</svg></section>
+<p class="resources"><a href="../skills/wechat-svg-parallax/SKILL.md">读取多层视差 Skill</a><a href="../skills/wechat-svg-parallax/examples/artwork-config.json">查看配图配置</a><a href="../skills/wechat-svg-parallax/examples/preview.html">查看原示例</a></p>
+</article></div><footer>已完成本地浏览器 320 / 375 宽度与按钮操作检查。秀米保存重开和真实手机微信效果继续单独验证。</footer></main></body></html>

@@ -14,7 +14,7 @@ from encode_demo_gifs import commit_pair
 
 
 SECTION = "## 品牌演示与GIF"
-VERSION = "0.5.2"
+VERSION = "0.5.3"
 GALLERY = "examples/brand-gallery.html"
 ONLINE = "https://frederick-kk.github.io/wechat-layout-copilot/"
 DOWNLOAD = (

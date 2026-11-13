@@ -2,7 +2,7 @@
 name: wechat-layout-copilot
 description: 为公众号文章选择头像、排版、图集和SVG交互组件，支持开窗、长按、答题、分支、擦拭、轨迹、逐字显示和图表等效果。检查素材缺项，调用对应生成器或秀米原生做法，再核对实际保存与交互。
 metadata:
-  version: "0.5.2"
+  version: "0.5.3"
 ---
 
 # 公众号排版外挂
@@ -12,35 +12,35 @@ metadata:
 | 要做的效果 | 读取入口 |
 |---|---|
 | 点击头像打开原生公众号名片 | [头像跳转](skills/wechat-avatar-profile/SKILL.md) |
-| 手绘线条逐渐出现的小动效 | [SVG 描边](skills/wechat-svg-drawline/SKILL.md) |
+| 打开封口，抽出信纸，再收回 | [拆信与收信](skills/wechat-svg-envelope/SKILL.md) |
+| 卡片正面压缩翻到背面，再翻回 | [双面翻牌](skills/wechat-svg-flip-card/SKILL.md) |
+| 远景、中景与前景以不同位移移动 | [多层视差](skills/wechat-svg-parallax/SKILL.md) |
+| 控制唱片转动与停止 | [唱片启停](skills/wechat-svg-vinyl/SKILL.md) |
+| 从侧面抽出信息条，再收回 | [抽拉标签](skills/wechat-svg-pull-tab/SKILL.md) |
+| 一条时间线串起逐阶段出现的信息 | [动态时间线](skills/wechat-svg-timeline/SKILL.md) |
+| 两扇窗打开露出内容，再合上重看 | [双扇开窗](skills/wechat-svg-open-window/SKILL.md) |
+| 点击按钮擦出前后对比，可反向恢复 | [擦拭对比](skills/wechat-svg-wipe-compare/SKILL.md) |
+| 同一图片局部放大，再回到全景 | [镜头放大](skills/wechat-svg-zoom-detail/SKILL.md) |
 | 固定画面内点击揭晓文字或图形 | [SVG 点击揭秘](skills/wechat-svg-click-reveal/SKILL.md) |
+| 分条窗叶错峰展开与合上 | [百叶窗](skills/wechat-svg-blinds/SKILL.md) |
+| 在几个位置照亮局部，再查看全景 | [探照灯](skills/wechat-svg-spotlight/SKILL.md) |
+| 点击面板展开，其他面板同时收窄 | [手风琴面板](skills/wechat-svg-accordion-panels/SKILL.md) |
+| 点按播放碎片拼合成完整图案 | [拼图拼合](skills/wechat-svg-puzzle-assemble/SKILL.md) |
+| 点按触发粒子散开与祝福文字 | [点按礼花](skills/wechat-svg-confetti/SKILL.md) |
 | 同一画面里点不同位置查看说明，再返回 | [多热区点击与返回](skills/wechat-svg-hotspots/SKILL.md) |
 | 短卡片轻旋转切换，末张返回首张 | [点击旋转切换](skills/wechat-svg-switch/SKILL.md) |
 | 逐层揭开内容，最后一层保留 | [点击逐层掉落](skills/wechat-svg-layer-peel/SKILL.md) |
-| 横滑图片、点击切图，或在秀米制作原生图集 | [秀米图集](skills/wechat-xiumi-gallery/SKILL.md) |
-| 在秀米制作展开、开窗、掉落、长按或局部热区 | [秀米原生SVG布局](skills/wechat-xiumi-svg-layout/SKILL.md) |
-| 章节、步骤、引用、短表和图注 | [正文排版组件](skills/wechat-layout-blocks/SKILL.md) |
-| 两扇窗打开露出内容，再合上重看 | [双扇开窗](skills/wechat-svg-open-window/SKILL.md) |
 | 按住显现内容，松开或移出恢复 | [长按显影](skills/wechat-svg-press-reveal/SKILL.md) |
 | 按住轮播，松手停在当前卡片 | [长按轮播定格](skills/wechat-svg-hold-cards/SKILL.md) |
-| 点击按钮擦出前后对比，可反向恢复 | [擦拭对比](skills/wechat-svg-wipe-compare/SKILL.md) |
 | 选择答案获得相应反馈，再重选 | [单题答题](skills/wechat-svg-quiz/SKILL.md) |
 | 多步选择走向不同结局，再从头开始 | [分支故事](skills/wechat-svg-story-branches/SKILL.md) |
 | 图形沿指定贝塞尔路径运动，可重播 | [轨迹运动](skills/wechat-svg-motion-path/SKILL.md) |
 | 文字逐字显现，可重新播放 | [逐字打印](skills/wechat-svg-typewriter/SKILL.md) |
-| 同一图片局部放大，再回到全景 | [镜头放大](skills/wechat-svg-zoom-detail/SKILL.md) |
 | 按用户数值生成柱形入场动画 | [数据图表](skills/wechat-svg-data-chart/SKILL.md) |
-| 卡片正面压缩翻到背面，再翻回 | [双面翻牌](skills/wechat-svg-flip-card/SKILL.md) |
-| 打开封口，抽出信纸，再收回 | [拆信与收信](skills/wechat-svg-envelope/SKILL.md) |
-| 分条窗叶错峰展开与合上 | [百叶窗](skills/wechat-svg-blinds/SKILL.md) |
-| 在几个位置照亮局部，再查看全景 | [探照灯](skills/wechat-svg-spotlight/SKILL.md) |
-| 远景、中景与前景以不同位移移动 | [多层视差](skills/wechat-svg-parallax/SKILL.md) |
-| 点击面板展开，其他面板同时收窄 | [手风琴面板](skills/wechat-svg-accordion-panels/SKILL.md) |
-| 从侧面抽出信息条，再收回 | [抽拉标签](skills/wechat-svg-pull-tab/SKILL.md) |
-| 控制唱片转动与停止 | [唱片启停](skills/wechat-svg-vinyl/SKILL.md) |
-| 点按播放碎片拼合成完整图案 | [拼图拼合](skills/wechat-svg-puzzle-assemble/SKILL.md) |
-| 一条时间线串起逐阶段出现的信息 | [动态时间线](skills/wechat-svg-timeline/SKILL.md) |
-| 点按触发粒子散开与祝福文字 | [点按礼花](skills/wechat-svg-confetti/SKILL.md) |
+| 手绘线条逐渐出现的小动效 | [SVG 描边](skills/wechat-svg-drawline/SKILL.md) |
+| 横滑图片、点击切图，或在秀米制作原生图集 | [秀米图集](skills/wechat-xiumi-gallery/SKILL.md) |
+| 章节、步骤、引用、短表和图注 | [正文排版组件](skills/wechat-layout-blocks/SKILL.md) |
+| 在秀米制作展开、开窗、掉落、长按或局部热区 | [秀米原生SVG布局](skills/wechat-xiumi-svg-layout/SKILL.md) |
 
 ## 开始使用
 

@@ -4,7 +4,7 @@
 
 [查看30款品牌GIF演示](https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html) · [下载完整组件库](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-copilot.zip) · [查看原版交互目录](examples/preview.html) · [选择单项Skill](#30个入口)
 
-v0.5.2提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
+v0.5.3提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
 
 已有600px浏览器操作／播放采集记录30／30项、320／375px布局检查30／30项。头像入口另附[手机微信真实跳转录像](skills/wechat-avatar-profile/examples/real-demo.html)，秀米原生布局提供操作示意。各组件的目标账号保存、同步与手机检查范围见下表。
 
@@ -33,35 +33,35 @@ v0.5.2提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽
 | 组件 | 做什么 | 当前完成范围 |
 |---|---|---|
 | [头像跳转](skills/wechat-avatar-profile/SKILL.md) | 原生公众号名片与可见头像结合 | 参数化与缺项测试，另附用户提供的手机微信完整跳转实录 |
-| [SVG 描边](skills/wechat-svg-drawline/SKILL.md) | 小型分隔线逐渐画出 | 可生成片段与预览，Ego lite 浏览器播放通过 |
+| [拆信与收信](skills/wechat-svg-envelope/SKILL.md) | 打开封口、抽出信纸、收回 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [双面翻牌](skills/wechat-svg-flip-card/SKILL.md) | 压缩翻面，阅读背面后翻回 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [多层视差](skills/wechat-svg-parallax/SKILL.md) | 按钮驱动远近景不同速度位移 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [唱片启停](skills/wechat-svg-vinyl/SKILL.md) | 唱片旋转的视觉启停 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [抽拉标签](skills/wechat-svg-pull-tab/SKILL.md) | 点按横向抽出信息条，再收回 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [动态时间线](skills/wechat-svg-timeline/SKILL.md) | 时间线与阶段信息依次出现 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [双扇开窗](skills/wechat-svg-open-window/SKILL.md) | 双侧打开与合上，反复查看 | 本地与秀米重开阅读页320/375px，两轮开合通过 |
+| [擦拭对比](skills/wechat-svg-wipe-compare/SKILL.md) | 按钮控制正向和反向擦拭 | 本地与秀米重开阅读页320/375px，正反擦拭通过 |
+| [镜头放大](skills/wechat-svg-zoom-detail/SKILL.md) | 同图放大指定区域，再返回 | 本地与秀米重开阅读页320/375px，放大与返回通过 |
 | [点击揭秘](skills/wechat-svg-click-reveal/SKILL.md) | 固定画面内点击显示短内容 | 可生成片段与预览，真实点击和320/375px窄屏检查通过 |
+| [百叶窗](skills/wechat-svg-blinds/SKILL.md) | 多条窗叶错峰展开与合上 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [探照灯](skills/wechat-svg-spotlight/SKILL.md) | 按钮选择局部光圈与全景 | 光圈与文字已复核，合并总页320/375px切换通过 |
+| [手风琴面板](skills/wechat-svg-accordion-panels/SKILL.md) | 点击面板展开，其余收窄 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [拼图拼合](skills/wechat-svg-puzzle-assemble/SKILL.md) | 点按播放碎片拼合展示 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [点按礼花](skills/wechat-svg-confetti/SKILL.md) | 粒子散开、祝福亮起、重播 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
 | [多热区点击与返回](skills/wechat-svg-hotspots/SKILL.md) | 点开不同注释，再返回总图 | 生成器、双实例、窄屏点击及秀米保存重开后交互通过 |
 | [点击旋转切换](skills/wechat-svg-switch/SKILL.md) | 短卡片循环切换 | 生成器、两轮循环、窄屏及秀米保存重开后交互通过 |
 | [点击逐层掉落](skills/wechat-svg-layer-peel/SKILL.md) | 按顺序揭晓，最后一张保留 | 生成器、末页停留、窄屏及秀米保存重开后交互通过 |
-| [秀米图集](skills/wechat-xiumi-gallery/SKILL.md) | 横滑HTML、点击SVG图集与原生操作 | 新生成器通过320/375px鼠标检查，新输出的秀米保存待测 |
-| [秀米 SVG 布局](skills/wechat-xiumi-svg-layout/SKILL.md) | 展开、开窗、掉落、长按与局部热区 | 官方做法与素材清单，各高级效果待逐项实测 |
-| [正文排版](skills/wechat-layout-blocks/SKILL.md) | 标题、步骤、引用、表格、图片图注 | 可生成片段与预览，文字保留、列数及320/375px预览通过 |
-| [双扇开窗](skills/wechat-svg-open-window/SKILL.md) | 双侧打开与合上，反复查看 | 本地与秀米重开阅读页320/375px，两轮开合通过 |
 | [长按显影](skills/wechat-svg-press-reveal/SKILL.md) | 按住显影，松开复原 | 本地与秀米重开阅读页320/375px，按住和松开通过 |
 | [长按轮播定格](skills/wechat-svg-hold-cards/SKILL.md) | 按住轮播，松手停留 | 本地与秀米重开阅读页320/375px，轮播与定格通过 |
-| [擦拭对比](skills/wechat-svg-wipe-compare/SKILL.md) | 按钮控制正向和反向擦拭 | 本地与秀米重开阅读页320/375px，正反擦拭通过 |
 | [单题答题](skills/wechat-svg-quiz/SKILL.md) | 选择答案，显示反馈与重选 | 本地与秀米重开阅读页320/375px，所有选项与重选通过 |
 | [分支故事](skills/wechat-svg-story-branches/SKILL.md) | 连续选择与不同结局 | 本地与秀米重开阅读页320/375px，四条路径与重开通过 |
 | [轨迹运动](skills/wechat-svg-motion-path/SKILL.md) | 图形沿指定路线运动，可重播 | 本地与秀米重开阅读页320/375px，运动终点与重播通过 |
 | [逐字打印](skills/wechat-svg-typewriter/SKILL.md) | 短文逐字显现，可重播 | 本地与秀米重开阅读页320/375px，全部字簇与重播通过 |
-| [镜头放大](skills/wechat-svg-zoom-detail/SKILL.md) | 同图放大指定区域，再返回 | 本地与秀米重开阅读页320/375px，放大与返回通过 |
 | [数据图表](skills/wechat-svg-data-chart/SKILL.md) | 用户数值驱动柱形动画，保留完整值 | 本地与秀米重开阅读页320/375px，柱高与重播通过 |
-| [双面翻牌](skills/wechat-svg-flip-card/SKILL.md) | 压缩翻面，阅读背面后翻回 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [拆信与收信](skills/wechat-svg-envelope/SKILL.md) | 打开封口、抽出信纸、收回 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [百叶窗](skills/wechat-svg-blinds/SKILL.md) | 多条窗叶错峰展开与合上 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [探照灯](skills/wechat-svg-spotlight/SKILL.md) | 按钮选择局部光圈与全景 | 光圈与文字已复核，合并总页320/375px切换通过 |
-| [多层视差](skills/wechat-svg-parallax/SKILL.md) | 按钮驱动远近景不同速度位移 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [手风琴面板](skills/wechat-svg-accordion-panels/SKILL.md) | 点击面板展开，其余收窄 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [抽拉标签](skills/wechat-svg-pull-tab/SKILL.md) | 点按横向抽出信息条，再收回 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [唱片启停](skills/wechat-svg-vinyl/SKILL.md) | 唱片旋转的视觉启停 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [拼图拼合](skills/wechat-svg-puzzle-assemble/SKILL.md) | 点按播放碎片拼合展示 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [动态时间线](skills/wechat-svg-timeline/SKILL.md) | 时间线与阶段信息依次出现 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
-| [点按礼花](skills/wechat-svg-confetti/SKILL.md) | 粒子散开、祝福亮起、重播 | 独立预览与合并总页320/375px交互通过，秀米保存待测 |
+| [SVG 描边](skills/wechat-svg-drawline/SKILL.md) | 小型分隔线逐渐画出 | 可生成片段与预览，Ego lite 浏览器播放通过 |
+| [秀米图集](skills/wechat-xiumi-gallery/SKILL.md) | 横滑HTML、点击SVG图集与原生操作 | 新生成器通过320/375px鼠标检查，新输出的秀米保存待测 |
+| [正文排版](skills/wechat-layout-blocks/SKILL.md) | 标题、步骤、引用、表格、图片图注 | 可生成片段与预览，文字保留、列数及320/375px预览通过 |
+| [秀米 SVG 布局](skills/wechat-xiumi-svg-layout/SKILL.md) | 展开、开窗、掉落、长按与局部热区 | 官方做法与素材清单，各高级效果待逐项实测 |
 
 ## 总预览复核
 

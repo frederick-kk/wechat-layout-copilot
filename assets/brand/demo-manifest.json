@@ -1,5 +1,42 @@
 [
   {
+    "slug": "wechat-avatar-profile",
+    "title": "头像跳转公众号",
+    "kind": "workflow",
+    "canvas": [
+      600,
+      820
+    ],
+    "assets": [
+      "avatar.webp",
+      "launch.webp",
+      "paper.webp",
+      "studio.webp"
+    ],
+    "preview": "skills/wechat-avatar-profile/examples/brand-preview.html",
+    "gif": "skills/wechat-avatar-profile/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-avatar-profile/examples/demo-gif.json"
+  },
+  {
+    "slug": "wechat-svg-envelope",
+    "title": "拆信与收信",
+    "kind": "interactive",
+    "canvas": [
+      600,
+      900
+    ],
+    "assets": [
+      "avatar.webp",
+      "envelope.webp",
+      "paper.webp"
+    ],
+    "preview": "skills/wechat-svg-envelope/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-envelope/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-svg-envelope/examples/demo-gif.json"
+  },
+  {
     "slug": "wechat-svg-flip-card",
     "title": "双面翻牌",
     "kind": "interactive",
@@ -19,22 +56,155 @@
     "gif_metadata": "skills/wechat-svg-flip-card/examples/demo-gif.json"
   },
   {
-    "slug": "wechat-svg-envelope",
-    "title": "拆信与收信",
+    "slug": "wechat-svg-parallax",
+    "title": "多层视差",
     "kind": "interactive",
     "canvas": [
       600,
-      900
+      780
     ],
     "assets": [
       "avatar.webp",
-      "envelope.webp",
+      "far.webp",
+      "middle.webp",
+      "near.webp",
       "paper.webp"
     ],
-    "preview": "skills/wechat-svg-envelope/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-envelope/examples/demo.gif",
+    "preview": "skills/wechat-svg-parallax/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-parallax/examples/demo.gif",
     "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-envelope/examples/demo-gif.json"
+    "gif_metadata": "skills/wechat-svg-parallax/examples/demo-gif.json"
+  },
+  {
+    "slug": "wechat-svg-vinyl",
+    "title": "唱片启停",
+    "kind": "interactive",
+    "canvas": [
+      600,
+      700
+    ],
+    "assets": [
+      "avatar.webp",
+      "paper.webp",
+      "record-disc.webp"
+    ],
+    "preview": "skills/wechat-svg-vinyl/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-vinyl/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-svg-vinyl/examples/demo-gif.json"
+  },
+  {
+    "slug": "wechat-svg-pull-tab",
+    "title": "抽拉标签",
+    "kind": "interactive",
+    "canvas": [
+      600,
+      620
+    ],
+    "assets": [
+      "avatar.webp",
+      "banner-studio.webp",
+      "paper.webp"
+    ],
+    "preview": "skills/wechat-svg-pull-tab/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-pull-tab/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-svg-pull-tab/examples/demo-gif.json"
+  },
+  {
+    "slug": "wechat-svg-timeline",
+    "title": "动态时间线",
+    "kind": "interactive",
+    "canvas": [
+      600,
+      680
+    ],
+    "assets": [
+      "avatar.webp",
+      "idea.webp",
+      "launch.webp",
+      "paper.webp",
+      "studio.webp"
+    ],
+    "preview": "skills/wechat-svg-timeline/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-timeline/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-svg-timeline/examples/demo-gif.json"
+  },
+  {
+    "slug": "wechat-svg-open-window",
+    "title": "双扇开窗",
+    "kind": "interactive",
+    "canvas": [
+      600,
+      560
+    ],
+    "assets": [
+      "avatar.webp",
+      "banner-studio.webp",
+      "launch.webp",
+      "paper.webp"
+    ],
+    "preview": "skills/wechat-svg-open-window/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-open-window/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-svg-open-window/examples/demo-gif.json"
+  },
+  {
+    "slug": "wechat-svg-wipe-compare",
+    "title": "擦拭前后对比",
+    "kind": "interactive",
+    "canvas": [
+      600,
+      700
+    ],
+    "assets": [
+      "avatar.webp",
+      "before.webp",
+      "paper.webp",
+      "studio.webp"
+    ],
+    "preview": "skills/wechat-svg-wipe-compare/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-wipe-compare/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-svg-wipe-compare/examples/demo-gif.json"
+  },
+  {
+    "slug": "wechat-svg-zoom-detail",
+    "title": "同图局部放大与返回",
+    "kind": "interactive",
+    "canvas": [
+      600,
+      630
+    ],
+    "assets": [
+      "avatar.webp",
+      "paper.webp",
+      "studio.webp"
+    ],
+    "preview": "skills/wechat-svg-zoom-detail/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-zoom-detail/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-svg-zoom-detail/examples/demo-gif.json"
+  },
+  {
+    "slug": "wechat-svg-click-reveal",
+    "title": "点击揭秘",
+    "kind": "interactive",
+    "canvas": [
+      600,
+      460
+    ],
+    "assets": [
+      "avatar.webp",
+      "banner-studio.webp",
+      "before.webp",
+      "paper.webp"
+    ],
+    "preview": "skills/wechat-svg-click-reveal/examples/brand-preview.html",
+    "gif": "skills/wechat-svg-click-reveal/examples/demo.gif",
+    "status": "gif-ready",
+    "gif_metadata": "skills/wechat-svg-click-reveal/examples/demo-gif.json"
   },
   {
     "slug": "wechat-svg-blinds",
@@ -74,26 +244,6 @@
     "gif_metadata": "skills/wechat-svg-spotlight/examples/demo-gif.json"
   },
   {
-    "slug": "wechat-svg-parallax",
-    "title": "多层视差",
-    "kind": "interactive",
-    "canvas": [
-      600,
-      780
-    ],
-    "assets": [
-      "avatar.webp",
-      "far.webp",
-      "middle.webp",
-      "near.webp",
-      "paper.webp"
-    ],
-    "preview": "skills/wechat-svg-parallax/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-parallax/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-parallax/examples/demo-gif.json"
-  },
-  {
     "slug": "wechat-svg-accordion-panels",
     "title": "手风琴面板",
     "kind": "interactive",
@@ -114,42 +264,6 @@
     "gif_metadata": "skills/wechat-svg-accordion-panels/examples/demo-gif.json"
   },
   {
-    "slug": "wechat-svg-pull-tab",
-    "title": "抽拉标签",
-    "kind": "interactive",
-    "canvas": [
-      600,
-      620
-    ],
-    "assets": [
-      "avatar.webp",
-      "banner-studio.webp",
-      "paper.webp"
-    ],
-    "preview": "skills/wechat-svg-pull-tab/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-pull-tab/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-pull-tab/examples/demo-gif.json"
-  },
-  {
-    "slug": "wechat-svg-vinyl",
-    "title": "唱片启停",
-    "kind": "interactive",
-    "canvas": [
-      600,
-      700
-    ],
-    "assets": [
-      "avatar.webp",
-      "paper.webp",
-      "record-disc.webp"
-    ],
-    "preview": "skills/wechat-svg-vinyl/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-vinyl/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-vinyl/examples/demo-gif.json"
-  },
-  {
     "slug": "wechat-svg-puzzle-assemble",
     "title": "拼图拼合",
     "kind": "interactive",
@@ -165,26 +279,6 @@
     "gif": "skills/wechat-svg-puzzle-assemble/examples/demo.gif",
     "status": "gif-ready",
     "gif_metadata": "skills/wechat-svg-puzzle-assemble/examples/demo-gif.json"
-  },
-  {
-    "slug": "wechat-svg-timeline",
-    "title": "动态时间线",
-    "kind": "interactive",
-    "canvas": [
-      600,
-      680
-    ],
-    "assets": [
-      "avatar.webp",
-      "idea.webp",
-      "launch.webp",
-      "paper.webp",
-      "studio.webp"
-    ],
-    "preview": "skills/wechat-svg-timeline/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-timeline/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-timeline/examples/demo-gif.json"
   },
   {
     "slug": "wechat-svg-confetti",
@@ -266,25 +360,6 @@
     "gif_metadata": "skills/wechat-svg-layer-peel/examples/demo-gif.json"
   },
   {
-    "slug": "wechat-svg-open-window",
-    "title": "双扇开窗",
-    "kind": "interactive",
-    "canvas": [
-      600,
-      560
-    ],
-    "assets": [
-      "avatar.webp",
-      "banner-studio.webp",
-      "launch.webp",
-      "paper.webp"
-    ],
-    "preview": "skills/wechat-svg-open-window/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-open-window/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-open-window/examples/demo-gif.json"
-  },
-  {
     "slug": "wechat-svg-press-reveal",
     "title": "长按显影与松手复原",
     "kind": "interactive",
@@ -322,25 +397,6 @@
     "gif": "skills/wechat-svg-hold-cards/examples/demo.gif",
     "status": "gif-ready",
     "gif_metadata": "skills/wechat-svg-hold-cards/examples/demo-gif.json"
-  },
-  {
-    "slug": "wechat-svg-wipe-compare",
-    "title": "擦拭前后对比",
-    "kind": "interactive",
-    "canvas": [
-      600,
-      700
-    ],
-    "assets": [
-      "avatar.webp",
-      "before.webp",
-      "paper.webp",
-      "studio.webp"
-    ],
-    "preview": "skills/wechat-svg-wipe-compare/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-wipe-compare/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-wipe-compare/examples/demo-gif.json"
   },
   {
     "slug": "wechat-svg-quiz",
@@ -419,24 +475,6 @@
     "gif_metadata": "skills/wechat-svg-typewriter/examples/demo-gif.json"
   },
   {
-    "slug": "wechat-svg-zoom-detail",
-    "title": "同图局部放大与返回",
-    "kind": "interactive",
-    "canvas": [
-      600,
-      630
-    ],
-    "assets": [
-      "avatar.webp",
-      "paper.webp",
-      "studio.webp"
-    ],
-    "preview": "skills/wechat-svg-zoom-detail/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-zoom-detail/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-zoom-detail/examples/demo-gif.json"
-  },
-  {
     "slug": "wechat-svg-data-chart",
     "title": "数据柱形图入场",
     "kind": "interactive",
@@ -452,25 +490,6 @@
     "gif": "skills/wechat-svg-data-chart/examples/demo.gif",
     "status": "gif-ready",
     "gif_metadata": "skills/wechat-svg-data-chart/examples/demo-gif.json"
-  },
-  {
-    "slug": "wechat-svg-click-reveal",
-    "title": "点击揭秘",
-    "kind": "interactive",
-    "canvas": [
-      600,
-      460
-    ],
-    "assets": [
-      "avatar.webp",
-      "banner-studio.webp",
-      "before.webp",
-      "paper.webp"
-    ],
-    "preview": "skills/wechat-svg-click-reveal/examples/brand-preview.html",
-    "gif": "skills/wechat-svg-click-reveal/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-svg-click-reveal/examples/demo-gif.json"
   },
   {
     "slug": "wechat-svg-drawline",
@@ -527,25 +546,6 @@
     "gif": "skills/wechat-layout-blocks/examples/demo.gif",
     "status": "gif-ready",
     "gif_metadata": "skills/wechat-layout-blocks/examples/demo-gif.json"
-  },
-  {
-    "slug": "wechat-avatar-profile",
-    "title": "头像跳转公众号",
-    "kind": "workflow",
-    "canvas": [
-      600,
-      820
-    ],
-    "assets": [
-      "avatar.webp",
-      "launch.webp",
-      "paper.webp",
-      "studio.webp"
-    ],
-    "preview": "skills/wechat-avatar-profile/examples/brand-preview.html",
-    "gif": "skills/wechat-avatar-profile/examples/demo.gif",
-    "status": "gif-ready",
-    "gif_metadata": "skills/wechat-avatar-profile/examples/demo-gif.json"
   },
   {
     "slug": "wechat-xiumi-svg-layout",

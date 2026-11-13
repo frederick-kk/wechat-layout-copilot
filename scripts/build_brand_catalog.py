@@ -14,7 +14,7 @@ from build_preview import CatalogCheck, ENTRIES
 
 PUBLISHED_DOWNLOADS = (
     "https://github.com/frederick-kk/wechat-layout-copilot/"
-    "releases/download/v0.5.2/"
+    "releases/download/v0.5.3/"
 )
 
 STYLE = """

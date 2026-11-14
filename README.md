@@ -14,6 +14,22 @@ v0.6.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽
 
 ## 怎么开始
 
+### 第一步，首次使用先启动上手 Skill
+
+1. [下载上手配置 Skill](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-starter.zip)。
+2. 完整解压，保留 `wechat-layout-starter` 整个文件夹。
+3. 在 Codex 或能读取本地文件的 AI 工具中新开对话，把解压后的文件夹路径发给它，再复制下面这句话。
+
+> 请读取我刚提供的文件夹中的 SKILL.md，使用 wechat-layout-starter 带我完成公众号排版的首次配置。先检查环境，再学习我的旧文章风格，带我选择组件并生成个人排版 Skill。
+
+已经安装过这个 Skill 时，可以直接输入。
+
+> 用 $wechat-layout-starter 帮我配置公众号排版。
+
+接下来跟着 AI 的引导操作即可。它会检查已有环境，帮助接通 Ego lite、微信公众平台和秀米，读取你提供的旧文章，再带你从30款效果中选择组件。完成小样微调后，AI会打包你的个人排版 Skill，以后按这套配置处理正文与草稿。
+
+### 已有配置时直接使用组件
+
 1. 打开GIF总览，选择适合正文的效果，再点“打开可操作演示”体验点击、长按或滑动。
 2. 点击该效果下的“下载此Skill”，解压后把整个文件夹交给能读取本地文件的AI。需要整套时下载完整组件库，从根目录 [SKILL.md](SKILL.md) 开始。
 3. 提供正文、素材和个人风格，AI按组件说明生成结果或通过浏览器操作秀米，再检查实际草稿。

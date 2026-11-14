@@ -2,10 +2,12 @@
 name: wechat-layout-copilot
 description: 为公众号文章选择头像、排版、图集和SVG交互组件，支持开窗、长按、答题、分支、擦拭、轨迹、逐字显示和图表等效果。检查素材缺项，调用对应生成器或秀米原生做法，再核对实际保存与交互。
 metadata:
-  version: "0.5.3"
+  version: "0.6.0"
 ---
 
 # 公众号排版外挂
+
+首次建立环境、学习旧稿或生成个人排版Skill时，读取[上手配置Skill](workflows/wechat-layout-starter/SKILL.md)。已有个人Skill时沿用其中的配置，按本次正文选取组件并保存草稿。
 
 根据用户想要的效果选择下表中的入口。各组件可单独下载，也可一起使用。
 

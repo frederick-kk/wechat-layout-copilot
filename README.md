@@ -2,9 +2,13 @@
 
 30套组件Skill，先看GIF选效果，再让AI替你排版。
 
+[首次配置下载上手Skill](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-starter.zip) · [读取完整上手流程](workflows/wechat-layout-starter/SKILL.md)
+
+让AI检查环境、学习你的旧稿、引导选择组件，再生成属于你的本地排版Skill。以后提供正文，按个人风格完成排版与草稿保存。
+
 [查看30款品牌GIF演示](https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html) · [下载完整组件库](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-copilot.zip) · [查看原版交互目录](examples/preview.html) · [选择单项Skill](#30个入口)
 
-v0.5.3提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
+v0.6.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
 
 已有600px浏览器操作／播放采集记录30／30项、320／375px布局检查30／30项。头像入口另附[手机微信真实跳转录像](skills/wechat-avatar-profile/examples/real-demo.html)，秀米原生布局提供操作示意。各组件的目标账号保存、同步与手机检查范围见下表。
 

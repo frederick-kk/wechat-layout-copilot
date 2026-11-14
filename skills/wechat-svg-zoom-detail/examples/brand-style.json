@@ -1,5 +1,5 @@
 {
-  "version": "0.5.3",
+  "version": "0.6.0",
   "component": "wechat-svg-zoom-detail",
   "title": "同图局部放大与返回",
   "kind": "interactive",

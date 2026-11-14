@@ -14,7 +14,7 @@ from encode_demo_gifs import commit_pair
 
 
 SECTION = "## 品牌演示与GIF"
-VERSION = "0.5.3"
+VERSION = "0.6.0"
 GALLERY = "examples/brand-gallery.html"
 ONLINE = "https://frederick-kk.github.io/wechat-layout-copilot/"
 DOWNLOAD = (
@@ -277,6 +277,10 @@ def root_readme(text, captured, narrow):
     intro = f'''# 公众号排版外挂
 
 30套组件Skill，先看GIF选效果，再让AI替你排版。
+
+[首次配置下载上手Skill](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-starter.zip) · [读取完整上手流程](workflows/wechat-layout-starter/SKILL.md)
+
+让AI检查环境、学习你的旧稿、引导选择组件，再生成属于你的本地排版Skill。以后提供正文，按个人风格完成排版与草稿保存。
 
 [查看30款品牌GIF演示]({ONLINE}{GALLERY}) · [下载完整组件库]({DOWNLOAD}) · [查看原版交互目录](examples/preview.html) · [选择单项Skill](#30个入口)
 

@@ -69,7 +69,11 @@ def release_plan(root, files):
     if not skills.is_dir():
         raise ValueError("组件库缺少skills目录")
     plans = []
-    for folder in sorted(skills.iterdir()):
+    folders = sorted(skills.iterdir())
+    workflows = root / "workflows"
+    if workflows.is_dir():
+        folders.extend(sorted(workflows.iterdir()))
+    for folder in folders:
         if not folder.is_dir() or folder.name in EXCLUDED_DIRECTORIES:
             continue
         if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", folder.name):
@@ -178,7 +182,9 @@ def build(root, requested, overwrite=False):
                 raise ValueError(f"提交期间输出已变化，请保留新内容后重新构建 {target}")
             os.replace(staged[target], target)
             committed.append(target)
-        return {"out_dir": str(destination), "components": len(plans) - 1,
+        component_count = sum(path.name == "SKILL.md" and path.parent.parent == root / "skills" for path in files)
+        return {"out_dir": str(destination), "components": component_count,
+                "workflows": len(plans) - component_count - 1,
                 "bundle": BUNDLE_NAME + ".zip", "files": records}
     except BaseException as error:
         recovery = []

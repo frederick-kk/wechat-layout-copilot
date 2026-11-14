@@ -1,0 +1,4 @@
+interface:
+  display_name: "公众号排版上手配置"
+  short_description: "接通浏览器、学习本人风格、挑选组件并打包专属排版Skill"
+  default_prompt: "使用 $wechat-layout-starter，带我配置公众号排版流程，生成以后发正文就能用的个人Skill。"

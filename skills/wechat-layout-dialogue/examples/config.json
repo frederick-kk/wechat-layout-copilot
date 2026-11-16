@@ -1,0 +1,31 @@
+{
+  "title": "把读者的疑问，聊明白",
+  "subtitle": "一问一答，人物与原话各归各位。",
+  "speakers": {
+    "fred": {
+      "name": "小鱼 Fred",
+      "avatar": "../assets/avatar.webp"
+    },
+    "reader": {
+      "name": "读者"
+    }
+  },
+  "turns": [
+    {
+      "speaker": "reader",
+      "text": "我有正文了，可每次排版都要从头折腾。"
+    },
+    {
+      "speaker": "fred",
+      "text": "先把自己的配色、标题和组件习惯固定下来，存进个人 Skill。"
+    },
+    {
+      "speaker": "reader",
+      "text": "以后只要把文章交给 AI 就行？"
+    },
+    {
+      "speaker": "fred",
+      "text": "对，先按固定流程排一版，再检查手机效果。把时间省下来写更好的内容，嘻嘻。"
+    }
+  ]
+}

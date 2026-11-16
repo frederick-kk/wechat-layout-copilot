@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-xiumi-video-card",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "b32d8cc3bdb0dcf77da43372272acfb82e493eb473e5f6915d96018066cea56b",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071",
+    "component-assets/clip-8751f3db76ea6c00.mp4": "8751f3db76ea6c005a39510cd85051f0ddd8f23b56b353503bc30c761038d2eb"
+  },
+  "play": "component-demo",
+  "frame_count": 45,
+  "width": 480,
+  "height": 800,
+  "duration_seconds": 5.63,
+  "loop": 0,
+  "distinct_frames": 23,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 28,
+  "capture_duration_seconds": 4.840008,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "28ba5701e2e1fb598df5518bdb01953f112f99021e4bf6bf1dbeab6fbe7fda99",
+  "bytes": 436590,
+  "sha256": "6153ccb2294713a3f1f6aedb51a567bbe8f763e36d9fb96811f84de2407b27ce"
+}

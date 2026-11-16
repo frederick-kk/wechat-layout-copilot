@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-svg-radar",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "68bd05609f4e2e9764e9d10ae7b999404013748fdcf6980afb2e6efbf8554a0d",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 44,
+  "width": 480,
+  "height": 759,
+  "duration_seconds": 5.51,
+  "loop": 0,
+  "distinct_frames": 8,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 25,
+  "capture_duration_seconds": 4.668896,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "315cf563877c529faf3214a10df12a4f4d3f2b28016b6c52123885c84fd2c01d",
+  "bytes": 227716,
+  "sha256": "63f97b1854370a5248fc514860acfebdbaf44e39227c5d79ef5649214ddbc2ea"
+}

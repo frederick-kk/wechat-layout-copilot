@@ -38,13 +38,13 @@ metadata:
 
 以用户本人账号、头像和旧稿为依据。把模板中的示例头像、署名、文案与配图替换为用户资料。作者语气可以记录为参考，用户要求改写时再启用。
 
-## 3. 看30款效果，选自己要用的
+## 3. 看组件效果，选自己要用的
 
-在Ego打开[30款组件总览](https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html)，让用户直接选名称或页面序号。已有明确选择时，映射到实际组件ID后继续。
+已有整库时，优先在Ego打开该库的 `examples/brand-gallery.html`，读取 `assets/brand/demo-manifest.json`。也可查看[50项公开组件总览](https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html)。让用户选择名称或页面序号，映射到实际组件ID后继续。
 
 按当前页面或[组件清单](https://frederick-kk.github.io/wechat-layout-copilot/assets/brand/demo-manifest.json)核对名称与ID。序号随总览变化，配置里保存稳定的组件ID。
 
-已有整库或所选组件时直接读取。首次只有上手包时，先下载用户选中的完整组件，随后用它们制作小样。
+已有整库或所选组件时直接读取，个人打包采用 `--library-root` 或 `--downloads-dir`。首次只有上手包时，先从公开发布版本下载所选完整组件，再制作小样。
 
 ```text
 python -X utf8 scripts/fetch_components.py --components wechat-svg-envelope wechat-svg-timeline --out-dir /工作目录/组件下载

@@ -2,10 +2,12 @@
 name: wechat-layout-copilot
 description: 为公众号文章选择头像、排版、图集和SVG交互组件，支持开窗、长按、答题、分支、擦拭、轨迹、逐字显示和图表等效果。检查素材缺项，调用对应生成器或秀米原生做法，再核对实际保存与交互。
 metadata:
-  version: "0.6.0"
+  version: "0.7.0"
 ---
 
 # 公众号排版外挂
+
+当前v0.7.0包含50项组件，提供在线预览、完整组件库与单项ZIP。
 
 首次建立环境、学习旧稿或生成个人排版Skill时，读取[上手配置Skill](workflows/wechat-layout-starter/SKILL.md)。已有个人Skill时沿用其中的配置，按本次正文选取组件并保存草稿。
 
@@ -43,6 +45,26 @@ metadata:
 | 横滑图片、点击切图，或在秀米制作原生图集 | [秀米图集](skills/wechat-xiumi-gallery/SKILL.md) |
 | 章节、步骤、引用、短表和图注 | [正文排版组件](skills/wechat-layout-blocks/SKILL.md) |
 | 在秀米制作展开、开窗、掉落、长按或局部热区 | [秀米原生SVG布局](skills/wechat-xiumi-svg-layout/SKILL.md) |
+| 切换标签，在同一画面中查看对应图文。 | [标签页联动图文](skills/wechat-svg-tabs/SKILL.md) |
+| 依次完成操作步骤，也可返回前一步。 | [分步操作向导](skills/wechat-svg-stepper/SKILL.md) |
+| 逐题选择，答完后查看本次得分与反馈。 | [多题计分测验](skills/wechat-svg-score-quiz/SKILL.md) |
+| 选择多个选项，再统一提交并查看反馈。 | [多选统一提交](skills/wechat-svg-multi-select/SKILL.md) |
+| 逐项勾选事项，查看完成进度。 | [勾选清单与进度](skills/wechat-svg-checklist/SKILL.md) |
+| 按两列内容点击配对，查看连线结果。 | [点击配对连线](skills/wechat-svg-match-pairs/SKILL.md) |
+| 用真实目标与完成值展示环形进度。 | [环形目标进度](skills/wechat-svg-progress-ring/SKILL.md) |
+| 按顺序查看各项增减与最终合计。 | [增减瀑布图](skills/wechat-svg-waterfall/SKILL.md) |
+| 按阶段展示真实数量与转化关系。 | [漏斗转化图](skills/wechat-svg-funnel/SKILL.md) |
+| 在统一量程下比较多个维度的数据。 | [雷达能力对比](skills/wechat-svg-radar/SKILL.md) |
+| 按角色分栏，查看流程交接与当前步骤。 | [多角色流程泳道](skills/wechat-svg-swimlane/SKILL.md) |
+| 播放短句弹幕，保留静态可读内容。 | [文字弹幕墙](skills/wechat-svg-danmaku/SKILL.md) |
+| 按页翻看图文，再返回前页。 | [多页翻书](skills/wechat-svg-book/SKILL.md) |
+| 按顺序选择卡片，排完三项查看结果。 | [卡片排序题](skills/wechat-svg-word-order/SKILL.md) |
+| 在窄屏中横向查看完整表格。 | [横向宽表](skills/wechat-layout-wide-table/SKILL.md) |
+| 用原生文字呈现人物对话与问答。 | [访谈对话气泡](skills/wechat-layout-dialogue/SKILL.md) |
+| 把图片、注释与对应正文排在一起。 | [图文边注](skills/wechat-layout-annotations/SKILL.md) |
+| 通过图文层级和跨栏组织长内容。 | [杂志跨栏图文](skills/wechat-layout-magazine/SKILL.md) |
+| 逐项展开常见问题，保持纵向阅读。 | [纵向FAQ展开](skills/wechat-xiumi-faq/SKILL.md) |
+| 用封面与原生视频入口承接播放内容。 | [视频封面卡片](skills/wechat-xiumi-video-card/SKILL.md) |
 
 ## 开始使用
 
@@ -70,11 +92,11 @@ metadata:
 
 可交互示例见 [组件预览](examples/preview.html)。调研来源与逐项验证见 [调研与复刻计划](docs/调研与复刻计划.md)。
 
-预览包含30个Skill入口。组件示例修改后执行 `python scripts/build_preview.py`，刷新整包预览。根目录 `index.html` 提供相对路径入口，供后续静态托管使用。
+预览包含50个Skill入口。根目录 `index.html` 打开总览。修改后执行 `python scripts/build_preview.py` 刷新原版预览，再执行 `python scripts/build_brand_catalog.py --avatar assets/brand/avatar.webp --overwrite` 更新品牌目录。公开下载采用v0.7.0发布地址，发布包通过 `build_downloads.py --out-dir dist/v0.7.0` 生成。
 
 ## 品牌演示与GIF
 
-先看[全部30款品牌GIF演示](examples/brand-gallery.html)，按正文需要选择效果，再读取对应子Skill和 `examples/brand-style.json`。
+先看[50款品牌示例](examples/brand-gallery.html)，按正文需要选择效果，再读取对应子Skill和 `examples/brand-style.json`。
 
 单项包包含品牌HTML、GIF及其相邻素材。读取 `examples/brand-component.html` 后，可按使用者自己的头像、正文和风格修改。图片留在对应动画组或状态组中，保留事件ID、点击区与时序；多个实例使用独立ID。原有生成器的可用参数以对应子Skill正文为准。
 

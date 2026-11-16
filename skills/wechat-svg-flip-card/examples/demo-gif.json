@@ -23,5 +23,19 @@
   "tail_hold_seconds": 0.8,
   "source_manifest_sha256": "a2f06b7cba78fc0389fb7e8670a2d7585aea0c5cdcce8b3bae0d0d7b7dddc2bd",
   "bytes": 614249,
-  "sha256": "180478dbce3d669e2c4c2a69c177758aac0ce5402ad1ceb617fb0f9752373189"
+  "sha256": "180478dbce3d669e2c4c2a69c177758aac0ce5402ad1ceb617fb0f9752373189",
+  "post_capture_updates": [
+    {
+      "file": "brand-preview.html",
+      "date": "2026-11-16",
+      "scope": "navigation-only-outside-demo-stage",
+      "text_before": "全部30款",
+      "text_after": "全部组件",
+      "before_sha256": "f39276f1d5eba63c18e18fce18b5d86260bef3d635cda1a0f80c8851d43a11ff",
+      "after_sha256": "2660075b4c1a0ad7207b7af06bec94649c1523b93bc920f789fc26263a0a4a59",
+      "unchanged_demo_stage_sha256": "98cd2f9967ce9e811b836aa1d226b7f478b62cfedc4e8e548ca921b78adaafe2",
+      "unchanged_gif_sha256": "180478dbce3d669e2c4c2a69c177758aac0ce5402ad1ceb617fb0f9752373189",
+      "capture_history": "Original browser capture and source_sha256 retained; no GIF rerecording or re-encoding."
+    }
+  ]
 }

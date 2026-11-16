@@ -30,6 +30,13 @@ COMPONENTS = {
     "wechat-svg-quiz", "wechat-svg-story-branches", "wechat-svg-motion-path",
     "wechat-svg-typewriter", "wechat-svg-data-chart", "wechat-svg-drawline",
     "wechat-xiumi-gallery", "wechat-layout-blocks", "wechat-xiumi-svg-layout",
+    "wechat-svg-tabs", "wechat-svg-stepper", "wechat-svg-score-quiz",
+    "wechat-svg-multi-select", "wechat-svg-checklist", "wechat-svg-match-pairs",
+    "wechat-svg-progress-ring", "wechat-svg-waterfall", "wechat-svg-funnel",
+    "wechat-svg-radar", "wechat-svg-swimlane", "wechat-svg-danmaku",
+    "wechat-svg-book", "wechat-svg-word-order", "wechat-layout-wide-table",
+    "wechat-layout-dialogue", "wechat-layout-annotations", "wechat-layout-magazine",
+    "wechat-xiumi-faq", "wechat-xiumi-video-card",
 }
 PRIVATE_KEYS = {
     "api_key", "authorization", "cookie", "cookies", "password", "access_token",
@@ -104,7 +111,7 @@ def validate_profile(profile):
     names = []
     for component in components:
         if not isinstance(component, dict) or not isinstance(component.get("id"), str) or component["id"] not in COMPONENTS:
-            raise ValueError("选择的组件不在当前30款组件目录中")
+            raise ValueError("选择的组件不在当前组件目录中")
         names.append(component["id"])
         require_text(component.get("use_when"), "components[].use_when")
         require_text(component.get("placement"), "components[].placement")

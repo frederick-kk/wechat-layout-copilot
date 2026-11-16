@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-svg-waterfall",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "73c68f11b74f17ba61ff92e273f3c8b2d135eccacc6c930bdfae01dd1eaf282e",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 45,
+  "width": 480,
+  "height": 706,
+  "duration_seconds": 5.63,
+  "loop": 0,
+  "distinct_frames": 7,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 23,
+  "capture_duration_seconds": 4.883519000000001,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "b0aa33fb4f80f1432ef87aaac5116867b84b99ad718a1013170e1d1ff6f72730",
+  "bytes": 175563,
+  "sha256": "0b62400d2ac83e159bcb268e83c8e08637086a7493c109f30f1eac43e4db3339"
+}

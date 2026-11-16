@@ -22,7 +22,7 @@ class Entry:
     kind: str = "interactive"
 
 
-ENTRIES = (
+LEGACY_ENTRIES = (
     Entry("wechat-avatar-profile", "头像跳转公众号", "使用目标账号的真实原生名片，制作对应的头像入口。", kind="workflow"),
     Entry("wechat-svg-envelope", "拆信与收信", "打开信封抽出信纸，再收回重看。", ("component.html",)),
     Entry("wechat-svg-flip-card", "双面翻牌", "翻到背面阅读，再翻回正面。", ("component.html",)),
@@ -54,6 +54,32 @@ ENTRIES = (
     Entry("wechat-layout-blocks", "正文排版组件", "按信息关系组织标题、步骤、引用和短表。", ("preview.html",), "layout"),
     Entry("wechat-xiumi-svg-layout", "秀米原生 SVG 布局", "在秀米中配置展开、开窗、长按与局部热区等效果。", kind="workflow"),
 )
+
+
+NEW_ENTRIES = (
+    Entry("wechat-svg-tabs", "标签页联动图文", "切换标签，在同一画面中查看对应图文。", ("component.html",)),
+    Entry("wechat-svg-stepper", "分步操作向导", "依次完成操作步骤，也可返回前一步。", ("component.html",)),
+    Entry("wechat-svg-score-quiz", "多题计分测验", "逐题选择，答完后查看本次得分与反馈。", ("component.html",)),
+    Entry("wechat-svg-multi-select", "多选统一提交", "选择多个选项，再统一提交并查看反馈。", ("component.html",)),
+    Entry("wechat-svg-checklist", "勾选清单与进度", "逐项勾选事项，查看完成进度。", ("component.html",)),
+    Entry("wechat-svg-match-pairs", "点击配对连线", "按两列内容点击配对，查看连线结果。", ("component.html",)),
+    Entry("wechat-svg-progress-ring", "环形目标进度", "用真实目标与完成值展示环形进度。", ("component.html",)),
+    Entry("wechat-svg-waterfall", "增减瀑布图", "按顺序查看各项增减与最终合计。", ("component.html",)),
+    Entry("wechat-svg-funnel", "漏斗转化图", "按阶段展示真实数量与转化关系。", ("component.html",)),
+    Entry("wechat-svg-radar", "雷达能力对比", "在统一量程下比较多个维度的数据。", ("component.html",)),
+    Entry("wechat-svg-swimlane", "多角色流程泳道", "按角色分栏，查看流程交接与当前步骤。", ("component.html",)),
+    Entry("wechat-svg-danmaku", "文字弹幕墙", "播放短句弹幕，保留静态可读内容。", ("component.html",)),
+    Entry("wechat-svg-book", "多页翻书", "按页翻看图文，再返回前页。", ("component.html",)),
+    Entry("wechat-svg-word-order", "卡片排序题", "按顺序选择卡片，排完三项查看结果。", ("component.html",)),
+    Entry("wechat-layout-wide-table", "横向宽表", "在窄屏中横向查看完整表格。", ("component.html",), "html"),
+    Entry("wechat-layout-dialogue", "访谈对话气泡", "用原生文字呈现人物对话与问答。", ("component.html",), "html"),
+    Entry("wechat-layout-annotations", "图文边注", "把图片、注释与对应正文排在一起。", ("component.html",), "html"),
+    Entry("wechat-layout-magazine", "杂志跨栏图文", "通过图文层级和跨栏组织长内容。", ("component.html",), "html"),
+    Entry("wechat-xiumi-faq", "纵向FAQ展开", "逐项展开常见问题，保持纵向阅读。", ("component.html",), "html"),
+    Entry("wechat-xiumi-video-card", "视频封面卡片", "用封面与原生视频入口承接播放内容。", ("component.html",), "html"),
+)
+
+ENTRIES = LEGACY_ENTRIES + NEW_ENTRIES
 
 
 STYLE = """
@@ -134,13 +160,40 @@ def workflow_content(name):
 </section>'''
 
 
-def build(root, destination, repository="frederick-kk/wechat-layout-copilot"):
+def relative_asset_urls(content, source, destination):
+    """Keep component-local assets reachable when a fragment enters a catalog."""
+    def attribute(match):
+        value = html.unescape(match.group(3))
+        parsed = urlsplit(value)
+        if not parsed.path or parsed.scheme or value.startswith(("#", "//", "/")):
+            return match.group(0)
+        target = (source.parent / unquote(parsed.path)).resolve()
+        relative = quote(os.path.relpath(target, destination.parent).replace(os.sep, "/"), safe="/.-_")
+        if parsed.query:
+            relative += "?" + parsed.query
+        if parsed.fragment:
+            relative += "#" + parsed.fragment
+        return match.group(1) + match.group(2) + html.escape(relative, quote=True) + match.group(2)
+
+    return re.sub(r"(\b(?:src|href|poster)\s*=\s*)([\"'])(.*?)(?:\2)", attribute, content, flags=re.I)
+
+
+def build(root, destination, repository="frederick-kk/wechat-layout-copilot", downloads=None):
     root = root.resolve()
     destination = destination.resolve()
     if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
         raise ValueError("仓库需要采用owner/name格式")
     repository_url = "https://github.com/" + repository
-    release_url = repository_url + "/releases/latest/download/"
+    release_url = repository_url + "/releases/download/v0.7.0/"
+    downloads = downloads.resolve() if downloads is not None else None
+
+    def package_link(filename):
+        if downloads is None:
+            return release_url + filename
+        archive = downloads / filename
+        if not archive.is_file():
+            raise ValueError(f"本地下载包缺失 {archive}")
+        return quote(os.path.relpath(archive, destination.parent).replace(os.sep, "/"), safe="/.-_")
     if destination.suffix.lower() not in {".html", ".htm"}:
         raise ValueError("预览输出需要使用.html或.htm文件")
     protected_inputs = {
@@ -166,6 +219,8 @@ def build(root, destination, repository="frederick-kk/wechat-layout-copilot"):
             raise ValueError(f"缺少组件说明 {instruction}")
         relative = os.path.relpath(instruction, destination.parent).replace(os.sep, "/")
         instruction_url = quote(relative, safe="/.-_")
+        download_url = package_link(entry.name + '.zip')
+        download_label = "下载此Skill"
         anchor = "component-" + entry.name
         toc_links.append(f'<li><a href="#{anchor}">{html.escape(entry.title)}</a></li>')
         if entry.kind == "workflow":
@@ -181,6 +236,8 @@ def build(root, destination, repository="frederick-kk/wechat-layout-copilot"):
                     if match is None:
                         raise ValueError(f"正文示例缺少main区域 {source_path}")
                     source = '<section class="layout-example">' + match.group(1) + '</section>'
+                if entry.kind == "html":
+                    source = relative_asset_urls(source, source_path, destination)
                 if entry.name == "wechat-xiumi-gallery":
                     parts.append('<h3>' + ("点击切图" if index == 0 else "横向滑动") + '</h3>')
                 parts.append(source)
@@ -189,9 +246,12 @@ def build(root, destination, repository="frederick-kk/wechat-layout-copilot"):
 <h2>{html.escape(entry.title)}</h2>
 <p>{html.escape(entry.description)}</p>
 {content}
-<p class="entry-links"><a href="{instruction_url}">读取使用说明</a><a href="{release_url}{entry.name}.zip">下载此Skill</a><a href="#top">返回目录</a></p>
+<p class="entry-links"><a href="{instruction_url}">读取使用说明</a><a href="{download_url}">{download_label}</a><a href="#top">返回目录</a></p>
 </article>''')
 
+    new_navigation = (f'<p><a href="#component-{NEW_ENTRIES[0].name}">直接看本轮新增 {len(NEW_ENTRIES)} 项 ↓</a></p>'
+                      if NEW_ENTRIES else '')
+    bundle_label = "下载完整组件库" if downloads is not None else "下载已发布组件库"
     page = f'''<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -204,8 +264,9 @@ def build(root, destination, repository="frederick-kk/wechat-layout-copilot"):
 <body><main>
 <header id="top"><h1>公众号排版外挂</h1>
 <p>点一点，滑一滑，选择适合本篇内容的效果。</p>
-<p class="entry-links"><a href="{release_url}wechat-layout-copilot.zip">下载完整组件库</a><a href="{repository_url}">查看GitHub仓库</a></p>
+<p class="entry-links"><a href="{package_link('wechat-layout-copilot.zip')}">{bundle_label}</a><a href="{repository_url}">查看GitHub仓库</a></p>
 <p class="intro">{len(ENTRIES)}个Skill入口。交互组件可直接体验，头像与秀米原生布局列出接入材料和操作指引。</p></header>
+{new_navigation}
 <nav class="toc" aria-label="组件目录"><ol>{''.join(toc_links)}</ol></nav>
 {chr(10).join(fragments)}
 <footer><p>本页展示浏览器效果。秀米保存、公众号同步和手机表现请查对应Skill的实际记录。</p></footer>
@@ -237,6 +298,7 @@ def build(root, destination, repository="frederick-kk/wechat-layout-copilot"):
         "skill_entries": len(ENTRIES),
         "interactive_entries": sum(entry.kind == "interactive" for entry in ENTRIES),
         "layout_entries": sum(entry.kind == "layout" for entry in ENTRIES),
+        "html_entries": sum(entry.kind == "html" for entry in ENTRIES),
         "workflow_entries": sum(entry.kind == "workflow" for entry in ENTRIES),
         "svg_elements": check.svg_count,
         "source_files": len(read_sources),
@@ -251,6 +313,7 @@ def main():
     parser.add_argument("--root", type=Path, help="组件库根目录，默认采用本脚本的上级项目目录")
     parser.add_argument("--out", type=Path, help="预览HTML输出路径，默认采用组件库examples/preview.html")
     parser.add_argument("--repository", default="frederick-kk/wechat-layout-copilot", help="预览页中使用的GitHub仓库，格式owner/name")
+    parser.add_argument("--downloads-dir", type=Path, help="本地ZIP目录，采用相对下载链接")
     args = parser.parse_args()
     root = (args.root or Path(__file__).resolve().parents[1]).resolve()
     destination = (args.out or root / "examples/preview.html").resolve()
@@ -258,7 +321,7 @@ def main():
     try:
         if destination.is_dir():
             raise ValueError("输出路径指向目录，请指定HTML文件")
-        page, result = build(root, destination, args.repository)
+        page, result = build(root, destination, args.repository, args.downloads_dir)
         destination.parent.mkdir(parents=True, exist_ok=True)
         with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", newline="\n", dir=destination.parent, delete=False) as output:
             temporary = Path(output.name)

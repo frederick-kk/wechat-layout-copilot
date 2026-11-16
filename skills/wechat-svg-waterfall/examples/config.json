@@ -1,0 +1,22 @@
+{
+  "title": "一眼看清结果怎么来的",
+  "start": 100,
+  "changes": [
+    {
+      "label": "新增",
+      "value": 60
+    },
+    {
+      "label": "退款",
+      "value": -15
+    },
+    {
+      "label": "复购",
+      "value": 35
+    }
+  ],
+  "unit": "单",
+  "duration": 1.1,
+  "accent": "#A94B21",
+  "background": "#FAF6ED"
+}

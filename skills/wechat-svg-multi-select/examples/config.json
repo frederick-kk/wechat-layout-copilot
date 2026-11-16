@@ -1,0 +1,21 @@
+{
+  "title": "这份素材，哪些需要核对？",
+  "description": "可以选多项，再点提交核对整组答案。",
+  "question": "客户发来资料后，哪些动作合适？",
+  "options": [
+    {
+      "label": "确认资料是否齐全",
+      "correct": true
+    },
+    {
+      "label": "核对交期与页数",
+      "correct": true
+    },
+    {
+      "label": "跳过确认直接做",
+      "correct": false
+    }
+  ],
+  "success": "资料与交付条件都核对好，\n再开始制作。",
+  "retry_message": "先确认资料与交付要求。\n第三项会把缺失的信息带到制作阶段。"
+}

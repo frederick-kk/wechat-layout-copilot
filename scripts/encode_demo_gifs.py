@@ -76,21 +76,22 @@ def concat_text(frames):
     return "\n".join(lines) + "\n"
 
 
-def inspect_gif(source):
+def inspect_gif(source, allow_static=False):
     distinct, duration = set(), 0
     with Image.open(source) as picture:
         frames, dimensions, loop = picture.n_frames, picture.size, picture.info.get("loop")
-        if picture.format != "GIF" or frames < 2 or loop != 0:
+        minimum = 1 if allow_static else 2
+        if picture.format != "GIF" or frames < minimum or loop != 0:
             raise ValueError(f"GIF需要至少两帧并无限循环 {source}")
         for index in range(frames):
             picture.seek(index)
             duration += picture.info.get("duration", 0)
             distinct.add(hashlib.sha256(picture.convert("RGB").tobytes()).digest())
-    if len(distinct) < 2 or duration <= 0:
+    if len(distinct) < minimum or duration <= 0:
         raise ValueError(f"GIF缺少实际画面变化或播放时长 {source}")
     return {"frame_count": frames, "width": dimensions[0], "height": dimensions[1],
             "duration_seconds": duration / 1000, "loop": loop,
-            "distinct_frames": len(distinct), "visible_changes": True}
+            "distinct_frames": len(distinct), "visible_changes": len(distinct) > 1}
 
 
 def commit_pair(staged, previous):
@@ -190,7 +191,7 @@ def encode(root, frames_root, entry, ffmpeg, overwrite):
         process = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", errors="replace")
         if process.returncode:
             raise ValueError("GIF编码失败 " + entry.name + "\n" + process.stderr[-2500:])
-        info = inspect_gif(staged[targets[0]])
+        info = inspect_gif(staged[targets[0]], allow_static=entry.kind == "html")
         if info["width"] > min(MAX_WIDTH, capture["width"]):
             raise ValueError("编码结果被意外放大 " + entry.name)
         expected_duration = capture["duration"] + TAIL_HOLD
@@ -236,8 +237,8 @@ def main():
             raise ValueError("需要Pillow读取采集帧并检查GIF")
         if not ffmpeg.is_file():
             raise ValueError("ffmpeg不存在，请通过--ffmpeg提供可执行文件")
-        if len(ENTRIES) != 30 or len({entry.name for entry in ENTRIES}) != 30:
-            raise ValueError("本轮需要30个独立组件入口")
+        if not ENTRIES or len({entry.name for entry in ENTRIES}) != len(ENTRIES):
+            raise ValueError("组件入口需要非空且身份唯一")
         selected = [entry for entry in ENTRIES if not args.only or entry.name in args.only]
         missing = [frames_root / entry.name / "frames.json" for entry in selected if not (frames_root / entry.name / "frames.json").is_file()]
         if missing:

@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-layout-dialogue",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "9bb32755a86f43dbfbe60dc63e5df34b2287adf691ed3fa08175bd92701d3ab7",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 35,
+  "width": 480,
+  "height": 800,
+  "duration_seconds": 4.38,
+  "loop": 0,
+  "distinct_frames": 1,
+  "visible_changes": false,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 24,
+  "capture_duration_seconds": 3.531054,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "d65089c06a9294a7f2832bfc20bb16e4237d86e12df0668e3c8bcb25b0085ff8",
+  "bytes": 71785,
+  "sha256": "5e32d45eea4f31c2178ed821e44d26d6f6674728413678ae2cee4d3be00d7fa5"
+}

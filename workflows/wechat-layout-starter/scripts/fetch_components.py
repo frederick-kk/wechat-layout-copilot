@@ -90,7 +90,7 @@ def same_folder(existing, staged):
 
 def fetch(components, out_dir):
     if not components or any(not isinstance(slug, str) or slug not in COMPONENTS for slug in components):
-        raise ValueError("请选择当前30款目录中的有效组件ID")
+        raise ValueError("请选择当前目录中的有效组件ID")
     if len(set(components)) != len(components):
         raise ValueError("组件选择重复，请每个组件填写一次")
     out_dir.mkdir(parents=True, exist_ok=True)

@@ -1,22 +1,24 @@
 # 公众号排版外挂
 
-30套组件Skill，先看GIF选效果，再让AI替你排版。
+50套组件Skill，先看示例选效果，再让AI替你排版。
 
-[首次配置下载上手Skill](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-starter.zip) · [读取完整上手流程](workflows/wechat-layout-starter/SKILL.md)
+[首次配置下载上手Skill](https://github.com/frederick-kk/wechat-layout-copilot/releases/download/v0.7.0/wechat-layout-starter.zip) · [读取完整上手流程](workflows/wechat-layout-starter/SKILL.md)
 
 让AI检查环境、学习你的旧稿、引导选择组件，再生成属于你的本地排版Skill。以后提供正文，按个人风格完成排版与草稿保存。
 
-[查看30款品牌GIF演示](https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html) · [下载完整组件库](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-copilot.zip) · [查看原版交互目录](examples/preview.html) · [选择单项Skill](#30个入口)
+[查看50款品牌演示](examples/brand-gallery.html) · [下载完整组件库](https://github.com/frederick-kk/wechat-layout-copilot/releases/download/v0.7.0/wechat-layout-copilot.zip) · [查看原版交互目录](examples/preview.html) · [选择单项Skill](#50个入口)
 
-v0.6.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽Fred的示例风格。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON，下载单项包后即可交给AI修改。
+[直接看本轮新增组件](examples/brand-gallery.html#new-components)
 
-已有600px浏览器操作／播放采集记录30／30项、320／375px布局检查30／30项。头像入口另附[手机微信真实跳转录像](skills/wechat-avatar-profile/examples/real-demo.html)，秀米原生布局提供操作示意。各组件的目标账号保存、同步与手机检查范围见下表。
+v0.7.0提供50款品牌示例，采用纸纹、暖橙和橙帽Fred的示例风格。静态原生排版按实际画面提供静帧或GIF。每项包含可读的Skill、本地HTML模板、独立素材和品牌样式JSON。
+
+已有600px浏览器操作／播放采集记录50／50项、320／375px布局检查50／50项。头像入口另附[手机微信真实跳转录像](skills/wechat-avatar-profile/examples/real-demo.html)，秀米原生布局提供操作示意。各组件的目标账号保存、同步与手机检查范围见下表。
 
 ## 怎么开始
 
 ### 第一步，首次使用先启动上手 Skill
 
-1. [下载上手配置 Skill](https://github.com/frederick-kk/wechat-layout-copilot/releases/latest/download/wechat-layout-starter.zip)。
+1. [下载上手配置 Skill](https://github.com/frederick-kk/wechat-layout-copilot/releases/download/v0.7.0/wechat-layout-starter.zip)。
 2. 完整解压，保留 `wechat-layout-starter` 整个文件夹。
 3. 在 Codex 或能读取本地文件的 AI 工具中新开对话，把解压后的文件夹路径发给它，再复制下面这句话。
 
@@ -26,7 +28,7 @@ v0.6.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽
 
 > 用 $wechat-layout-starter 帮我配置公众号排版。
 
-接下来跟着 AI 的引导操作即可。它会检查已有环境，帮助接通 Ego lite、微信公众平台和秀米，读取你提供的旧文章，再带你从30款效果中选择组件。完成小样微调后，AI会打包你的个人排版 Skill，以后按这套配置处理正文与草稿。
+接下来跟着 AI 的引导操作即可。它会检查已有环境，帮助接通 Ego lite、微信公众平台和秀米，读取你提供的旧文章，再带你从50款效果中选择组件。下载所选单项ZIP或使用完整组件库后，完成小样微调，AI会打包你的个人排版 Skill，以后按这套配置处理正文与草稿。
 
 ### 已有配置时直接使用组件
 
@@ -48,7 +50,7 @@ v0.6.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽
 
 默认自动发现取决于所用AI工具的Skill安装机制。提供文件夹并明确让AI读取，可直接开始使用。
 
-## 30个入口
+## 50个入口
 
 | 组件 | 做什么 | 当前完成范围 |
 |---|---|---|
@@ -82,6 +84,26 @@ v0.6.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽
 | [秀米图集](skills/wechat-xiumi-gallery/SKILL.md) | 横滑HTML、点击SVG图集与原生操作 | 新生成器通过320/375px鼠标检查，新输出的秀米保存待测 |
 | [正文排版](skills/wechat-layout-blocks/SKILL.md) | 标题、步骤、引用、表格、图片图注 | 可生成片段与预览，文字保留、列数及320/375px预览通过 |
 | [秀米 SVG 布局](skills/wechat-xiumi-svg-layout/SKILL.md) | 展开、开窗、掉落、长按与局部热区 | 官方做法与素材清单，各高级效果待逐项实测 |
+| [标签页联动图文](skills/wechat-svg-tabs/SKILL.md) | 切换标签，在同一画面中查看对应图文。 | 浏览器验证通过，平台范围见对应Skill |
+| [分步操作向导](skills/wechat-svg-stepper/SKILL.md) | 依次完成操作步骤，也可返回前一步。 | 浏览器验证通过，平台范围见对应Skill |
+| [多题计分测验](skills/wechat-svg-score-quiz/SKILL.md) | 逐题选择，答完后查看本次得分与反馈。 | 浏览器验证通过，平台范围见对应Skill |
+| [多选统一提交](skills/wechat-svg-multi-select/SKILL.md) | 选择多个选项，再统一提交并查看反馈。 | 浏览器验证通过，平台范围见对应Skill |
+| [勾选清单与进度](skills/wechat-svg-checklist/SKILL.md) | 逐项勾选事项，查看完成进度。 | 浏览器验证通过，平台范围见对应Skill |
+| [点击配对连线](skills/wechat-svg-match-pairs/SKILL.md) | 按两列内容点击配对，查看连线结果。 | 浏览器验证通过，平台范围见对应Skill |
+| [环形目标进度](skills/wechat-svg-progress-ring/SKILL.md) | 用真实目标与完成值展示环形进度。 | 浏览器验证通过，平台范围见对应Skill |
+| [增减瀑布图](skills/wechat-svg-waterfall/SKILL.md) | 按顺序查看各项增减与最终合计。 | 浏览器验证通过，平台范围见对应Skill |
+| [漏斗转化图](skills/wechat-svg-funnel/SKILL.md) | 按阶段展示真实数量与转化关系。 | 浏览器验证通过，平台范围见对应Skill |
+| [雷达能力对比](skills/wechat-svg-radar/SKILL.md) | 在统一量程下比较多个维度的数据。 | 浏览器验证通过，平台范围见对应Skill |
+| [多角色流程泳道](skills/wechat-svg-swimlane/SKILL.md) | 按角色分栏，查看流程交接与当前步骤。 | 浏览器验证通过，平台范围见对应Skill |
+| [文字弹幕墙](skills/wechat-svg-danmaku/SKILL.md) | 播放短句弹幕，保留静态可读内容。 | 浏览器验证通过，平台范围见对应Skill |
+| [多页翻书](skills/wechat-svg-book/SKILL.md) | 按页翻看图文，再返回前页。 | 浏览器验证通过，平台范围见对应Skill |
+| [卡片排序题](skills/wechat-svg-word-order/SKILL.md) | 按顺序选择卡片，排完三项查看结果。 | 浏览器验证通过，平台范围见对应Skill |
+| [横向宽表](skills/wechat-layout-wide-table/SKILL.md) | 在窄屏中横向查看完整表格。 | 原生HTML示例，发布按目标平台检查 |
+| [访谈对话气泡](skills/wechat-layout-dialogue/SKILL.md) | 用原生文字呈现人物对话与问答。 | 原生HTML示例，发布按目标平台检查 |
+| [图文边注](skills/wechat-layout-annotations/SKILL.md) | 把图片、注释与对应正文排在一起。 | 原生HTML示例，发布按目标平台检查 |
+| [杂志跨栏图文](skills/wechat-layout-magazine/SKILL.md) | 通过图文层级和跨栏组织长内容。 | 原生HTML示例，发布按目标平台检查 |
+| [纵向FAQ展开](skills/wechat-xiumi-faq/SKILL.md) | 逐项展开常见问题，保持纵向阅读。 | 原生HTML示例，发布按目标平台检查 |
+| [视频封面卡片](skills/wechat-xiumi-video-card/SKILL.md) | 用封面与原生视频入口承接播放内容。 | 原生HTML示例，发布按目标平台检查 |
 
 ## 总预览复核
 
@@ -101,9 +123,13 @@ v0.6.0提供全部30款品牌演示与对应GIF，采用纸纹、暖橙和橙帽
 
 HTML 示例下载后可在浏览器打开。微信原生名片的点击行为，需要在公众号环境中检查。
 
-根目录 [index.html](index.html) 转到交互预览。修改组件示例后，执行 `python scripts/build_preview.py` 重建目录页面。为自己的仓库构建时，可用 `--repository owner/name` 更新页面中的仓库与下载链接。
+根目录 [index.html](index.html) 打开组件总览。完整整包解压后可直接打开，组件文件已经包含在包内。
 
-需要生成发布下载包时，执行 `python scripts/build_downloads.py`，默认输出到 `dist/`。每个单项ZIP包含完整Skill目录，整包ZIP包含总入口和全部组件。重复构建时用 `--overwrite` 明确替换已生成的下载包。
+公开版先执行 `python scripts/build_preview.py` 重建原版预览，再执行 `python scripts/build_brand_catalog.py --avatar assets/brand/avatar.webp --overwrite` 重建品牌目录。页面采用v0.7.0公开下载地址。使用 `python scripts/build_downloads.py --out-dir dist/v0.7.0` 生成本次52个发布包。
+
+其他仓库可用 `--repository owner/name` 或品牌目录的 `--download-base` 指定已发布地址。本地预览可用 `--downloads-dir` 指向已有ZIP目录。
+
+`build_downloads.py` 默认输出到 `dist/`。每个单项ZIP包含完整Skill目录，整包ZIP包含总入口和全部组件。采用本地下载按钮时，可用 `--portable-local` 将整包内的ZIP按钮改为已包含的Skill入口。重建预览后再加 `--overwrite` 重打下载包，使包内页面与当前目录一致。
 
 ## 调研与文章准备
 

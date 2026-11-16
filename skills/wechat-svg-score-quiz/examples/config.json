@@ -1,0 +1,63 @@
+{
+  "title": "PPT 交付小测验",
+  "description": "连答三题，每题 1 分，结果只对应本次选择。",
+  "questions": [
+    {
+      "question": "客户资料还没收齐，先做什么？",
+      "choices": [
+        {
+          "label": "先确认缺少哪些资料",
+          "correct": true
+        },
+        {
+          "label": "直接把整套做完",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "question": "做全案 PPT，要确认什么？",
+      "choices": [
+        {
+          "label": "只有章节名称的大纲",
+          "correct": false
+        },
+        {
+          "label": "每页 PPT 上的文字内容",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "question": "终稿交付前，还要做什么？",
+      "choices": [
+        {
+          "label": "保存重开并核对内容",
+          "correct": true
+        },
+        {
+          "label": "只看 AI 回复已完成",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "title": "先把确认流程补上",
+      "body": "这三题对应资料、内容和交付检查。\n回看后再答一轮。"
+    },
+    {
+      "title": "已经抓住一个关键点",
+      "body": "再关注资料齐全、每页文字确认，\n以及交付前的实际检查。"
+    },
+    {
+      "title": "离完整流程还差一步",
+      "body": "找出刚才漏掉的确认节点，\n再把三件事连起来看。"
+    },
+    {
+      "title": "三个关键点都抓住了",
+      "body": "资料收齐、每页文字确认、\n保存重开检查，继续用到实际项目里。"
+    }
+  ]
+}

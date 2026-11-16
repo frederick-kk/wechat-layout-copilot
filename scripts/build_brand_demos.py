@@ -1,19 +1,21 @@
-"""Build thirty Fred-branded demonstrations from the existing component logic."""
+"""Build Fred-branded demonstrations from the registered component logic."""
 
 import argparse
 import base64
 import colorsys
 import html
 import json
+import os
 from pathlib import Path
 import re
 import shutil
 import uuid
 import xml.etree.ElementTree as ET
 
-from build_preview import ENTRIES
+from build_preview import ENTRIES, NEW_ENTRIES
 import brand_cards
 import brand_effects
+import brand_new_components
 
 NS = 'http://www.w3.org/2000/svg'
 ET.register_namespace('', NS)
@@ -175,6 +177,8 @@ def main():
     for entry in ENTRIES:
         if args.only and entry.name not in args.only:
             if entry.name not in previous:
+                if entry in NEW_ENTRIES:
+                    continue
                 raise ValueError('Build all demonstrations before a partial rebuild')
             records.append(previous[entry.name])
             continue
@@ -185,7 +189,12 @@ def main():
             raise ValueError('Output exists ' + entry.name)
         art = {key:'brand-assets/' + path.name for key,path in assets.items()}
         uid = 'brand_' + uuid.uuid4().hex
-        if entry.kind == 'workflow':
+        native_html = entry.kind == 'html'
+        if native_html:
+            source = examples / entry.fragments[0]
+            fragment = source.read_text(encoding='utf-8')
+            svg = None
+        elif entry.kind == 'workflow':
             svg = workflow_svg(entry.name, art, uid)
         elif entry.kind == 'layout':
             svg = None
@@ -206,24 +215,45 @@ def main():
                 add_paper(svg, art)
                 if entry.name == 'wechat-svg-drawline':
                     svg = drawline_svg(svg, art)
+                elif entry in NEW_ENTRIES:
+                    brand_new_components.augment_svg(svg, art)
                 elif not (brand_cards.augment(entry.name,svg,art,uid) or brand_effects.augment(entry.name,svg,art,uid)):
                     raise ValueError('No brand treatment ' + entry.name)
         height = 860
-        content = body_demo(art) if svg is None else wrap_svg(svg,art,uid)[0]
+        if native_html:
+            content = brand_new_components.html_demo(fragment, art)
+            declared = re.search(r'data-demo-height\s*=\s*["\'](\d+)["\']', fragment)
+            height = int(declared.group(1)) + 100 if declared else 1000
+            if not 200 <= height <= 1200:
+                raise ValueError('HTML demonstration height must fit the capture viewport ' + entry.name)
+        else:
+            content = body_demo(art) if svg is None else wrap_svg(svg,art,uid)[0]
         if svg is not None:
             height = float(svg.get('viewBox').split()[3]) + 100
         if entry.name == 'wechat-xiumi-gallery':
             content += '<div id="gallery-scroll" aria-label="横向图片图集">' + ''.join(f'<img src="{art[key]}" alt="{caption}">' for key,caption in [('idea','灵感'),('studio','制作'),('launch','完成')]) + '</div>'
             height += 220
-        referenced = set(re.findall(r'brand-assets/([a-z-]+\.webp)', content))
+        referenced = set(re.findall(r'brand-assets/([A-Za-z0-9_.-]+\.webp)', content))
         local_assets = examples / 'brand-assets'
         local_assets.mkdir(exist_ok=True)
         for filename in referenced:
             shutil.copy2(root / 'assets/brand' / filename, local_assets / filename)
-        page = f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(entry.title)} · Fred品牌演示</title><style>{STYLE}</style></head><body><main id="demo-stage" data-demo-kind="{entry.kind}">{content}</main><nav class="links"><a href="https://frederick-kk.github.io/wechat-layout-copilot/examples/brand-gallery.html">全部30款</a><a href="../SKILL.md">读取Skill</a><a href="demo.gif">查看GIF</a></nav></body></html>'''
+        page = f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(entry.title)} · Fred品牌演示</title><style>{STYLE}</style></head><body><main id="demo-stage" data-demo-kind="{entry.kind}">{content}</main><nav class="links"><a href="../SKILL.md">读取本组件Skill</a><a href="demo.gif">查看GIF</a><a href="https://github.com/frederick-kk/wechat-layout-copilot">查看已公开仓库</a></nav></body></html>'''
         outputs[0].write_text(content, encoding='utf-8', newline='\n')
         outputs[1].write_text(page, encoding='utf-8', newline='\n')
-        records.append({'slug':entry.name,'title':entry.title,'kind':entry.kind,'canvas':[600,height],'assets':sorted(referenced),'preview':str(outputs[1].relative_to(root)).replace('\\','/'),'gif':str((examples/'demo.gif').relative_to(root)).replace('\\','/'),'status':'demo-built; GIF capture pending'})
+        record = {'slug':entry.name,'title':entry.title,'kind':entry.kind,'canvas':[600,height],'assets':sorted(referenced),'preview':str(outputs[1].relative_to(root)).replace('\\','/'),'gif':str((examples/'demo.gif').relative_to(root)).replace('\\','/'),'status':'demo-built; GIF capture pending'}
+        if native_html:
+            dependencies = set()
+            for match in re.finditer(r'\b(?:src|poster)\s*=\s*["\']([^"\']+)["\']', content, re.I):
+                value = html.unescape(match.group(1))
+                if value.startswith(('data:', 'https:', 'http:', '//', '#')):
+                    continue
+                dependency = (examples / value).resolve()
+                if not dependency.is_relative_to(examples.parent.resolve()) or not dependency.is_file():
+                    raise ValueError('Native HTML material is missing or outside the component ' + value)
+                dependencies.add(Path(os.path.relpath(dependency, examples)).as_posix())
+            record['dependencies'] = sorted(dependencies)
+        records.append(record)
     (root / 'assets/brand/demo-manifest.json').write_text(json.dumps(records, ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps({'components':len(records),'assets':len(assets),'manifest':'assets/brand/demo-manifest.json'},ensure_ascii=False))
 

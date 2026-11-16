@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-svg-progress-ring",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "7bd931635f296be1b82107b35571372dbb8a99b863471c89ec53c536f5d47838",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/launch.webp": "b75d10aaa5a2db25e5c9c4986300208500a95ea4396956070ac923892ed29fb8",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 41,
+  "width": 480,
+  "height": 696,
+  "duration_seconds": 5.13,
+  "loop": 0,
+  "distinct_frames": 8,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 23,
+  "capture_duration_seconds": 4.271941,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "0d3202a83fd7eedbf8c82cc7b8c761a0c4a0726b0a9defe1f22a9ec37acd216e",
+  "bytes": 168729,
+  "sha256": "83ab95fd626fac18ee1eda52c2ba6075dd928ddab91fb5d1975ed2aba1cb19b3"
+}

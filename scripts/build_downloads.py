@@ -2,8 +2,10 @@
 
 import argparse
 import hashlib
+import html
 import json
 import os
+import posixpath
 from pathlib import Path
 import re
 import tempfile
@@ -111,25 +113,68 @@ def temporary_file(directory, suffix):
     return Path(handle.name)
 
 
-def archive_file(path, members, snapshot):
+def portable_catalog_content(source, content, root):
+    """Resolve local package buttons to already included files inside a bundle."""
+    if source.suffix.lower() not in {".html", ".htm", ".md"}:
+        return content
+    relative = source.relative_to(root)
+
+    def included_target(url):
+        parsed = urlsplit(html.unescape(url))
+        if parsed.scheme or parsed.netloc or not parsed.path.endswith('.zip'):
+            return None
+        slug = Path(unquote(parsed.path)).stem
+        if slug == BUNDLE_NAME:
+            target, label = Path('SKILL.md'), '整库已包含 · 打开总入口'
+        elif (root / 'skills' / slug / 'SKILL.md').is_file():
+            target, label = Path('skills') / slug / 'SKILL.md', '组件已包含 · 打开Skill'
+        elif (root / 'workflows' / slug / 'SKILL.md').is_file():
+            target, label = Path('workflows') / slug / 'SKILL.md', '上手配置已包含 · 打开Skill'
+        else:
+            return None
+        link = posixpath.relpath(target.as_posix(), relative.parent.as_posix())
+        return link, label
+
+    text = content.decode('utf-8')
+    if source.suffix.lower() == '.md':
+        def markdown_link(match):
+            target = included_target(match.group(2))
+            return '[' + target[1] + '](' + target[0] + ')' if target else match.group(0)
+        text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', markdown_link, text)
+    else:
+        def html_link(match):
+            target = included_target(match.group(3))
+            if target is None:
+                return match.group(0)
+            before = re.sub(r'\s+download(?:\s*=\s*(?:"[^"]*"|\x27[^\x27]*\x27))?', '', match.group(1), flags=re.I)
+            after = re.sub(r'\s+download(?:\s*=\s*(?:"[^"]*"|\x27[^\x27]*\x27))?', '', match.group(4), flags=re.I)
+            return '<a' + before + 'href="' + html.escape(target[0], quote=True) + '"' + after + '>' + target[1] + '</a>'
+        text = re.sub(r'<a\b([^>]*?)href\s*=\s*(["\x27])(.*?)\2([^>]*)>(.*?)</a>', html_link, text, flags=re.I | re.S)
+    return text.encode('utf-8')
+
+
+def archive_file(path, members, snapshot, transform=None):
+    expected = {}
     with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for name, source in members:
             entry = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
             entry.compress_type = zipfile.ZIP_DEFLATED
             entry.create_system = 3
             entry.external_attr = 0o100644 << 16
-            archive.writestr(entry, snapshot[source])
+            content = transform(source, snapshot[source]) if transform else snapshot[source]
+            expected[name] = content
+            archive.writestr(entry, content)
     with zipfile.ZipFile(path) as archive:
         if archive.testzip() is not None:
             raise ValueError(f"压缩包校验失败 {path.name}")
         if len(archive.namelist()) != len(members):
             raise ValueError(f"压缩包文件数量不一致 {path.name}")
         for name, source in members:
-            if archive.read(name) != snapshot[source]:
+            if archive.read(name) != expected[name]:
                 raise ValueError(f"压缩包内容与来源不一致 {name}")
 
 
-def build(root, requested, overwrite=False):
+def build(root, requested, overwrite=False, portable_local=False):
     root = root.resolve()
     if not root.is_dir():
         raise ValueError("组件库根目录不存在")
@@ -165,7 +210,10 @@ def build(root, requested, overwrite=False):
         records = []
         for (name, members), target in zip(plans, targets):
             staged[target] = temporary_file(destination, ".zip.part")
-            archive_file(staged[target], members, snapshot)
+            transform = None
+            if portable_local and name == BUNDLE_NAME + '.zip':
+                transform = lambda source, content: portable_catalog_content(source, content, root)
+            archive_file(staged[target], members, snapshot, transform)
             generated[target] = digest(staged[target])
             records.append({"name": name, "bytes": staged[target].stat().st_size,
                             "sha256": generated[target], "files": len(members)})
@@ -185,7 +233,7 @@ def build(root, requested, overwrite=False):
         component_count = sum(path.name == "SKILL.md" and path.parent.parent == root / "skills" for path in files)
         return {"out_dir": str(destination), "components": component_count,
                 "workflows": len(plans) - component_count - 1,
-                "bundle": BUNDLE_NAME + ".zip", "files": records}
+                "bundle": BUNDLE_NAME + ".zip", "portable_local": portable_local, "files": records}
     except BaseException as error:
         recovery = []
         for target in reversed(committed):
@@ -223,11 +271,12 @@ def main():
     parser.add_argument("--root", type=Path, help="组件库根目录，默认采用本脚本的上级项目目录")
     parser.add_argument("--out-dir", type=Path, help="输出目录，默认采用组件库dist目录")
     parser.add_argument("--overwrite", action="store_true", help="原子替换同名下载包")
+    parser.add_argument("--portable-local", action="store_true", help="整包内本地ZIP下载按钮改为已包含的Skill入口")
     args = parser.parse_args()
     root = (args.root or Path(__file__).resolve().parents[1]).resolve()
     destination = args.out_dir or root / "dist"
     try:
-        result = build(root, destination, args.overwrite)
+        result = build(root, destination, args.overwrite, args.portable_local)
     except (OSError, ValueError) as error:
         parser.error(str(error))
     print(json.dumps(result, ensure_ascii=False, separators=(",", ":")))

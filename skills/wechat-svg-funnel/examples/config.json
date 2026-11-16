@@ -1,0 +1,25 @@
+{
+  "title": "每一步转化，放在同一张图",
+  "stages": [
+    {
+      "label": "看到内容",
+      "value": 1000
+    },
+    {
+      "label": "打开详情",
+      "value": 600
+    },
+    {
+      "label": "完成咨询",
+      "value": 180
+    },
+    {
+      "label": "确认合作",
+      "value": 36
+    }
+  ],
+  "unit": "人",
+  "duration": 1.2,
+  "accent": "#A94B21",
+  "background": "#FAF6ED"
+}

@@ -1,6 +1,7 @@
-"""Build the thirty-component Fred gallery from finished branded demos and GIFs."""
+"""Build the Fred gallery from registered branded demos and GIFs."""
 
 import argparse
+import hashlib
 import html
 import json
 import os
@@ -9,12 +10,12 @@ import struct
 import tempfile
 from urllib.parse import quote, unquote, urlsplit
 
-from build_preview import CatalogCheck, ENTRIES
+from build_preview import CatalogCheck, ENTRIES, NEW_ENTRIES
 
 
 PUBLISHED_DOWNLOADS = (
     "https://github.com/frederick-kk/wechat-layout-copilot/"
-    "releases/download/v0.6.0/"
+    "releases/download/v0.7.0/"
 )
 
 STYLE = """
@@ -49,6 +50,8 @@ figure{margin:0}
 .operation-gif summary{font-size:14px;margin-bottom:12px}
 figcaption{font-size:13px;line-height:1.7;margin-top:10px;color:var(--muted)}
 .links{display:flex;flex-wrap:wrap;gap:8px 20px;border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:14px}
+.new-badge{display:inline-block;margin-left:10px;padding:2px 9px;border-radius:20px;background:#f4ddbf;color:#854019;font-size:12px;vertical-align:middle}
+.new-section{grid-column:1/-1;margin:24px 0 0;padding:18px 0;border-top:2px solid var(--accent);scroll-margin-top:20px}
 .links a:first-child{font-weight:700}
 .pending{display:flex;align-items:center;justify-content:center;min-height:280px;background:#f0e7d8;color:#6a5141;padding:24px}
 footer{border-top:1px solid var(--line);padding-top:20px;margin-top:56px;color:var(--muted);font-size:14px}
@@ -77,7 +80,7 @@ def skip_blocks(data, position, source):
     raise ValueError(f"GIF 数据块不完整 {source}")
 
 
-def gif_info(source):
+def gif_info(source, allow_static=False):
     """Read dimensions and count actual image frames without an image dependency."""
     data = source.read_bytes()
     if len(data) < 14 or data[:6] not in {b"GIF87a", b"GIF89a"}:
@@ -92,7 +95,7 @@ def gif_info(source):
         marker = data[position]
         position += 1
         if marker == 0x3B:
-            if frames < 2:
+            if frames < (1 if allow_static else 2):
                 raise ValueError(f"动图至少需要两帧 {source}")
             return {"width": width, "height": height, "frames": frames}
         if marker == 0x21:
@@ -126,8 +129,11 @@ def download_link(entry, destination, downloads, download_base):
 
 def build(root, destination, downloads=None, download_base=None, avatar=None, allow_missing=False, overwrite=False):
     root, destination = root.resolve(), destination.resolve()
-    if len(ENTRIES) != 30 or len({entry.name for entry in ENTRIES}) != 30:
-        raise ValueError("本轮目录需要恰好30个独立组件入口")
+    if destination.suffix.lower() not in {".html", ".htm"}:
+        raise ValueError("目录输出需要使用.html或.htm文件")
+    count = len(ENTRIES)
+    if not count or len({entry.name for entry in ENTRIES}) != count:
+        raise ValueError("组件入口需要非空且身份唯一")
     if destination.suffix.lower() not in {".html", ".htm"}:
         raise ValueError("预览输出需要使用.html或.htm文件")
     if downloads is not None and download_base:
@@ -135,6 +141,19 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
     downloads = downloads.resolve() if downloads is not None else None
     avatar = avatar.resolve() if avatar is not None else None
     required, records, articles, directory = [], [], [], []
+    new_names = {entry.name for entry in NEW_ENTRIES}
+
+    def header_download(filename):
+        if downloads is None:
+            return (download_base or PUBLISHED_DOWNLOADS).rstrip('/') + '/' + filename
+        archive = downloads / filename
+        if not archive.is_file() and not allow_missing:
+            raise ValueError("本地下载包缺失 " + str(archive))
+        required.append(archive)
+        return relative_url(archive, destination)
+
+    starter_download = header_download("wechat-layout-starter.zip")
+    bundle_download = header_download("wechat-layout-copilot.zip")
     if avatar is not None:
         if not avatar.is_relative_to(root):
             raise ValueError("请把头像放到组件库内，再生成可携带的目录预览")
@@ -153,7 +172,13 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
         anchor = "component-" + entry.name
         title = html.escape(entry.title)
         directory.append(f'<li><a href="#{anchor}">{title}</a></li>')
-        info = gif_info(gif) if gif.is_file() else None
+        info = gif_info(gif, allow_static=entry.kind == "html") if gif.is_file() else None
+        visible_changes = None
+        metadata_path = folder / "examples/demo-gif.json"
+        if info is not None and metadata_path.is_file():
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            if metadata.get("sha256") == hashlib.sha256(gif.read_bytes()).hexdigest() and isinstance(metadata.get("visible_changes"), bool):
+                visible_changes = metadata["visible_changes"]
         if info is None:
             image = '<p class="pending">动图制作中</p>'
         else:
@@ -171,6 +196,8 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
             links.append(f'<a href="{html.escape(relative_url(recording_page, destination), quote=True)}">打开真实演示</a>')
         if preview.is_file():
             preview_label = "打开操作示意" if entry.kind == "workflow" else "打开可操作演示"
+            if entry.kind == "html":
+                preview_label = "打开原生排版示例"
             links.append(f'<a href="{html.escape(relative_url(preview, destination), quote=True)}">{preview_label}</a>')
         if skill.is_file():
             links.append(f'<a href="{html.escape(relative_url(skill, destination), quote=True)}">读取 Skill</a>')
@@ -180,6 +207,10 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
         if entry.name == "wechat-xiumi-gallery":
             description = "切换或横向浏览配图，把几张作品放在同一个位置。"
         caption = '<figcaption>操作示意</figcaption>' if entry.kind == "workflow" else ""
+        if entry.kind == "html":
+            caption = '<figcaption>原生排版示例 · 发布时核对目标平台入口</figcaption>'
+            if visible_changes is False:
+                caption = '<figcaption>原生排版静态示例 · 文字与配图可替换</figcaption>'
         media = f'<figure>{image}{caption}</figure>'
         if has_recording:
             video_url = html.escape(relative_url(recording, destination), quote=True)
@@ -191,34 +222,41 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
                 '<figcaption>手机微信真实跳转 · 4.13秒完整原片</figcaption></figure>'
                 f'<details class="operation-gif"><summary>查看操作示意GIF</summary>{media}</details>'
             )
+        if NEW_ENTRIES and entry.name == NEW_ENTRIES[0].name:
+            articles.append(f'<header class="new-section" id="new-components"><h2>本轮新增 {len(NEW_ENTRIES)} 项</h2><p>SVG互动、数据图表与原生图文排版。</p></header>')
+        badge = '<span class="new-badge">本轮新增</span>' if entry.name in new_names else ''
         articles.append(
-            f'<article id="{anchor}"><h2>{title}</h2>'
+            f'<article id="{anchor}"><h2>{title}{badge}</h2>'
             f'<p class="purpose">{html.escape(description)}</p>{media}'
             f'<div class="links">{"".join(links)}</div></article>'
         )
-        records.append({"component": entry.name, "kind": entry.kind, "gif": info, "missing": [str(path) for path in missing]})
+        records.append({"component": entry.name, "kind": entry.kind, "gif": info, "visible_changes": visible_changes, "missing": [str(path) for path in missing]})
     protected = {path.resolve() for path in required}
     protected.update({Path(__file__).resolve(), root / "README.md", root / "SKILL.md", root / "index.html"})
+    protected.update(path.resolve() for path in (root / "skills").rglob("*.html"))
     if destination in protected:
         raise ValueError("目录输出不能覆盖组件输入文件")
     if destination.exists() and not overwrite:
         raise ValueError("目录已存在，请另选路径或使用--overwrite")
     avatar_html = f'<img class="avatar" src="{html.escape(relative_url(avatar, destination), quote=True)}" width="88" height="88" alt="Fred 橙帽头像">' if avatar is not None and avatar.is_file() else ""
+    bundle_label = "下载全部组件" if downloads is not None or download_base else "下载已发布组件库"
     page = (
         '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        f'<title>公众号排版外挂 · 30款组件与GIF演示</title><style>{STYLE}</style></head>'
+        f'<title>公众号排版外挂 · {count}款组件与GIF演示</title><style>{STYLE}</style></head>'
         '<body><main id="top"><header><div class="identity">' + avatar_html +
-        '<div><h1>公众号排版外挂</h1><p>小鱼FRED · 30个组件，先看动图，再挑一个交给 AI。纸纹、暖橙和橙帽 Fred，贯穿每一段演示。</p></div>'
-        '</div><p class="header-links"><a href="' + html.escape((download_base or PUBLISHED_DOWNLOADS).rstrip('/') + '/wechat-layout-starter.zip', quote=True) + '">下载上手配置Skill</a> · <a href="' + html.escape((download_base or PUBLISHED_DOWNLOADS).rstrip('/') + '/wechat-layout-copilot.zip', quote=True) + '">下载全部组件</a> · <a href="https://github.com/frederick-kk/wechat-layout-copilot">查看GitHub仓库</a></p></header><details class="directory"><summary>按名称查找30个组件</summary>'
+        f'<div><h1>公众号排版外挂</h1><p>小鱼FRED · {count}个组件，先看动图，再挑一个交给 AI。纸纹、暖橙和橙帽 Fred，贯穿每一段演示。</p></div>'
+        + ('<p>v0.7.0 · 本地下载目录</p>' if downloads is not None else '') +
+        (f'<p><a href="#new-components">直接看本轮新增 {len(NEW_ENTRIES)} 项 ↓</a></p>' if NEW_ENTRIES else '') +
+        '</div><p class="header-links"><a href="' + html.escape(starter_download, quote=True) + '">下载上手配置Skill</a> · <a href="' + html.escape(bundle_download, quote=True) + '">' + bundle_label + '</a> · <a href="https://github.com/frederick-kk/wechat-layout-copilot">查看GitHub仓库</a></p></header><details class="directory"><summary>按名称查找' + str(count) + '个组件</summary>'
         '<nav aria-label="全部组件目录"><ol>' + "".join(directory) + '</ol></nav></details>'
-        '<section class="gallery" aria-label="30款组件GIF演示">' + "".join(articles) + '</section>'
+        '<section class="gallery" aria-label="' + str(count) + '款组件GIF演示">' + "".join(articles) + '</section>'
         '<footer><p>头像跳转附有用户提供的手机微信实录，秀米原生布局提供操作示意。按对应 Skill 替换正文和配图后，在目标账号中核对保存、同步和手机效果。</p>'
         '<a href="#top">返回目录</a></footer></main></body></html>'
     )
     check = CatalogCheck()
     check.feed(page)
-    if check.article_count != 30 or len(check.ids) != len(set(check.ids)) or check.has_script:
+    if check.article_count != count or len(check.ids) != len(set(check.ids)) or check.has_script:
         raise ValueError("目录数量、实例标识或页面脚本检查失败")
     for target in check.links:
         parsed = urlsplit(target)
@@ -240,7 +278,11 @@ def build(root, destination, downloads=None, download_base=None, avatar=None, al
     finally:
         if temporary is not None:
             temporary.unlink(missing_ok=True)
-    return {"output": str(destination), "components": len(records), "animated_gifs": sum(row["gif"] is not None for row in records), "allow_missing": allow_missing, "entries": records}
+    return {"output": str(destination), "components": len(records),
+            "gif_files": sum(row["gif"] is not None for row in records),
+            "animated_gifs": sum(row["gif"] is not None and row["visible_changes"] is not False for row in records),
+            "static_layout_gifs": sum(row["visible_changes"] is False for row in records),
+            "allow_missing": allow_missing, "entries": records}
 
 
 def main():

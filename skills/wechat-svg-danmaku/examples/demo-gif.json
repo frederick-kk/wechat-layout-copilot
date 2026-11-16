@@ -1,0 +1,26 @@
+{
+  "slug": "wechat-svg-danmaku",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "580dfc983953c039ad06e69be8da5aac48aabd9877f5bedc50285324bfb03c4e",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071",
+    "brand-assets/studio.webp": "188cd2bea7b2bac0f62e69d7af80680a58bbf107792ef1e9dd994bb4ad434f1e"
+  },
+  "play": "component-demo",
+  "frame_count": 63,
+  "width": 480,
+  "height": 661,
+  "duration_seconds": 7.88,
+  "loop": 0,
+  "distinct_frames": 30,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 36,
+  "capture_duration_seconds": 7.103241,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "780751ce9a4c1293cc2af57ee1c3aa6c1eae7712461769424971072e85ca41f8",
+  "bytes": 796044,
+  "sha256": "13e4602b00861c8edef6de8a3357737d102538f19430325476b7abf28a2ec48a"
+}

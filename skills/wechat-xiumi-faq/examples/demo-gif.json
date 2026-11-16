@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-xiumi-faq",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "588d60c4c2431e9481a6f1c4bec810368ca375802f18583e9dd1d3d7bce223aa",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 53,
+  "width": 480,
+  "height": 800,
+  "duration_seconds": 6.63,
+  "loop": 0,
+  "distinct_frames": 7,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 33,
+  "capture_duration_seconds": 5.800052999999999,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "ef712fe20addbfaa28b76ca760e3a1dce0c731cc73347f70d21c43db58a7b9a2",
+  "bytes": 187561,
+  "sha256": "7961ddb2c8a9f8effed2a429a92a7a61c4ecac761906d76938f1e8115b9ec0ae"
+}

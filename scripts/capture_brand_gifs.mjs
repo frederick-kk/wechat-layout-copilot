@@ -42,6 +42,26 @@ const PLANS = {
   'wechat-layout-blocks': [wheel('#reading-scroll', 0, 480, 0.9), wheel('#reading-scroll', 0, 480, 0.9), wheel('#reading-scroll', 0, 480, 0.9), wheel('#reading-scroll', 0, -1440, 0.9)],
   'wechat-avatar-profile': [tap('[data-workflow-next="0"]', 0.9), tap('[data-workflow-next="1"]', 0.9), tap('[data-workflow-next="2"]', 0.9)],
   'wechat-xiumi-svg-layout': [tap('[data-workflow-next="0"]', 0.9), tap('[data-workflow-next="1"]', 0.9), tap('[data-workflow-next="2"]', 0.9)],
+  'wechat-svg-tabs': [tap('[data-action="select-1"]', 1), tap('[data-action="select-2"]', 1), tap('[data-action="select-0"]', 0.8)],
+  'wechat-svg-stepper': [tap('[data-action="next"]', 0.9), tap('[data-action="next"]', 0.9), tap('[data-action="finish"]', 1), tap('[data-action="restart"]', 0.8)],
+  'wechat-svg-score-quiz': [tap('[data-action="answer-0"]', 0.9), tap('[data-action="answer-1"]', 0.9), tap('[data-action="answer-0"]', 1.1), tap('[data-action="restart"]', 0.8)],
+  'wechat-svg-multi-select': [tap('[data-action="toggle-0"]', 0.65), tap('[data-action="toggle-1"]', 0.65), tap('[data-action="submit"]', 1.1), tap('[data-action="retry"]', 0.8)],
+  'wechat-svg-checklist': [tap('[data-action="toggle-0"]', 0.8), tap('[data-action="toggle-1"]', 0.8), tap('[data-action="toggle-2"]', 1), tap('[data-action="toggle-1"]', 0.7)],
+  'wechat-svg-match-pairs': [tap('[data-action="left-0"]', 0.45), tap('[data-action="right-1"]', 0.75), tap('[data-action="left-1"]', 0.45), tap('[data-action="right-2"]', 0.75), tap('[data-action="left-2"]', 0.45), tap('[data-action="right-0"]', 0.9), tap('[data-action="restart"]', 0.7)],
+  'wechat-svg-progress-ring': [tap('[data-action="play"]', 2.2), tap('[data-action="reset"]', 0.7)],
+  'wechat-svg-waterfall': [tap('[data-action="play"]', 2.5), tap('[data-action="reset"]', 0.7)],
+  'wechat-svg-funnel': [tap('[data-action="play"]', 2.5), tap('[data-action="reset"]', 0.7)],
+  'wechat-svg-radar': [tap('[data-action="play"]', 2.5), tap('[data-action="reset"]', 0.7)],
+  'wechat-svg-swimlane': [tap('[data-action="step"][data-step="1"]', 1.3), tap('[data-action="reset"]', 0.8)],
+  'wechat-svg-danmaku': [tap('[data-action="play"]', 3.2), tap('[data-action="stop"]', 0.7), tap('[data-action="play"]', 1.6)],
+  'wechat-svg-book': [tap('[data-action="next"][data-page="0"]', 1), tap('[data-action="next"][data-page="1"]', 1), tap('[data-action="prev"][data-page="2"]', 1), tap('[data-action="home"][data-page="1"]', 0.8)],
+  'wechat-svg-word-order': [tap('[data-action="pick-1"]', 0.7), tap('[data-action="pick-2"]', 0.7), tap('[data-action="pick-0"]', 1.2), tap('[data-action="restart"]', 0.8)],
+  'wechat-layout-wide-table': [wheel('[data-action="scroll-table"]', 480, 0, 1), wheel('[data-action="scroll-table"]', -480, 0, 0.8)],
+  'wechat-layout-dialogue': [{ type: 'auto', seconds: 2.3 }],
+  'wechat-layout-annotations': [{ type: 'auto', seconds: 2.3 }],
+  'wechat-layout-magazine': [{ type: 'auto', seconds: 2.3 }],
+  'wechat-xiumi-faq': [tap('details[data-action="faq-item"]:nth-of-type(1) > summary', 0.7), tap('details[data-action="faq-item"]:nth-of-type(2) > summary', 0.7), tap('details[data-action="faq-item"]:nth-of-type(3) > summary', 0.9), tap('details[data-action="faq-item"]:nth-of-type(1) > summary', 0.5), tap('details[data-action="faq-item"]:nth-of-type(2) > summary', 0.5), tap('details[data-action="faq-item"]:nth-of-type(3) > summary', 0.5)],
+  'wechat-xiumi-video-card': [tap('video[data-action="video-player"]', 3), tap('video[data-action="video-player"]', 0.7)],
 };
 
 async function existingCapture(filename) {
@@ -91,7 +111,7 @@ async function actionablePoint(page, selector) {
 
 async function recordOne(page, entry, repo, framesRoot, overwrite) {
   const exampleDirectory = path.join(repo, 'skills', entry.slug, 'examples');
-  const dependencies = ['brand-preview.html', ...entry.assets.map(file => 'brand-assets/' + file)];
+  const dependencies = [...new Set(['brand-preview.html', ...entry.assets.map(file => 'brand-assets/' + file), ...(entry.dependencies || [])])];
   const sourceHashes = {};
   for (const file of dependencies) sourceHashes[file] = createHash('sha256').update(await fs.readFile(path.join(exampleDirectory, file))).digest('hex');
   const componentDirectory = path.join(framesRoot, entry.slug);
@@ -109,6 +129,11 @@ async function recordOne(page, entry, repo, framesRoot, overwrite) {
   await page.goto(pathToFileURL(path.join(repo, entry.preview)).href);
   await page.waitForSelector('#demo-stage', { state: 'visible' });
   await page.waitForLoadState();
+  if (entry.kind === 'html') {
+    await page.evaluate(height => {
+      document.querySelector('#demo-stage').style.minHeight = height + 'px';
+    }, Math.ceil(entry.canvas[1]));
+  }
   if (entry.slug !== 'wechat-svg-drawline') {
     await page.evaluate(async () => {
       await Promise.all([...document.querySelectorAll('#demo-stage img, #demo-stage image')].map(async element => {
@@ -234,8 +259,8 @@ export async function recordBatch(page, slugs, options = {}) {
   const repo = path.resolve(options.repo || DEFAULT_REPO);
   const framesRoot = path.resolve(options.framesRoot || path.join(repo, 'output/brand-gif-frames'));
   const manifest = JSON.parse(await fs.readFile(path.join(repo, 'assets/brand/demo-manifest.json'), 'utf8'));
-  if (!Array.isArray(manifest) || manifest.length !== 30 || new Set(manifest.map(entry => entry.slug)).size !== 30) {
-    throw new Error('Expected thirty unique demo entries');
+  if (!Array.isArray(manifest) || manifest.length === 0 || new Set(manifest.map(entry => entry.slug)).size !== manifest.length) {
+    throw new Error('Expected a nonempty manifest with unique component names');
   }
   const selected = slugs ?? manifest.map(entry => entry.slug);
   if (!Array.isArray(selected) || selected.length === 0 || new Set(selected).size !== selected.length) {

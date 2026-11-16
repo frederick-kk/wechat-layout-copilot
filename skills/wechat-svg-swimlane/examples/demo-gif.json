@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-svg-swimlane",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "fdf0194b5fa17eff2445cc41c94544a6d5b9d6562d37522c6df9dbae8aa3c7e0",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 35,
+  "width": 480,
+  "height": 678,
+  "duration_seconds": 4.38,
+  "loop": 0,
+  "distinct_frames": 3,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 19,
+  "capture_duration_seconds": 3.533398,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "1f16aadbe2aa30dcb769cc580c636e450f8284efd0fa08aec26e37d84fc50018",
+  "bytes": 137603,
+  "sha256": "ffdedd87744b9aaca2004fad7b484c5312b68bb7cd2ce6dea0cbe7c6588a600b"
+}

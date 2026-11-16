@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-layout-wide-table",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "dc372050bcd04b1c4aed4eb5cc4e5ff48dd3c1aae7fa13d22031a554fc85717d",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 37,
+  "width": 480,
+  "height": 800,
+  "duration_seconds": 4.63,
+  "loop": 0,
+  "distinct_frames": 2,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 22,
+  "capture_duration_seconds": 3.801487,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "3fd3d99ba03a78c0925560822a723aeb558686c4a5c9ac3346d94d4dadff93cb",
+  "bytes": 128865,
+  "sha256": "9562eddc4a6aebd8b9912619bd78d78bfb5a11cf7f11292ba4c4b7de86bab059"
+}

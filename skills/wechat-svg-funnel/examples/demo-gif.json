@@ -1,0 +1,25 @@
+{
+  "slug": "wechat-svg-funnel",
+  "source": "browser-capture",
+  "source_sha256": {
+    "brand-preview.html": "2758dd6ef2aeee7517fee6355ad2486bf559d3be6f769daa7b7b94c7f740d17f",
+    "brand-assets/avatar.webp": "66248c6e90996375e7d8010df3215e9a881284212e0b469e7e879839cfb2c5cd",
+    "brand-assets/paper.webp": "9f242fec47bdf9a9f0dc64a180cdb5609bbd6a40abc21bc6ff09d8fcb7871071"
+  },
+  "play": "component-demo",
+  "frame_count": 46,
+  "width": 480,
+  "height": 630,
+  "duration_seconds": 5.76,
+  "loop": 0,
+  "distinct_frames": 8,
+  "visible_changes": true,
+  "sampling_fps": 8,
+  "palette_colors": 192,
+  "source_frame_count": 26,
+  "capture_duration_seconds": 4.910971999999999,
+  "tail_hold_seconds": 0.8,
+  "source_manifest_sha256": "6c4fcf22286fd8910acabf40ead982338ba1a851eef529ba3a7946b8893ee5a4",
+  "bytes": 183532,
+  "sha256": "8e58fd7f5c379da554e01979eb5d0f926b2e1c665dce00ebe23b8505045da9a1"
+}
